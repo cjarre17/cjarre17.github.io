@@ -1,9 +1,10 @@
 .top-div {
     height:auto;
-    text-align: left;
+    text-align: center;
 }
 
 .title-header{
+    text-align: center;
     color: white;
     font-family: "Afacad";font-size: xx-large;
 }
@@ -11,6 +12,9 @@
 .top-button{
     height:auto;
     width: auto;
+    position: absolute;
+    left: 0;
+    padding: 0 10px;
 }
 
 .about-me-image{
