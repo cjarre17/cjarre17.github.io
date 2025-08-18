@@ -1,9 +1,19 @@
 .top-div {
     height:auto;
-    text-align: center;
+    text-align: left;
 }
 
 .title-header{
     color: white;
     font-family: "Afacad";font-size: xx-large;
+}
+
+.top-button{
+    height:auto;
+    width: auto;
+}
+
+.about-me-image{
+    width: auto;
+    height: auto;
 }
