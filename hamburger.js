@@ -1,3 +1,4 @@
+/* This code was discovered and adapted from a youtube video. (Channel: Treehouse) */
 const hamMenu = document.querySelector('.ham-menu');
 
 const offScreenMenu = document.querySelector('.off-screen-menu');

@@ -32,6 +32,9 @@
     height: auto;
 }
 
+/* Everything below this point until otherwise stated was discovered & adapted from
+   a youtube video (Channel: Treehouse) */
+
 /* Container for nav */
 nav {
     display: flex;
