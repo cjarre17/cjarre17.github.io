@@ -10,6 +10,7 @@
     font-size: xx-large;
     text-decoration: none;
     transition: 0.3s;
+    z-index: 0;
 }
 
 .title-header:hover {
@@ -17,6 +18,7 @@
     font-family: "Afacad";
     font-size: 34px;
     text-decoration: none;
+    z-index: 0;
 }
 
 .top-button {
@@ -90,7 +92,9 @@ nav {
 
 /* Off-screen menu styling */
 .off-screen-menu {
-    background-color: rgb(37, 34, 34);
+    background-color: rgba(32, 30, 30, 0.5); /* Semi-transparent background is crucial */
+    backdrop-filter: blur(10px); /* Adjust the pixel value for desired blur intensity */
+    -webkit-backdrop-filter: blur(10px); /* For WebKit-based browsers */
     height: 100vh;
     width: 100%;
     max-width: 450px;
@@ -104,7 +108,7 @@ nav {
     text-align: center;
     font-size: 3rem;
     transition: 0.3s ease;
-    z-index: 2; /* Behind hamburger menu */
+    z-index: 3; /* Behind hamburger menu */
 }
 
 .off-screen-menu.active {
@@ -133,3 +137,24 @@ nav {
 .ham-buttons:hover{
     font-size: +125%;
 }
+
+/* Smooth dim on main content */
+.main-content { transition: filter .2s ease; }
+
+/* When the menu is open, darken the content */
+body.menu-open .main-content {
+  filter: brightness(0.6);
+}
+
+/* Visible dark overlay when menu is open (no HTML changes needed) */
+body.menu-open::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5); /* adjust to taste */
+  z-index: 1; /* below the menu (z=2) and hamburger (z=4), above content */
+}
+
+/* Keep your smooth dim too (optional but fine) */
+.main-content { transition: filter .2s ease; }
+body.menu-open .main-content { filter: brightness(0.6); }
