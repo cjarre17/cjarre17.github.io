@@ -26,7 +26,6 @@ body{
 .nav-bar-logo {
     width: 100px;
     height: auto;
-    object-fit: contain;
     transition: 0.3s;
 }
 
