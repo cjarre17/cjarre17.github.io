@@ -1,5 +1,21 @@
+body {
+    background-color: rgb(51, 47, 47);
+}
+
+
 .top-div {
-    height: auto;
+    height: 7%;
+    border: 2px solid black;
+    border-radius: 30px;
+    background-color: rgba(32, 30, 30, 0.5); /* Semi-transparent background is crucial */
+    backdrop-filter: blur(10px); /* Adjust the pixel value for desired blur intensity */
+    -webkit-backdrop-filter: blur(10px); /* For WebKit-based browsers */
+    position: fixed;
+    width: 98%;
+    top: 1%;
+    left: 1%;
+    right: 1%;
+    z-index: 2;
 }
 
 .title-header {
@@ -7,7 +23,7 @@
     text-align: center;
     color: white;
     font-family: "Afacad";
-    font-size: xx-large;
+    font-size: 125%;
     text-decoration: none;
     transition: 0.3s;
     z-index: 0;
@@ -16,7 +32,7 @@
 .title-header:hover {
     color: white;
     font-family: "Afacad";
-    font-size: 34px;
+    scale: 1.04;
     text-decoration: none;
     z-index: 0;
 }
@@ -42,7 +58,7 @@ nav {
     display: flex;
     align-items: center;
     position: relative;
-    z-index: 3;
+    z-index: 1;
 }
 
 /* Hamburger menu styling */
@@ -50,6 +66,7 @@ nav {
     height: 50px;
     width: 50px;
     margin-left: auto;
+    margin-right: 1%;
     position: relative;
     cursor: pointer;
     z-index: 4; /* Bring on top */
@@ -92,15 +109,13 @@ nav {
 
 /* Off-screen menu styling */
 .off-screen-menu {
-    background-color: rgba(32, 30, 30, 0.5); /* Semi-transparent background is crucial */
-    backdrop-filter: blur(10px); /* Adjust the pixel value for desired blur intensity */
-    -webkit-backdrop-filter: blur(10px); /* For WebKit-based browsers */
+    background-color: darkgray;
     height: 100vh;
     width: 100%;
     max-width: 450px;
     position: fixed;
     top: 0;
-    right: -450px;
+    right: -500px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -112,7 +127,7 @@ nav {
 }
 
 .off-screen-menu.active {
-    right: 0;
+    right: -20px;
 }
 
 /* Remove default list styles and style menu text */
@@ -138,23 +153,52 @@ nav {
     font-size: +125%;
 }
 
-/* Smooth dim on main content */
-.main-content { transition: filter .2s ease; }
+.main-content { 
+    transition: filter .2s ease;
+    margin-top: 5%;
+}
 
-/* When the menu is open, darken the content */
+/* Add a transition and initial state for blurring */
+.top-div,
+.main-content {
+    transition: filter 0.3s ease;
+    filter: blur(0);
+}
+
+/* Apply your desired blur value when the menu is open */
+body.menu-open .top-div,
 body.menu-open .main-content {
-  filter: brightness(0.6);
+    filter: blur(4px);  /* Adjust this value as desired */
 }
 
-/* Visible dark overlay when menu is open (no HTML changes needed) */
-body.menu-open::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.5); /* adjust to taste */
-  z-index: 1; /* below the menu (z=2) and hamburger (z=4), above content */
+/* Ensure the menus (hamburger & off-screen) remain crisp */
+.menu-container {
+    position: fixed;
+    top: 2%;
+    right: 2%;
+    z-index: 100; /* Make sure it stays above blurred elements */
 }
 
-/* Keep your smooth dim too (optional but fine) */
-.main-content { transition: filter .2s ease; }
-body.menu-open .main-content { filter: brightness(0.6); }
+/* Adjust existing styles if necessary */
+.ham-menu {
+    height: 50px;
+    width: 50px;
+    cursor: pointer;
+    /* Remove any inherited blur by not placing it inside a blurred container */
+}
+
+.off-screen-menu {
+    background-color: rgb(54, 54, 54);
+    height: 100vh;
+    width: 100%;
+    max-width: 450px;
+    position: fixed;
+    top: 0;
+    right: -500px;
+    transition: 0.3s ease;
+    z-index: 19;
+}
+
+.off-screen-menu.active {
+    right: -20px;
+}

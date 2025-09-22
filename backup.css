@@ -1,0 +1,43 @@
+/* Smooth dim on main content */
+.main-content { 
+    transition: filter .2s ease;
+    margin-top: 5%;
+}
+
+/* When the menu is open, darken the content */
+body.menu-open .main-content {
+  filter: brightness(0.6);
+}
+
+/* Visible dark overlay when menu is open (no HTML changes needed) */
+body.menu-open::before {
+    background-color: rgba(32, 30, 30, 0.5); /* Semi-transparent background is crucial */
+    backdrop-filter: blur(10px); /* Adjust the pixel value for desired blur intensity */
+    -webkit-backdrop-filter: blur(10px); /* For WebKit-based browsers */
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5); /* adjust to taste */
+    z-index: 1; /* below the menu (z=2) and hamburger (z=4), above content */
+    pointer-events: none;
+}
+
+/* Keep your smooth dim too (optional but fine) */
+.main-content { 
+    transition: filter .2s ease; 
+}
+body.menu-open .main-content { 
+    filter: blur(0.6); 
+}
+
+.top-div.menu-open::before {
+    background-color: rgba(32, 30, 30, 0.5); /* Semi-transparent background is crucial */
+    backdrop-filter: blur(10px); /* Adjust the pixel value for desired blur intensity */
+    -webkit-backdrop-filter: blur(10px); /* For WebKit-based browsers */
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5); /* adjust to taste */
+    z-index: 1; /* below the menu (z=2) and hamburger (z=4), above content */
+    pointer-events: none;
+}
