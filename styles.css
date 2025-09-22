@@ -1,7 +1,9 @@
+/* Root css to create a global css variable to apply to css lower */
 :root {
     --nav-h:62px
 }
 
+/* Background gradient color design */
 body{
     background:
     radial-gradient(1200px 600px at 10% -10%, rgba(255,255,255,0.06), transparent 60%),
@@ -9,6 +11,8 @@ body{
     linear-gradient(180deg, rgb(56, 58, 61), rgb(30,28,28));
     background-attachment: fixed;
 }
+
+/* COMMENTED OUT UNTIL FURTHER NOTICE
 .nav-bar-title {
     text-decoration: none;
     color: rgb(59, 121, 255);
@@ -22,23 +26,28 @@ body{
     font-size: larger;
     transition: 0.3s;
 }
+*/
 
+/* Styles for the Nginx logo div in the top left */
 .nav-bar-logo {
     width: 100px;
     height: auto;
     transition: 0.3s;
 }
 
+/* Styles for the Nginx logo in the top left when mouse hover is active*/
 .nav-bar-logo:hover{
     transform: scale(1.15);
 }
 
+/* Styles for the Nginx logo in the top left */
 .nav-bar-logo img {
     max-width: 100%;
     height: auto;
     object-fit: cover;
 }
 
+/* Styles for the top nav bar */
 .nav-bar {
     display: flex;
     align-items: center;
@@ -61,6 +70,7 @@ body{
     box-sizing: border-box;
 }
 
+/* Styles for the desktop interface links/buttons list*/
 .nav-bar-buttons {
     display: flex;
     text-decoration: none;
@@ -74,19 +84,14 @@ body{
     gap: 1.1rem;
 }
 
+/* Styles for mouse hover on the desktop interface links/buttons */
 .nav-bar-buttons a:hover{
     font-weight: 700;
     font-size: larger;
     transition: 0.3s;
 }
 
-.nav-bar-buttons li {
-    text-decoration: inherit;
-    color: inherit;
-    font-family: inherit;
-    list-style: inherit;
-}
-
+/* Styles for the desktop interface links/buttons */
 .nav-bar-buttons a {
     text-decoration: inherit;
     color: inherit;
@@ -95,14 +100,16 @@ body{
     transition: 0.3s;
 }
 
+/* Main content div styles */
 main {
-    padding-top: calc(var(--nav-h));
+    padding-top: var(--nav-h);
     color: antiquewhite;
     padding-right: 1rem;
     padding-left: 1rem;
     padding-bottom: 1rem;
 }
 
+/* Hamburger menu icon div styles */
 .ham-menu {
   display: none; 
   flex-direction: column; 
@@ -115,6 +122,8 @@ main {
   margin-left: 0.5rem;
   cursor: pointer;
 }
+
+/* Hamburger menu icon bars */
 .ham-menu span {
   display: block;
   width: 26px;
@@ -124,18 +133,20 @@ main {
   transition: transform .2s ease, opacity .2s ease;
 }
 
+/* Hides hamburger menu content when not needed */
 .off-screen-menu { 
     display: none; 
 }
 
-/* ===== Mobile / Tablet (≤ 870px) ===== */
-@media (max-width: 870px) {
+    /* Mobile Views (≤ 880px width) */
+@media (max-width: 880px) {
 
-  /* Hide desktop list, show hamburger */
+  /* Hide nav bar buttons, show hamburger menu */
   .nav-bar-buttons { 
     display: none; 
 }
 
+    /* Hamburger menu icon */
   .ham-menu { 
     display: inline-flex; 
     flex-direction: column;
@@ -170,6 +181,7 @@ main {
     box-shadow: -10px 0 24px rgba(0,0,0,.35);
   }
 
+  /* Menu buttons list within hamburger menu */
   .off-screen-menu ul {
     flex: 1;
     list-style: none;
@@ -183,6 +195,7 @@ main {
     align-items: center; 
   }
 
+  /* Menu buttons within hamburger menu hover effect */
   .off-screen-menu li:hover{
     font-family: "Montserrat", system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif;;
     padding: .25rem .5rem;
@@ -191,11 +204,13 @@ main {
     font-weight: 700;
   }
 
+  /* Class rule to add return transition for after mouse hover on hamburger menu buttons has ended */
     .off-screen-menu li{
         transition: 0.3s;
 
   }
 
+  /* Customization of text within hamburger menu */
   .off-screen-menu a {
     color: white;
     text-decoration: none;
@@ -204,17 +219,10 @@ main {
     transition: opacity .2s ease;
   }
 
-
-
-  .off-screen-menu a:hover,
-  .off-screen-menu a:focus-visible { 
-    opacity: 1; 
-}
-
-  /* When menu is open, slide in */
+  /* When menu is opened, slide in off screen menu */
   body.menu-open .off-screen-menu { transform: translateX(0); }
 
-  /* Optional: animate hamburger into an X */
+  /* Animate hamburger icon into an X */
   body.menu-open .ham-menu span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
   body.menu-open .ham-menu span:nth-child(2) { opacity: 0; }
   body.menu-open .ham-menu span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
