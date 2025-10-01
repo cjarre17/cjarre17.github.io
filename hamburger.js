@@ -1,12 +1,12 @@
 // hamburger.js
 
 //Caches references to the media query and key elements
-const mq = window.matchMedia('(max-width: 880px)');
+const mq = window.matchMedia('(max-width: 1200px)');
 const body = document.body;
 const hamMenu = document.querySelector('.ham-menu');
 const drawer = document.getElementById('mobile-drawer') || document.querySelector('.off-screen-menu');
 
-//Only true when width is smaller than 880px, determines whether or not to run JS functions
+//Only true when width is smaller than 1200px, determines whether or not to run JS functions
 function isMobile() { return mq.matches; }
 function setExpanded(v) { hamMenu?.setAttribute('aria-expanded', String(v)); }
 
