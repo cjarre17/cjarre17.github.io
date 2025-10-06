@@ -1,6 +1,8 @@
 /* Root css to create a global css variable to apply to css lower */
 :root {
-    --nav-h:62px
+    --nav-h:62px;
+    --step-0: clamp(1rem, 0.9rem + 0.5vw, 1.125rem);
+    --step-2: clamp(1.5rem, 1.2rem + 1.2vw, 1.7rem);
 }
 
 /* Background gradient color design */
@@ -10,8 +12,42 @@ body{
     radial-gradient(900px 500px at 110% 10%, rgba(255,255,255,0.04), transparent 55%),
     linear-gradient(180deg, rgb(56, 58, 61), rgb(30,28,28));
     background-attachment: fixed;
+    font-size: var(--step-0);
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif;
 }
 
+p{
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif;;
+  color: #ffffff;
+  text-wrap: pretty;
+  margin: 1rem;
+}
+
+.body-title{
+  font-size: var(--step-2); 
+  line-height: 1.2;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif;
+  color: #ffffff;
+  text-align: center;
+}
+
+body.menu-open{
+  overflow: hidden;
+}
+
+.abstract-container{
+  background-color: #1f1f1f;
+  display: flex;
+  border-left: 0.4rem solid #0a840a;
+  border-radius: 1rem;
+  max-width:100%;
+}
+
+.abstract-title{
+  color: #13c213;
+  margin: 1rem;
+
+}
 
 .nav-bar-title {
     text-decoration: none;
@@ -22,7 +58,37 @@ body{
     margin-bottom: 0.6rem;
 }
 
+img {
+  max-width: 100%;
+  height: auto;
+}
 
+.body-left {
+  flex: 1 1 28rem;
+  max-width: 100%;
+  height: auto;
+  background-color: rgba(32, 30, 30, 0.5);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 0.1rem solid rgb(71, 71, 71);
+  border-radius: 1rem;
+  padding: 1rem;
+  text-wrap: wrap;
+}
+
+.body-right {
+  flex: 1 1 28rem;
+  max-width: 100%;
+  height: auto;
+  background-color: rgba(32, 30, 30, 0.5);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 0.1rem solid rgb(71, 71, 71);
+  border-radius: 1rem;
+  padding: 1rem;
+  text-wrap: wrap;
+  justify-content: left;
+}
 
 /* Styles for the Nginx logo div in the top left */
 .nav-bar-logo {
@@ -107,10 +173,16 @@ body{
 /* Main content div styles */
 main {
     padding-top: var(--nav-h);
-    color: antiquewhite;
+    max-width: 7680px; /* 8k display */
     padding-right: 1rem;
     padding-left: 1rem;
     padding-bottom: 1rem;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-inline: auto;
 }
 
 /* Hamburger menu icon div styles */
