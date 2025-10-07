@@ -412,7 +412,7 @@ img {
 /* FOOTER STYLES */
 
 .footer-div{
-  background-color: rgba(32, 30, 30, 0.5);
+  background-color: transparent;
   margin: 0;
   padding: 0.75rem 1rem;
   border-top: grey solid 1px;
