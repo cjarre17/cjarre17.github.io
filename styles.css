@@ -61,8 +61,17 @@ p{
   transition: ease-in 0.2s;
 }
 
-.key-terms-list{
+.body-list{
   color: #ffffff;
+}
+
+.master-worker-list{
+  color: #ffffff;
+}
+
+.master-worker-list li{
+  color: #ffffff;
+  padding: 0.5rem;
 }
 
 .home-page-diagram{
@@ -161,6 +170,65 @@ img {
   margin-inline: auto;
 }
 
+.body-full {
+  flex: 0 1 80rem;
+  max-width: 100%;
+  height: auto;
+  background-color: rgba(32, 30, 30, 0.5);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 0.1rem solid rgb(71, 71, 71);
+  border-radius: 1rem;
+  padding: 1rem;
+  text-wrap: wrap;
+  margin-inline: auto;
+  overflow: hidden;
+}
+
+.list-title{
+  margin-bottom: 0.5rem;
+  margin-left: -1.4rem;
+}
+
+.section-heading{
+  color: white;
+  margin-left: 1.3rem;
+}
+
+.arch-table{
+  flex: 0 1 80rem;
+  border: gray 0.1px solid;
+  border-radius: 1rem;
+  background-color: #1f1f1f;
+  padding: 0.5rem;
+  justify-content: center;
+  color: white;
+  max-width: 100%;
+  width: 100%;
+  table-layout: fixed;
+  border-collapse: collapse;
+  border-spacing: 0;
+  display: block;
+  overflow-x: auto;
+}
+
+.arch-table th{
+  padding-block: .25rem;
+}
+
+.arch-table p{
+  color: #13c213;
+}
+
+.arch-table td{
+  border: gray 0.1px solid;
+  border-collapse: collapse;
+  padding: 1rem;
+  background-color: #2c2828;
+  min-width: 150px;
+}
+
+
 /* Styles for the Nginx logo div in the top left */
 .nav-bar-logo {
     width: 100px;
@@ -242,7 +310,7 @@ img {
 }
 
 /* Main content div styles */
-main {
+main{
     padding-top: var(--nav-h);
     max-width: 7680px; /* 8k display */
     padding-right: 1rem;
@@ -255,6 +323,7 @@ main {
     gap: 1rem;
     margin-inline: auto;
 }
+
 
 /* Hamburger menu icon div styles */
 .ham-menu {

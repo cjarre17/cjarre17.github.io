@@ -63,16 +63,72 @@
 
         
 
-                <main>
+        <main>
 
-            <div class="body-left">
-                test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test
-                architecture page in progress.
+            <div class="body-full">
+
+                <h2 class="body-title">
+                    NGINX Architecture
+                </h2>
+
+                <p>
+                    NGINX is built around one master process and many other worker processes. 
+                    Worker processes are event-driven and can handle many connections at once through the use of non-blocking I/O (event loops).
+                </p>
+
+                <ul class="master-worker-list">
+                    <h2 class="list-title">Master vs. Worker Role</h4>
+                    <li><strong>Master:</strong> reads config, binds ports, manages worker lifecycle.</li>
+                    <li><strong>Worker:</strong> performs the actual request processing</li>
+                </ul>
+
+                <h2 class="section-heading">
+                    Why Event Driven?
+                </h2>
+
+                <p>
+                    Compared to a “one thread per connection” model, event-driven workers avoid massive 
+                    memory and context-switch overhead when handling thousands of clients.
+                </p>
+
             </div>
 
-            <div class="body-right">
-                test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test
-                architecture page in progress.
+            <div class="body-full">
+                <h2 class="section-heading">
+                    At a Glance
+                </h2>
+                <table class="arch-table">
+
+                    <thead>
+                        <tr>
+                            <th><p>Model</p></th>
+                            <th><p>Threading</p></th>
+                            <th><p style="font-size: 1rem;">Concurrency Strategy</p></th>
+                            <th><p>Pros</p></th>
+                            <th><p>Cons</p></th>
+                        </tr>
+                    </thead>
+                    
+                    <tbody>
+
+                        <tr>
+                            <td>NGINX</td>
+                            <td>Few worker processes</td>
+                            <td>Event loop, non-blocking I/O</td>
+                            <td>Low memory use; Scales to more than 10k connections</td>
+                            <td>Requires async-friendly modules</td>
+                        </tr>
+
+                        <tr>
+                            <td>Legacy Thread-per-Connection</td>
+                            <td>One thread per client</td>
+                            <td>Blocking I/O</td>
+                            <td>Simpler mental model</td>
+                            <td>High model; poor scalability</td>
+                        </tr>
+
+                    </tbody>
+                </table>
             </div>
 
         </main>
