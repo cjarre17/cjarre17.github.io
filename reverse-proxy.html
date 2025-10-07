@@ -63,19 +63,91 @@
 
         
 
-                <main>
+        <main>
 
-            <div class="body-left">
-                test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test
-                reverse-proxy page in progress.
-            </div>
+            <div class="body-full">
 
-            <div class="body-right">
-                test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test
-                reverse-proxy page in progress.
+                <h2 class="body-title">
+                    Reverse Proxy — What & Why
+                </h2>
+
+                <p>
+                    A reverse proxy sits in front of application servers and routes client requests to the appropriate backend, 
+                    adding performance and security features along the way.
+                </p>
+
+                <ul class="master-worker-list">
+                    <h2 class="list-title">Core Capabilities</h4>
+                    <li><strong>Security:</strong> expose only the proxy to the internet; hide backends.</li>
+                    <li><strong>Caching:</strong> serve popular content from cache to reduce load.</li>
+                    <li><strong>TLS Termination:</strong> offload HTTPS encryption/decryption.</li>
+                    <li><strong>Compression/Optimization:</strong> reduce bandwidth per response.</li>
+                    <li><strong>Routing & Rewrites:</strong> direct to services, rewrite URLs as needed.</li>
+                </ul>
+
+                <h2 class="section-heading">
+                    Use-Case Examples
+                </h2>
+                <div class="bubble-inlay">
+
+                    <div class="bubbles-styling">
+                        <h3 class="bubbles-title">
+                            Load Balancing
+                        </h3>
+
+                        <p>
+                            Distribute traffic across multiple instances; enable automatic failover.
+                        </p>
+                    </div>
+
+                    <div class="bubbles-styling">
+                        <h3 class="bubbles-title">
+                            API Gateway
+                        </h3>
+
+                        <p>
+                            Route /users to the Users service, /orders to the Orders service, etc.
+                        </p>
+                    </div>
+
+                    <div class="bubbles-styling">
+                        <h3 class="bubbles-title">
+                            Legacy HTTPS Front
+                        </h3>
+
+                        <p>
+                            Keep an HTTP-only legacy app behind NGINX; serve it securely over HTTPS.
+                        </p>
+                    </div>
+
+                    <div class="bubbles-styling">
+                        <h3 class="bubbles-title">
+                            Static Caching
+                        </h3>
+
+                        <p>
+                            Cache blog posts or media for faster delivery and lower backend costs.
+                        </p>
+                    </div>
+
+                </div>
+
+
             </div>
 
         </main>
+
+        <footer>
+            <div class="footer-div">
+                <h4 class="footer-text">Caleb Jarrell</h4>
+                <h4 class="footer-text">-</h4>
+                <h4 class="footer-text">Class Project for IT 3203</h4>
+                <h4 class="footer-text">-</h4>
+                <h4 class="footer-text">2025</h4>
+            </div>
+        </footer>
+        <script src="hamburger.js" defer></script>
+
 
         <script src="hamburger.js" defer></script>
 

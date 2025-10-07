@@ -63,19 +63,37 @@
 
         
 
-                <main>
+        <main>
 
-            <div class="body-left">
-                test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test
-                Key concepts page in progress.
-            </div>
+            <div class="body-full">
 
-            <div class="body-right">
-                test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test
-                Key concepts page in progress.
+                <h2 class="body-title">Key Concepts</h2>
+                
+                <ol class="key-concepts-list">
+                    <li><strong>C10K Problem:</strong> Handling 10,000+ concurrent connections on a single server.</li>
+                    <li><strong>Event Loop:</strong> Non-blocking I/O model where a worker handles many sockets asynchronously.</li>
+                    <li><strong>Master/Worker:</strong> Master manages config & processes; workers do the request handling.</li>
+                    <li><strong>Reverse Proxy:</strong> Routes, caches, and secures traffic to internal services.</li>
+                    <li><strong>TLS Termination:</strong> Nginx decrypts/encrypts HTTPS at the edge; backends can use HTTP.</li>
+                    <li><strong>Caching:</strong> Serving frequently requested responses directly from Nginx.</li>
+                    <li><strong>Load Balancing:</strong> Split traffic across instances to improve availability & scale.</li>
+                </ol>
+
             </div>
 
         </main>
+
+        <footer>
+            <div class="footer-div">
+                <h4 class="footer-text">Caleb Jarrell</h4>
+                <h4 class="footer-text">-</h4>
+                <h4 class="footer-text">Class Project for IT 3203</h4>
+                <h4 class="footer-text">-</h4>
+                <h4 class="footer-text">2025</h4>
+            </div>
+        </footer>
+        
+        <script src="hamburger.js" defer></script>
 
         <script src="hamburger.js" defer></script>
 

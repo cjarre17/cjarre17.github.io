@@ -1,3 +1,5 @@
+/* GLOBAL STYLES */
+
 /* Root css to create a global css variable to apply to css lower */
 :root {
     --nav-h:62px;
@@ -14,6 +16,7 @@ body{
     background-attachment: fixed;
     font-size: var(--step-0);
     font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif;
+    margin: 0;
 }
 
 p{
@@ -23,43 +26,24 @@ p{
   margin: 1rem;
 }
 
-.toc-bubbles-title{
-  font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif;;
-  color: #ffffff;
-  text-wrap: pretty;
-  margin: 1rem;
+/* Main content div styles */
+main{
+    padding-top: calc(var(--nav-h) + 12px);
+    max-width: 7680px; /* 8k display */
+    padding-right: 1rem;
+    padding-left: 1rem;
+    padding-bottom: 1rem;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-inline: auto;
 }
 
-.toc-links{
-  text-decoration: none;
-  color:white
-}
+/*-----------------------------------------------------------------------------*/
 
-.toc-link-button{
-  max-width: fit-content;
-  height: auto;
-  background-color: rgba(32, 30, 30, 0.5);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 0.1rem solid #13c213;
-  border-radius: 1rem;
-  padding: 0.8rem;
-  text-wrap: wrap;
-  transition: ease-out 0.2s;
-}
-
-.toc-link-button:hover{
-  max-width: fit-content;
-  height: auto;
-  background-color: #13c213;
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 0.1rem solid #13c213;
-  border-radius: 1rem;
-  padding: 0.8rem;
-  text-wrap: wrap;
-  transition: ease-in 0.2s;
-}
+/* LIST STYLES */
 
 .body-list{
   color: #ffffff;
@@ -74,74 +58,51 @@ p{
   padding: 0.5rem;
 }
 
-.home-page-diagram{
-  border: transparent #ffffff;
-  border-radius: 1rem;
+.list-title{
+  margin-bottom: 0.5rem;
+  margin-left: -1.4rem;
 }
 
-.body-title{
-  font-size: var(--step-2); 
-  line-height: 1.2;
-  font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif;
+.key-concepts-list{
   color: #ffffff;
-  text-align: center;
 }
 
-body.menu-open{
-  overflow: hidden;
+.key-concepts-list-title,
+.references-list-title{
+  color: white;
 }
 
-.abstract-container{
-  background-color: #1f1f1f;
-  display: flex;
-  border-left: 0.4rem solid #0a840a;
-  border-radius: 1rem;
-  max-width:100%;
-}
-
-.abstract-title{
-  color: #13c213;
-  margin: 1rem;
-
-}
-
-.table-of-contents{
-  gap: 1rem;
-  flex-wrap: wrap;
-  display: flex;
-}
-
-.table-of-contents-bubbles{
-  flex: 1 1 260px;
-  border: 0.1rem solid rgb(71, 71, 71);
-  -webkit-backdrop-filter: blur(10px);
-  background-color: rgba(32, 30, 30, 0.5);
-  backdrop-filter: blur(10px);
-  border-radius: 1rem;
-  max-width: 100%;
+.key-concepts-list li{
+  color: #ffffff;
   padding: 1rem;
 }
 
-.table-of-contents-bubbles p{
-  font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif;;
-  color: #ffffff;
-  text-wrap: pretty;
-  margin: 1rem;
+.references-list{
+  color: white;
 }
 
-.nav-bar-title {
-    text-decoration: none;
-    color: #ffffff;
-    font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif;
-    font-size: 1.2rem;
-    padding-left: 0.6rem;
-    margin-bottom: 0.6rem;
+.references-list li{
+  display: flex;
+  padding: 1rem;
+}
+
+/*-----------------------------------------------------------------------------*/
+
+/* IMAGE STYLES */
+
+.home-page-diagram{
+  border: transparent #ffffff;
+  border-radius: 1rem;
 }
 
 img {
   max-width: 100%;
   height: auto;
 }
+
+/*-----------------------------------------------------------------------------*/
+
+/* DIV ORGANIZATION STYLES */
 
 .body-left {
   flex: 1 1 28rem;
@@ -185,15 +146,97 @@ img {
   overflow: hidden;
 }
 
-.list-title{
-  margin-bottom: 0.5rem;
-  margin-left: -1.4rem;
+.abstract-container{
+  background-color: #1f1f1f;
+  display: flex;
+  border-left: 0.4rem solid #0a840a;
+  border-radius: 1rem;
+  max-width:100%;
+}
+
+.table-of-contents{
+  gap: 1rem;
+  flex-wrap: wrap;
+  display: flex;
+}
+
+/*-----------------------------------------------------------------------------*/
+
+/* BUTTON STYLES */
+
+.references-link-button{
+  max-width: fit-content;
+  height: auto;
+  background-color: rgba(32, 30, 30, 0.5);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 0.1rem solid #13c213;
+  border-radius: 0.7rem;
+  padding: 0.5rem;
+  text-wrap: wrap;
+  transition: ease-out 0.2s;
+  margin-left: 1rem;
+  margin-top: -0.5rem;
+}
+
+.references-link-button:hover{
+  background-color: #13c213;
+  transition: ease-out 0.2s;
+}
+
+.toc-link-button{
+  max-width: fit-content;
+  height: auto;
+  background-color: rgba(32, 30, 30, 0.5);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 0.1rem solid #13c213;
+  border-radius: 1rem;
+  padding: 0.8rem;
+  text-wrap: wrap;
+  transition: ease-out 0.2s;
+}
+
+.toc-link-button:hover{
+  background-color: #13c213;
+  transition: ease-in 0.2s;
+}
+
+.toc-links{
+  text-decoration: none;
+  color:white
+}
+
+.reference-links{
+  text-decoration: none;
+  color:white
+}
+
+/*-----------------------------------------------------------------------------*/
+
+/* TEXT STYLES */
+
+.body-title{
+  font-size: var(--step-2); 
+  line-height: 1.2;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif;
+  color: #ffffff;
+  text-align: center;
+}
+
+.abstract-title{
+  color: #13c213;
+  margin: 1rem;
+
 }
 
 .section-heading{
   color: white;
   margin-left: 1.3rem;
 }
+
+/*-----------------------------------------------------------------------------*/
+/* TABLE STYLES */
 
 .arch-table{
   flex: 0 1 80rem;
@@ -227,6 +270,21 @@ img {
   background-color: #2c2828;
   min-width: 150px;
 }
+
+/*-----------------------------------------------------------------------------*/
+
+/* NAV BAR STYLES */
+
+.nav-bar-title {
+    text-decoration: none;
+    color: #ffffff;
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif;
+    font-size: 1.2rem;
+    padding-left: 0.6rem;
+    margin-bottom: 0.6rem;
+}
+
+
 
 
 /* Styles for the Nginx logo div in the top left */
@@ -309,21 +367,81 @@ img {
     transition: 0.3s;
 }
 
-/* Main content div styles */
-main{
-    padding-top: var(--nav-h);
-    max-width: 7680px; /* 8k display */
-    padding-right: 1rem;
-    padding-left: 1rem;
-    padding-bottom: 1rem;
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    align-items: flex-start;
-    gap: 1rem;
-    margin-inline: auto;
+/*-----------------------------------------------------------------------------*/
+
+/* BUBBLES STYLES*/
+
+.bubble-inlay{
+  display: flex;
+  flex: 1 1 28rem;
+  max-width: 100%;
+  height: auto;
+  text-wrap: wrap;
+  margin-inline: auto;
+  gap: 1rem;
+  flex-wrap: wrap;
 }
 
+.bubbles-styling{
+  flex: 1 1 400px;
+  border: 0.1rem solid rgb(71, 71, 71);
+  -webkit-backdrop-filter: blur(10px);
+  background-color: rgba(32, 30, 30, 0.5);
+  backdrop-filter: blur(10px);
+  border-radius: 1rem;
+  max-width: 100%;
+  padding: 1rem;
+}
+
+.bubbles-styling p{
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif;;
+  color: #ffffff;
+  text-wrap: pretty;
+  margin: 1rem;
+}
+
+.bubbles-title{
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif;;
+  color: #ffffff;
+  text-wrap: pretty;
+  margin: 1rem;
+}
+
+/*-----------------------------------------------------------------------------*/
+
+/* FOOTER STYLES */
+
+.footer-div{
+  background-color: rgba(32, 30, 30, 0.5);
+  margin: 0;
+  padding: 0.75rem 1rem;
+  border-top: grey solid 1px;
+  width: 100%;
+  height: auto;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  min-height: 56px;
+  flex-direction: row;
+}
+
+.footer-text{
+  text-align: center;
+  color: white;
+  margin: 0;
+  font-weight: 300;
+  line-height: 1.2;
+  padding: 0.4rem;
+  font-size: 15px;
+}
+
+/*-----------------------------------------------------------------------------*/
+
+/* HAMBURGER MENU/@MEDIA */
+
+body.menu-open{
+  overflow: hidden;
+}
 
 /* Hamburger menu icon div styles */
 .ham-menu {
@@ -354,7 +472,7 @@ main{
     display: none; 
 }
 
-    /* Mobile Views (≤ 1200px width) */
+/* Mobile Views (≤ 1200px width) */
 @media (max-width: 1200px) {
 
   /* Hide nav bar buttons, show hamburger menu */
@@ -469,3 +587,5 @@ main{
   display: none;
 }
 }
+
+/*-----------------------------------------------------------------------------*/
