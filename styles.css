@@ -462,8 +462,8 @@ img {
 
 
 /* Table of Contents/Reverse Proxy Bubbles
-   Layout: Flexible 2-up+ card grid; wraps on narrow screens
-   Notes: Use consistent padding and border radius to keep “card” look
+   Goal: Flexible 2-up+ card grid; wraps on narrow screens
+   Use consistent padding and border radius to keep “card” look
 */
 .bubble-inlay{
   display: flex;
@@ -551,7 +551,7 @@ img {
 
 /* Make children objects shrink instead of forcing overflow */
 .footer-div > * {
-  min-width: 0;             /* critical for flex children with text */
+  min-width: 0;             
   flex: 0 1 auto;
 }
 
