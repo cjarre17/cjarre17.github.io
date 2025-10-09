@@ -514,7 +514,9 @@ img {
 }
 
 /* Make widths include padding/borders */
-*, *::before, *::after { box-sizing: border-box; }
+*, *::before, *::after { 
+  box-sizing: border-box; 
+}
 
 /* Wrap + never exceed the viewport */
 .footer-div{
@@ -526,7 +528,6 @@ img {
 
   inline-size: 100%;
   max-inline-size: 100%;
-  padding: 0.75rem 1rem;
   margin: 0;
   min-height: 56px;
   height: auto;
@@ -541,7 +542,9 @@ img {
 
 /* Fallback for older browsers that don't support overflow: clip */
 @supports not (overflow: clip) {
-  .footer-div { overflow-x: hidden; }
+  .footer-div { 
+    overflow-x: hidden; 
+  }
 }
 
 /* Make children objects shrink instead of forcing overflow */
@@ -605,20 +608,20 @@ body.menu-open{
   /* Hide nav bar buttons, show hamburger menu */
   .nav-bar-buttons { 
     display: none; 
-}
+  }
 
-#desktoptitle .nav-bar-title {
+  #desktoptitle .nav-bar-title {
     display: none;
-}
+  }
 
-#mobiletitle .nav-bar-title {
+  #mobiletitle .nav-bar-title {
     text-decoration: none;
     color: #ffffff;
     font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif;
     font-size: 1.2rem;
     padding-left: 0.1rem;
     margin-bottom: 0.6rem;
-}
+  }
 
     /* Hamburger menu icon */
   .ham-menu { 
@@ -634,7 +637,7 @@ body.menu-open{
     background: transparent;
     cursor: pointer;
 
-}
+  }
 
   /* Slide-out hamburger menu */
   .off-screen-menu {
@@ -694,12 +697,20 @@ body.menu-open{
   }
 
   /* When menu is opened, slide in off screen menu */
-  body.menu-open .off-screen-menu { transform: translateX(0); }
+  body.menu-open .off-screen-menu { 
+    transform: translateX(0); 
+  }
 
   /* Animate hamburger icon into an X */
-  body.menu-open .ham-menu span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
-  body.menu-open .ham-menu span:nth-child(2) { opacity: 0; }
-  body.menu-open .ham-menu span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+  body.menu-open .ham-menu span:nth-child(1) { 
+    transform: translateY(8px) rotate(45deg); 
+  }
+  body.menu-open .ham-menu span:nth-child(2) { 
+    opacity: 0; 
+  }
+  body.menu-open .ham-menu span:nth-child(3) { 
+    transform: translateY(-8px) rotate(-45deg); 
+  }
 }
 
 
@@ -708,7 +719,9 @@ body.menu-open{
 /* Honor user's reduced motion preference. Disable transitions/animations that could cause discomfort
 */
 @media (prefers-reduced-motion: reduce) {
-  .off-screen-menu, .ham-menu span { transition: none !important; }
+  .off-screen-menu, .ham-menu span { 
+    transition: none !important; 
+  }
 }
 
 /* ≥1200px: Desktop layout; full nav visible, mobile title hidden
