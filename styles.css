@@ -10,7 +10,7 @@
 /* Root css to create a global css variable to apply to css lower */
 :root {
     --nav-h:62px; /* matches fixed navbar height; used for main top padding */
-    --step-0: clamp(1rem, 0.9rem + 0.5vw, 1.125rem); /* base text scale */
+    --step-0: clamp(1.1rem, 0.9rem + 0.5vw, 1.2rem); /* base text scale */
     --step-2: clamp(1.5rem, 1.2rem + 1.2vw, 1.7rem); /* section titles */
 }
 
@@ -75,7 +75,8 @@ main{
 */
 .list-title{
   margin-bottom: 0.5rem;
-  margin-left: -1.4rem;
+  color: white;
+  margin-left: 1.2rem;
 }
 
 .key-concepts-list{
@@ -107,7 +108,7 @@ main{
 .passions-list li, 
 .body-list-large li{
   padding: 0.5rem;
-  font-size: 1.3rem;
+  font-size: var(--step-0);
 }
 
 
@@ -309,6 +310,7 @@ img {
   font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif;
   color: #ffffff;
   text-align: left;
+  margin-left: 1rem;
 }
 
 .abstract-title{
