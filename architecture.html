@@ -1,8 +1,11 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <!--META VALUES-->
         <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+        <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,viewport-fit=cover">
+
+        <!--STYLE IMPORTS-->
         <link rel="stylesheet" href="styles.css">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -11,7 +14,7 @@
     </head>
 
     <body>
-
+        <!--NAV BAR-->
         <nav class="nav-bar">
 
             <div class="nav-bar-left">
@@ -49,6 +52,7 @@
 
         </nav>
 
+        <!--HAMBURGER MENU-->
         <nav id="mobile-drawer" class="off-screen-menu" aria-label="Mobile">
             <!-- Discovered and adapted from a youtube video. (Channel: Treehouse) -->
             <ul>
@@ -62,9 +66,10 @@
         </nav>
 
         
-
+        <!--MAIN SECTION-->
         <main>
 
+            <!--CENTER CARD TOP-->
             <div class="body-full">
 
                 <h2 class="body-title">
@@ -77,7 +82,7 @@
                 </p>
 
                 <ul class="master-worker-list">
-                    <h2 class="list-title">Master vs. Worker Role</h4>
+                    <h2 class="list-title">Master vs. Worker Role</h2>
                     <li><strong>Master:</strong> reads config, binds ports, manages worker lifecycle.</li>
                     <li><strong>Worker:</strong> performs the actual request processing</li>
                 </ul>
@@ -91,12 +96,22 @@
                     memory and context-switch overhead when handling thousands of clients.
                 </p>
 
+                <!--TIP CONTAINER-->
+                <div class="tip-container">
+                    <p>
+                        <strong>Tip:</strong> By default, Nginx spawns about one worker per CPU core — a sensible starting point. 
+                    </p>
+                </div>
+
             </div>
 
+            <!--CENTER CARD BOTTOM-->
             <div class="body-full">
                 <h2 class="section-heading">
                     At a Glance
                 </h2>
+
+                <!--TABLE OF ARCHITECTURE INFO-->
                 <table class="arch-table">
 
                     <thead>
@@ -133,18 +148,18 @@
 
         </main>
 
-
+        <!--FOOTER-->
         <footer>
             <div class="footer-div">
                 <h4 class="footer-text">Caleb Jarrell</h4>
                 <h4 class="footer-text">-</h4>
-                <h4 class="footer-text">Class Project for IT 3203</h4>
+                <h4 class="footer-text">Class Project for <a href="https://ksuweb.github.io/IT3203/" target="_blank">IT 3203</a></h4>
                 <h4 class="footer-text">-</h4>
                 <h4 class="footer-text">2025</h4>
             </div>
         </footer>
-        <script src="hamburger.js" defer></script>
 
+        <!--JS SCRIPT IMPORT-->
         <script src="hamburger.js" defer></script>
 
     </body>

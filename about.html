@@ -1,8 +1,11 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <!--META VALUES-->
         <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+        <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,viewport-fit=cover">
+
+        <!--STYLE IMPORTS-->
         <link rel="stylesheet" href="styles.css">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,6 +15,7 @@
 
     <body>
 
+        <!--NAV BAR-->
         <nav class="nav-bar">
 
             <div class="nav-bar-left">
@@ -49,6 +53,7 @@
 
         </nav>
 
+        <!--HAMBURGER MENU-->
         <nav id="mobile-drawer" class="off-screen-menu" aria-label="Mobile">
             <!-- Discovered and adapted from a youtube video. (Channel: Treehouse) -->
             <ul>
@@ -62,31 +67,105 @@
         </nav>
 
         
+        <!--MAIN SECTION-->
+        <main class="about-main">
 
-        <main>
+            <!--TOP LEFT CARD-->
+            <div class="about-body-left">
 
-            <div class="body-left">
-                test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test
-                about page in progress.
+                <div class="about-author-left">
+
+                    <h1 class="body-title-left">
+                        About the Author
+                    </h1>
+                </div>
+
+                <!--PICTURE OF ME-->
+                <img src="Caleb_Image.JPG" class="about-image">
+
+                <div class="about-author-right">
+                <p>
+                    <strong>Caleb Jarrell</strong> — Student, Intro to Web Development (IT 3203). 
+                    I'm interested in web infrastructure and homelab topics including reverse proxies, 
+                    media servers, and self-hosted open source software alternatives.
+                </p>
+                <ul class="body-list">
+                    <li>Course: IT 3203 — Intro to Web Development</li>
+                    <li>Instructor: Professor Tucker</li>
+                    <li>Semester: Fall 2025</li>
+                </ul>
+                </div>
             </div>
 
+            <!--TOP RIGHT CARD-->
             <div class="body-right">
-                test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test
-                about page in progress.
+                <div>
+
+                    <h1 class="body-title-left">
+                        About this Site
+                    </h1>
+                </div>
+
+                <div>
+                <p style="font-size: 22px;">
+                    As of the current moment, this site is based on Project Milestone #1 for the Basic Website with HTML/CSS project. 
+                    It adapts my research paper titled “The Ins and Outs of Nginx” into a multi-page website.
+                </p>
+                <ul class="body-list-large">
+                    <h3 class="list-title">Features demonstrated</h3>
+                    <li>Consistent main menu</li>
+                    <li>CSS Grid (cards) & Flexbox (about layout)</li>
+                    <li>Hover styles, spacing, borders, colors, and custom fonts</li>
+                    <li>Images and a comparison table</li>
+                    <li>Single shared CSS file</li>
+                </ul>
+                </div>
+            </div>
+
+            <!--BOTTOM LEFT CARD-->
+            <div class="about-body-left">
+
+                <h3 class="body-title-left">My Passions and Hobbies</h3>
+                <ul class="passions-list">
+                    <li>Spending Time with God</li>
+                    <li>Basketball</li>
+                    <li>Spending Time with Jaylie</li>
+                    <li>Tinkering with My Home Server</li>
+                    <li>Researching and Interacting with tech</li>
+                </ul>
+                </div>
+            </div>
+
+            <!--BOTTOM RIGHT CARD-->
+            <div class="body-right">
+                <h3 class="body-title-left">My Work Experience & Education</h3>
+                <ul class="passions-list">
+                    <li>Employed by Southern Technology Partners - (2024-2025)</li>
+                    <li>Employed by Phillip C. Jarrell LLC. - (2021-2024)</li>
+                    <li>Associates Degree in the Field of Computer Science</li>
+                    <ul class="passions-list">
+                        <li>
+                            (South Georgia State College - 2025)
+                        </li>
+                    </ul>
+                </ul>
+                </div>
             </div>
 
         </main>
 
+        <!--FOOTER-->
         <footer>
             <div class="footer-div">
                 <h4 class="footer-text">Caleb Jarrell</h4>
                 <h4 class="footer-text">-</h4>
-                <h4 class="footer-text">Class Project for IT 3203</h4>
+                <h4 class="footer-text">Class Project for <a href="https://ksuweb.github.io/IT3203/" target="_blank">IT 3203</a></h4>
                 <h4 class="footer-text">-</h4>
                 <h4 class="footer-text">2025</h4>
             </div>
         </footer>
 
+        <!--JS SCRIPT IMPORT-->
         <script src="hamburger.js" defer></script>
 
     </body>

@@ -1,13 +1,20 @@
+/* ==========================================================================
+   Project: Nginx overview site
+   File: styles.css
+   Purpose: Global styles, layout shells, header/nav, cards, TOC, tables
+   ========================================================================== */
+
+
 /* GLOBAL STYLES */
 
 /* Root css to create a global css variable to apply to css lower */
 :root {
-    --nav-h:62px;
-    --step-0: clamp(1rem, 0.9rem + 0.5vw, 1.125rem);
-    --step-2: clamp(1.5rem, 1.2rem + 1.2vw, 1.7rem);
+    --nav-h:62px; /* matches fixed navbar height; used for main top padding */
+    --step-0: clamp(1rem, 0.9rem + 0.5vw, 1.125rem); /* base text scale */
+    --step-2: clamp(1.5rem, 1.2rem + 1.2vw, 1.7rem); /* section titles */
 }
 
-/* Background gradient color design */
+/* Background gradient color design & global body styles */
 body{
     background:
     radial-gradient(1200px 600px at 10% -10%, rgba(255,255,255,0.06), transparent 60%),
@@ -19,6 +26,7 @@ body{
     margin: 0;
 }
 
+/* Global p styles */
 p{
   font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif;;
   color: #ffffff;
@@ -26,10 +34,10 @@ p{
   margin: 1rem;
 }
 
-/* Main content div styles */
+/* Global main div styles */
 main{
     padding-top: calc(var(--nav-h) + 12px);
-    max-width: 7680px; /* 8k display */
+    max-width: 7680px; /* main is capped at 7680px to avoid ultra-wide line lengths on 8K displays */
     padding-right: 1rem;
     padding-left: 1rem;
     padding-bottom: 1rem;
@@ -58,6 +66,11 @@ main{
   padding: 0.5rem;
 }
 
+/* Used to get list titles to line up properly with list items */
+/* Negative margin aligns list titles with bullets/rules
+   Goal: Create visual alignment without extra wrapper
+   CAUTION: Revisit if list styles or left padding change
+*/
 .list-title{
   margin-bottom: 0.5rem;
   margin-left: -1.4rem;
@@ -73,7 +86,6 @@ main{
 }
 
 .key-concepts-list li{
-  color: #ffffff;
   padding: 1rem;
 }
 
@@ -82,14 +94,26 @@ main{
 }
 
 .references-list li{
-  display: flex;
   padding: 1rem;
 }
+
+.passions-list,
+.body-list-large{
+  color: white;
+}
+
+.passions-list li, 
+.body-list-large li{
+  padding: 0.5rem;
+  font-size: 1.3rem;
+}
+
 
 /*-----------------------------------------------------------------------------*/
 
 /* IMAGE STYLES */
 
+/* Used to round off the corners of the image */
 .home-page-diagram{
   border: transparent #ffffff;
   border-radius: 1rem;
@@ -100,10 +124,54 @@ img {
   height: auto;
 }
 
+/* Used to round off corners of the image, align, and resize the image */
+.about-image{
+  flex: 0 0 260px;
+  max-width: 260px;
+  height: auto;
+  border: transparent 1px;
+  border-radius: 1rem;
+}
+
 /*-----------------------------------------------------------------------------*/
 
-/* DIV ORGANIZATION STYLES */
+/* DIV STYLES */
 
+/* Used to spearate content of the about author section properly */
+.about-author-left{
+  flex: 1 1 100%;
+  max-width: 100%;
+  margin: 0;
+}
+
+/* Used to spearate content of the about author section properly */
+.about-author-right{
+  flex: 1 1 300px;
+  max-width: 100%;
+  min-width: 0;
+  margin-top: 0;
+  padding: 1rem;
+}
+
+/* Used to spearate content of the about body properly */
+.about-body-left{
+  flex: 0 1 calc(50% - 0.5rem);
+  display: flex;
+  max-width: 100%;
+  height: auto;
+  background-color: rgba(32, 30, 30, 0.5);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 0.1rem solid rgb(71, 71, 71);
+  border-radius: 1rem;
+  padding: 1rem;
+  text-wrap: wrap;
+  align-items: flex-start;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+/* Used to spearate content of the body properly */
 .body-left {
   flex: 1 1 28rem;
   max-width: 100%;
@@ -117,6 +185,7 @@ img {
   text-wrap: wrap;
 }
 
+/* Used to spearate content of the about body properly */
 .body-right {
   flex: 1 1 28rem;
   max-width: 100%;
@@ -147,6 +216,14 @@ img {
 }
 
 .abstract-container{
+  background-color: #1f1f1f;
+  display: flex;
+  border-left: 0.4rem solid #0a840a;
+  border-radius: 1rem;
+  max-width:100%;
+}
+
+.tip-container{
   background-color: #1f1f1f;
   display: flex;
   border-left: 0.4rem solid #0a840a;
@@ -222,6 +299,14 @@ img {
   font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif;
   color: #ffffff;
   text-align: center;
+}
+
+.body-title-left{
+  font-size: var(--step-2); 
+  line-height: 1.2;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif;
+  color: #ffffff;
+  text-align: left;
 }
 
 .abstract-title{
@@ -371,6 +456,11 @@ img {
 
 /* BUBBLES STYLES*/
 
+
+/* Table of Contents/Reverse Proxy Bubbles
+   Layout: Flexible 2-up+ card grid; wraps on narrow screens
+   Notes: Use consistent padding and border radius to keep “card” look
+*/
 .bubble-inlay{
   display: flex;
   flex: 1 1 28rem;
@@ -444,6 +534,10 @@ body.menu-open{
 }
 
 /* Hamburger menu icon div styles */
+/* Hamburger Menu
+   Toggle off-screen navigation on small screens (≤1200px)*/
+
+/* Hamburger menu icon div styles */
 .ham-menu {
   display: none; 
   flex-direction: column; 
@@ -474,6 +568,9 @@ body.menu-open{
 
 /* Mobile Views (≤ 1200px width) */
 @media (max-width: 1200px) {
+  .about-body-left{
+    flex: 1 1 28rem;
+  }
 
   /* Hide nav bar buttons, show hamburger menu */
   .nav-bar-buttons { 
@@ -578,10 +675,15 @@ body.menu-open{
 
 
 /* Reduced motion */
+/* Honor user's reduced motion preference. Disable transitions/animations that could cause discomfort
+*/
 @media (prefers-reduced-motion: reduce) {
   .off-screen-menu, .ham-menu span { transition: none !important; }
 }
 
+/* ≥1200px: Desktop layout; full nav visible, mobile title hidden
+   GOAL: Maintain readable horizontal navigation at larger widths
+*/
 @media (min-width: 1200px) {
   #mobiletitle .nav-bar-title {
   display: none;
