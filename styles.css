@@ -24,6 +24,7 @@ body{
     font-size: var(--step-0);
     font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif;
     margin: 0;
+    overflow-x: hidden;
 }
 
 /* Global p styles */
