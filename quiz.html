@@ -10,11 +10,10 @@
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-        <title>Key Concepts - NGINX</title>
+        <title>Architecture - NGINX</title>
     </head>
 
     <body>
-
         <!--NAV BAR-->
         <nav class="nav-bar">
 
@@ -63,6 +62,7 @@
 
         <!--HAMBURGER MENU-->
         <nav id="mobile-drawer" class="off-screen-menu" aria-label="Mobile">
+
             <!-- Discovered and adapted from codepen.io https://codepen.io/RefractedColor/pen/mdWZRPQ -->
             <div id="mobile-toggle">
                 <div class="tdnn">
@@ -70,6 +70,7 @@
                     </div>
                 </div>
             </div>
+
             <!-- Discovered and adapted from a youtube video. (Channel: Treehouse) -->
             <ul>
                 <li><a href="index.html" class="ham-buttons">Home</a></li>
@@ -87,33 +88,53 @@
         <main>
 
             <!--CENTER CARD TOP-->
-            <div class="body-full">
+            <div class="quiz-question">
 
-                <h2 class="body-title">Key Concepts</h2>
-                
-                <ol class="key-concepts-list">
-                    <li><strong>C10K Problem:</strong> Handling 10,000+ concurrent connections on a single server.</li>
-                    <li><strong>Event Loop:</strong> Non-blocking I/O model where a worker handles many sockets asynchronously.</li>
-                    <li><strong>Master/Worker:</strong> Master manages config & processes; workers do the request handling.</li>
-                    <li><strong>Reverse Proxy:</strong> Routes, caches, and secures traffic to internal services.</li>
-                    <li><strong>TLS Termination:</strong> Nginx decrypts/encrypts HTTPS at the edge; backends can use HTTP.</li>
-                    <li><strong>Caching:</strong> Serving frequently requested responses directly from Nginx.</li>
-                    <li><strong>Load Balancing:</strong> Split traffic across instances to improve availability & scale.</li>
-                </ol>
+                <h2 class="body-title">
+                    Question 1
+                </h2>
 
-            </div>
+                <p>
+                    NGINX is built around one master process and many other worker processes. 
+                    Worker processes are event-driven and can handle many connections at once through the use of non-blocking I/O (event loops).
+                </p>
 
-            <!--CENTER CARD BOTTOM-->
-            <div class="body-full">
-
-                <h3 class="body-title">Useful Learning Resources</h3>
-                <ul class="key-concepts-list">
-                    <li><a href="https://nginx.org/en/docs/" target="_blank">NGINX Official Docs</a></li>
-                    <li><a href="https://www.nginx.com/blog/" target="_blank">NGINX Blog</a></li>
-                    <li><a href="https://developer.mozilla.org/" target="_blank">MDN Web Docs</a></li>
-                    <li><a href="https://hpbn.co/" target="_blank">High Performance Browser Networking</a></li>
+                <h2 class="list-title">Master vs. Worker Role</h2>
+                <ul class="master-worker-list">
+                    <li><strong>Master:</strong> reads config, binds ports, manages worker lifecycle.</li>
+                    <li><strong>Worker:</strong> performs the actual request processing</li>
                 </ul>
+
+                <h2 class="section-heading">
+                    Why Event Driven?
+                </h2>
+
+                <p>
+                    Compared to a “one thread per connection” model, event-driven workers avoid massive 
+                    memory and context-switch overhead when handling thousands of clients.
+                </p>
+
+                <!--QUESTION OPTIONS CONTAINER-->
+                <form class="question-options" id="q1" method="post" action="#">
+                    <label class="option">
+                        <input type="radio" name="q1" value="false" required>
+                        <div class="option-container">
+                            <p>False</p>
+                        </div>
+                    </label>
+
+                    <label class="option">
+                        <input type="radio" name="q1" value="true">
+                        <div class="option-container">
+                            <p>True</p>
+                        </div>
+                    </label>
+                    <!-- Keeps “Enter” submission working without adding a visible button -->
+                    <button type="submit" class="submit-button">Submit</button>
+                </form>
+
             </div>
+
 
         </main>
 

@@ -37,13 +37,21 @@
             </div>
 
             <ul class="nav-bar-buttons">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="architecture.html">Architecture</a></li>
-                <li><a href="reverse-proxy.html">Reverse Proxy</a></li>
-                <li><a href="key-concepts.html">Key Concepts</a></li>
-                <li><a href="references.html">References</a></li>
-                <li><a href="about.html">About</a></li>
+                <li><a href="index.html"><p>Home</p></a></li>
+                <li><a href="architecture.html"><p>Architecture</p></a></li>
+                <li><a href="reverse-proxy.html"><p>Reverse Proxy</p></a></li>
+                <li><a href="key-concepts.html"><p>Key Concepts</p></a></li>
+                <li><a href="references.html"><p>References</p></a></li>
+                <li><a href="about.html"><p>About</p></a></li>
+                <li><a href="quiz.html"><p>Quiz</p></a></li>
             </ul>
+
+            <div id="desktop-toggle">
+                <div class="tdnn">
+                    <div class="moon">
+                    </div>
+                </div>
+            </div>
 
             <button class="ham-menu" aria-controls="mobile-drawer" aria-expanded="false" aria-label="Open menu">
                 <span></span>
@@ -55,6 +63,15 @@
 
         <!--HAMBURGER MENU-->
         <nav id="mobile-drawer" class="off-screen-menu" aria-label="Mobile">
+
+            <!-- Discovered and adapted from codepen.io https://codepen.io/RefractedColor/pen/mdWZRPQ -->
+            <div id="mobile-toggle">
+                <div class="tdnn">
+                    <div class="moon">
+                    </div>
+                </div>
+            </div>
+
             <!-- Discovered and adapted from a youtube video. (Channel: Treehouse) -->
             <ul>
                 <li><a href="index.html" class="ham-buttons">Home</a></li>
@@ -63,6 +80,7 @@
                 <li><a href="key-concepts.html" class="ham-buttons">Key Concepts</a></li>
                 <li><a href="references.html" class="ham-buttons">References</a></li>
                 <li><a href="about.html" class="ham-buttons">About</a></li>
+                <li><a href="quiz.html" class="ham-buttons">Quiz</a></li>
             </ul>
         </nav>
 
@@ -108,7 +126,7 @@
 
                 <div>
                 <p style="font-size: 22px;">
-                    As of the current moment, this site is based on Project Milestone #1 for the Basic Website with HTML/CSS project. 
+                    As of the current moment, this site is based on Project Milestones #1 & #2 for the Basic CSS/HTML and Dynamic Frontend project. 
                     It adapts my research paper titled “The Ins and Outs of Nginx” into a multi-page website.
                 </p>
                 <h3 class="list-title">Features demonstrated</h3>
@@ -118,6 +136,9 @@
                     <li>Hover styles, spacing, borders, colors, and custom fonts</li>
                     <li>Images and a comparison table</li>
                     <li>Single shared CSS file</li>
+                    <li>Responsive design with a hamburger menu for mobile</li>
+                    <li>Light/Dark mode toggle</li>
+                    <li>Interactive quiz over the content covered</li>
                 </ul>
                 </div>
             </div>
@@ -167,6 +188,7 @@
 
         <!--JS SCRIPT IMPORT-->
         <script src="hamburger.js" defer></script>
+        <script src="light-dark.js" defer></script>
 
     </body>
 

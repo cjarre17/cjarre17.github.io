@@ -36,13 +36,21 @@
             </div>
 
             <ul class="nav-bar-buttons">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="architecture.html">Architecture</a></li>
-                <li><a href="reverse-proxy.html">Reverse Proxy</a></li>
-                <li><a href="key-concepts.html">Key Concepts</a></li>
-                <li><a href="references.html">References</a></li>
-                <li><a href="about.html">About</a></li>
+                <li><a href="index.html"><p>Home</p></a></li>
+                <li><a href="architecture.html"><p>Architecture</p></a></li>
+                <li><a href="reverse-proxy.html"><p>Reverse Proxy</p></a></li>
+                <li><a href="key-concepts.html"><p>Key Concepts</p></a></li>
+                <li><a href="references.html"><p>References</p></a></li>
+                <li><a href="about.html"><p>About</p></a></li>
+                <li><a href="quiz.html"><p>Quiz</p></a></li>
             </ul>
+
+        <div id="desktop-toggle">
+            <div class="tdnn">
+                <div class="moon">
+                </div>
+            </div>
+        </div>
 
             <button class="ham-menu" aria-controls="mobile-drawer" aria-expanded="false" aria-label="Open menu">
                 <span></span>
@@ -54,6 +62,15 @@
 
         <!--HAMBURGER MENU-->
         <nav id="mobile-drawer" class="off-screen-menu" aria-label="Mobile">
+
+            <!-- Discovered and adapted from codepen.io https://codepen.io/RefractedColor/pen/mdWZRPQ -->
+            <div id="mobile-toggle">
+                <div class="tdnn">
+                    <div class="moon">
+                    </div>
+                </div>
+            </div>
+
             <!-- Discovered and adapted from a youtube video. (Channel: Treehouse) -->
             <ul>
                 <li><a href="index.html" class="ham-buttons">Home</a></li>
@@ -62,6 +79,7 @@
                 <li><a href="key-concepts.html" class="ham-buttons">Key Concepts</a></li>
                 <li><a href="references.html" class="ham-buttons">References</a></li>
                 <li><a href="about.html" class="ham-buttons">About</a></li>
+                <li><a href="quiz.html" class="ham-buttons">Quiz</a></li>
             </ul>
         </nav>
 
@@ -127,7 +145,7 @@
                     <tbody>
 
                         <tr>
-                            <td>NGINX</td>
+                            <td><strong>NGINX</strong></td>
                             <td>Few worker processes</td>
                             <td>Event loop, non-blocking I/O</td>
                             <td>Low memory use; Scales to more than 10k connections</td>
@@ -135,11 +153,11 @@
                         </tr>
 
                         <tr>
-                            <td>Legacy Thread-per-Connection</td>
+                            <td><strong>Legacy Thread-per-Connection</strong></td>
                             <td>One thread per client</td>
                             <td>Blocking I/O</td>
                             <td>Simpler mental model</td>
-                            <td>High model; poor scalability</td>
+                            <td>High memory use; poor scalability</td>
                         </tr>
 
                     </tbody>
@@ -161,6 +179,7 @@
 
         <!--JS SCRIPT IMPORT-->
         <script src="hamburger.js" defer></script>
+        <script src="light-dark.js" defer></script>
 
     </body>
 
