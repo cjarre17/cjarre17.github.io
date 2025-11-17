@@ -1,134 +1,200 @@
-/* ==========================================================================
-   Project: Nginx overview site
-   File: styles.css
-   Purpose: Global styles, layout shells, header/nav, cards, TOC, tables
-   ========================================================================== 
-   */
+/* 
+==========================================================================
+Project: Nginx overview site
+Name: Caleb Jarrell
+File: styles.css
+Purpose: Global styles, layout shells, header/nav, cards, TOC, tables
+========================================================================== 
+*/
 
 
 /* GLOBAL STYLES */
 
-/* Root css to create a global css variable to apply to css lower */
+/* CSS custom properties for consistent theming across the site */
 :root {
-    --nav-h:62px; /* matches fixed navbar height; used for main top padding */
-    --step-0: clamp(1.1rem, 0.9rem + 0.5vw, 1.2rem); /* base text scale */
-    --step-2: clamp(1.5rem, 1.2rem + 1.2vw, 1.7rem); /* section titles */
-    --font-stack: system-ui, -apple-system, "Segoe UI", Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif;
-    --color-text: #ffffff;
-    --color-accent: #13c213;
-    --color-bg: rgba(32, 30, 30, 0.5);
-    --table-bg: #1f1f1f;
-    --table-td-bg: #2c2828;
-    --card-border: rgb(71, 71, 71);
-    --radius: 1rem;
-    --body-bg:
+  /* Fixed navbar height used throughout layout calculations */
+  --nav-h:62px;
+  
+  /* Responsive scaling for mobile navigation */
+  --ham-menu-step0: clamp(0.5rem, 0.8rem + 1.2vh, 4rem); 
+  --ham-menu-gap: clamp(0.1rem, 1.5rem + 2vh, 3rem); 
+  --mobile-toggle-step0: clamp(0.01rem, 0.1rem + 0.2vh, 3rem);
+  
+  /* Scaling variables for global font sizes. */
+  --step-0: clamp(1.1rem, 0.6rem + 0.5vw, 100rem); 
+  --step-2: clamp(1.5rem, 1.2rem + 1.2vw, 1.7rem); 
+
+  /* Dark mode theme colors (default) */
+  --font-stack: system-ui, -apple-system, "Segoe UI", Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif;
+  --color-text: #ffffff;
+  --color-accent: #13c213;
+  --color-bg: rgba(32, 30, 30, 0.5);
+  --button-color-bg: rgba(17, 17, 17, 0.5);
+  --button-shadow: rgba(0, 0, 0, 0.2) 0px 3px 8px;
+  --table-bg: #1f1f1f;
+  --table-td-bg: #2c2828;
+  --card-border: rgb(71, 71, 71);
+  --radius: 1rem;
+  --body-bg:
     radial-gradient(1200px 600px at 10% -10%, rgba(255,255,255,0.06), transparent 60%),
     radial-gradient(900px 500px at 110% 10%, rgba(255,255,255,0.04), transparent 55%),
     linear-gradient(180deg, rgb(56, 58, 61), rgb(30,28,28));
-    --toggleHeight: 15em;
-    --toggleWidth: 28em;
-    --toggleBtnRadius: 10em;
 
-    --bgColor--night: linear-gradient(1deg, #0d500b, #222121);
-    --toggleBtn-bgColor--night: var(--bgColor--night);
-    --mooncolor: #D9FBFF;
-    --bgColor--day: #b9d7f5;
-    --toggleBtn-bgColor--day: var(--bgColor--day);
-    --abstract-bg: #1a1a1a; 
-    --tdnn-track-light: linear-gradient(1deg, #00c000, #008000);
-    --theme-duration: 600ms;
-  }
-
-/* Background gradient color design & global body styles */
-body{
-    background: var(--body-bg);
-
-    background-attachment: fixed;
-    font-size: var(--step-0);
-    font-family: var(--font-stack);
-    margin: 0;
-    overflow-x: hidden;
-    overscroll-behavior-x: none;
-    transition: background var(--theme-duration) ease;
+  /* Theme toggle switch dimensions and colors */
+  --toggleHeight: 15em;
+  --toggleWidth: 28em;
+  --toggleBtnRadius: 10em;
+  --bgColor--night: linear-gradient(1deg, #0d500b, #222121);
+  --toggleBtn-bgColor--night: var(--bgColor--night);
+  --mooncolor: #D9FBFF;
+  --bgColor--day: #b9d7f5;
+  --toggleBtn-bgColor--day: var(--bgColor--day);
+  --abstract-bg: #1a1a1a; 
+  --tdnn-track-light: linear-gradient(1deg, #00c000, #008000);
+  
+  /* Light/dark theme transition duration */
+  --theme-duration: 600ms;
 }
 
-/* Global p styles */
+/* Full page height for proper layout */
+html,
+body {
+  height: 100%;
+}
+
+/* Base body styling with flexbox for sticky footer pattern */
+body{
+  /* Set background and font styles for body */
+  background: var(--body-bg);
+  /* Background stays fixed during scroll */
+  background-attachment: fixed;
+  /* Responsive base font size */
+  font-size: var(--step-0);
+  /* System font stack for performance */
+  font-family: var(--font-stack);
+  /* Flexbox enables sticky footer */
+  display: flex;
+  /* Stack header, main, footer vertically */
+  flex-direction: column;
+  /* Always fill viewport height */
+  min-height: 100vh;
+  
+  /* Set margin and overflow styles for body */
+  /* Remove default margin */
+  margin: 0;
+  /* Prevent horizontal scrollbar */
+  overflow-x: hidden;
+  overscroll-behavior-x: none;
+  
+  /* Smooth theme transitions */
+  transition: background var(--theme-duration) ease;
+}
+
+/* Consistent paragraph styling */
 p{
   font-family: var(--font-stack);
+  /* Theme-aware text color */
   color: var(--color-text);
   text-wrap: pretty;
   margin: 1rem;
 }
 
-/* Global main div styles */
+/* Main content container with grid layout */
 main{
-    padding-top: calc(var(--nav-h) + 12px);
-    max-width: 7680px; /* main is capped at 7680px to avoid ultra-wide line lengths on 8K displays */
-    padding-right: 1rem;
-    padding-left: 1rem;
-    padding-bottom: 1rem;
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    align-items: flex-start;
-    gap: 1rem;
-    margin-inline: auto;
+  /* Set top padding to account for fixed navbar height */
+  /* Prevents content from hiding under navbar */
+  padding-top: calc(var(--nav-h) + 12px);
+
+  /* Set max width to avoid making content too wide on ultra-wide displays */
+  /* Cap at 8K resolution width */
+  max-width: 7680px;
+  display: grid;
+  /* Single column by default */
+  grid-template-columns: 1fr;
+  /* Rows size to content, not fixed height */
+  grid-auto-rows: auto;
+  /* Cards stretch to fill grid cells */
+  align-items: stretch;
+  /* Spacing between grid items */
+  gap: 1rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-bottom: 1rem;
+  /* Fill viewport minus nav and footer */
+  min-height: calc(100vh - var(--nav-h) - 56px);
+  text-wrap: pretty;
+  /* Grow to push footer down (sticky footer) */
+  flex: 1 0 auto;
+}
+
+/* Forces footer to fill the full page width */
+footer,
+footer .footer-div {
+  flex: 0 0 auto;
+}
+
+/* Theme-aware list color */
+ul,
+ol{
+  color: var(--color-text);
+}
+
+
+/*-----------------------------------------------------------------------------*/
+
+/* GLOBAL LIGHT MODE STYLES 
+   When JS toggles to light mode, these values replace
+   the dark mode defaults. */
+:root[data-theme="light"] {
+
+  /* Black text for readability on light bg */
+  --color-text: #000000;
+  /* Slightly adjusted green for contrast */
+  --color-accent: #12bd12;
+  /* Semi-transparent white cards */
+  --color-bg: rgba(255, 255, 255, 0.432);
+  /* Medium gray borders */
+  --card-border: rgb(159, 160, 159);
+  /* Slightly opaque white buttons */
+  --button-color-bg: rgba(255, 255, 255, 0.623);
+  /* Light gray for callout boxes */
+  --abstract-bg: #f0f0f0;
+  /* Light gray body background */
+  --body-bg: #c0c0c0;
+  /* Translucent table background */
+  --table-bg: #8383839f;
+  /* Light table cell background */
+  --table-td-bg: #e0e0e0;
+  /* Border radius stays the same */
+  --radius: 1rem;
 }
 
 /*-----------------------------------------------------------------------------*/
 
-/* LIST STYLES */
+/* List styling variations */
 
-.body-list{
-  color:  var(--color-text);
-}
-
-.master-worker-list{
-  color:  var(--color-text);
-}
-
+/* Adjusts list items padding for master-worker architecture list */
 .master-worker-list li{
-  color:  var(--color-text);
   padding: 0.5rem;
 }
 
-/* Used to get list titles to line up properly with list items */
-/* Negative margin aligns list titles with bullets/rules
-   Goal: Create visual alignment without extra wrapper
-   CAUTION: Revisit if list styles or left padding change
-*/
+/* Aligns list titles with the list content below */
 .list-title{
+  /* Space between title and list */
   margin-bottom: 0.5rem;
-  color: var(--color-text);
+  /* Aligns with list item text */
   margin-left: 1.2rem;
-}
-
-.key-concepts-list{
-  color:  var(--color-text);
-}
-
-.key-concepts-list-title,
-.references-list-title{
+  /* Theme-aware color */
   color: var(--color-text);
 }
 
+/* Adjusts list items padding for references and key concepts lists */
+.references-list li,
 .key-concepts-list li{
   padding: 1rem;
 }
 
-.references-list{
-  color: var(--color-text);
-}
-
-.references-list li{
-  padding: 1rem;
-}
-
-.passions-list,
-.body-list-large{
-  color: var(--color-text);
-}
-
+/* Adjusts list items padding for passions and general body lists */
 .passions-list li, 
 .body-list-large li{
   padding: 0.5rem;
@@ -138,367 +204,768 @@ main{
 
 /*-----------------------------------------------------------------------------*/
 
-/* IMAGE STYLES */
+/* Image and figure styling */
 
-/* Used to round off the corners of the image */
+/* Styling for the main diagram on homepage
+   Rounded corners to match card styling */
 .home-page-diagram{
   border: transparent #ffffff;
+  /* Rounded corners match site theme */
   border-radius: var(--radius);
+  /* Center within flex container */
   justify-content: center;
 }
 
+/* Global responsive image rules
+   Prevents images from breaking layout on small screens */
 img {
+  /* Never exceed container width */
   max-width: 100%;
+  /* Maintain aspect ratio */
   height: auto;
-  max-height: 322px;
+  /* Cap height on large screens */
+  max-height: 420px;
 }
 
+/* Container for images with captions
+   Centers images vertically and horizontally */
 .image-div{
+  /* Flexbox for centering */
   display: flex;
+  /* Center horizontally */
   justify-content: center;
+  /* Center vertically */
   align-items: center;
+  /* Flexible sizing with base width */
   flex: 1 1 30rem;
+  /* Stack image and caption vertically */
+  flex-direction: column;
+  /* Better line breaks for captions */
+  text-wrap: pretty;
+  /* Breathing room around image */
+  padding: 2rem;
 }
 
-/* Used to round off corners of the image, align, and resize the image */
+/* Profile image on about page
+   Fixed dimensions for consistent layout */
 .about-image{
+  /* Fixed flex-basis, don't grow/shrink */
   flex: 0 0 260px;
+  /* Enforce maximum width */
   max-width: 260px;
+  /* Maintain aspect ratio */
   height: auto;
+  /* Minimum height for tall images */
   min-height: 360px;
+  /* Transparent border for spacing */
   border: transparent 1px;
+  /* Rounded corners */
   border-radius: var(--radius);
+}
+
+/* Image caption styling
+   Provides attribution and context below images */
+.figure-caption{
+  /* Center the caption text */
+  text-align: center;
+  /* Theme-aware text color */
+  color: var(--color-text);
+  /* Slightly smaller than body text */
+  font-size: calc(var(--step-0) - 0.1rem);
+  /* Space below caption */
+  margin-bottom: 1rem;
 }
 
 /*-----------------------------------------------------------------------------*/
 
-/* DIV STYLES */
+/* DIV STYLES / PAGE LAYOUTS
+   Different page templates and card containers */
 
-/* Used to spearate content of the about author section properly */
-.about-author-left{
-  flex: 1 1 100%;
-  max-width: 100%;
-  margin: 0;
+/* Homepage grid layout
+   Two-column responsive grid that collapses on mobile */
+.home-main{
+
+  /* Set padding and layout styles for main content area */
+  /* CSS Grid for two-column layout */
+  display: grid;
+  /* 2 equal columns, min 300px */
+  grid-template-columns: repeat(2, minmax(300px, 1fr)); 
+  /* Cards stretch to equal height */
+  align-items: stretch;
+  /* Space between grid cells */
+  gap: 1rem;
+  /* Left gutter */
+  padding-left: 1rem;
+  /* Right gutter */
+  padding-right: 1rem;
+  /* Bottom spacing */
+  padding-bottom: 1rem;
+  /* Better line breaking */
+  text-wrap: pretty;
 }
 
-/* Used to spearate content of the about author section properly */
-.about-author-right{
-  flex: 1 1 300px;
-  max-width: 100%;
-  min-width: 0;
-  margin-top: 0;
-  padding: 1rem;
+/* About page grid layout
+   Two-column grid with narrower minimum width */
+.about-main{
+  /* CSS Grid layout */
+  display: grid;
+  /* 2 columns, min 200px */
+  
+  grid-template-columns: repeat(2, minmax(200px, 1fr)); 
+  /* Space between cards */
+  gap: 1rem;
+  /* Equal height cards */
+  align-items: stretch;
 }
 
-/* Used to spearate content of the about body properly */
+
+
+/* About author section container
+   Simple block display for content stacking */
+.about-author{
+  /* Standard block-level element */
+  display: block;
+}
+
+/* Card layout for about page profile section
+   Grid with image and text columns */
+.card-content{
+  /* Grid for image + text layout */
+  display: grid;
+  /* Fixed image, flexible text */
+  grid-template-columns: minmax(0,260px) minmax(0,1fr); 
+  /* Space between image and text */
+  gap: 1rem;
+  /* Align content to top */
+  align-items: start;
+  /* Center the grid */
+  justify-content: center;
+  /* Top spacing */
+  margin-top: 3.7rem;
+}
+
+/* Text content container for about page
+   Flexbox for vertical stacking */
+.about-text-div{
+  /* Flexbox container */
+  display: flex;
+  /* Stack children vertically */
+  flex-direction: column;
+  /* No gap (margins handle spacing) */
+  gap: 0rem;
+  /* Align with card-content */
+  margin-top: 3.7rem;
+}
+
+
+/* About page specific left-side card styling
+   Similar to .body-left but for about page layout */
 .about-body-left{
-  flex: 0 1 calc(50% - 0.5rem);
-  display: flex;
-  max-width: 100%;
-  height: auto;
-  background-color: var(--color-bg);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 0.1rem solid var(--card-border);
-  border-radius: var(--radius);
+ /* Used to seperate content of the about body properly */
+  /* Standard block display */
+  display: block;
+  /* Internal spacing */
   padding: 1rem;
-  text-wrap: wrap;
-  align-items: flex-start;
-  gap: 1rem;
-  flex-wrap: wrap;
+
+  /* Styles the colors of about-body-left div */
+  /* Semi-transparent card background */
+  background-color: var(--color-bg);
+  /* Blur effect behind card */
+  backdrop-filter: blur(10px);
+  /* Safari support */
+  -webkit-backdrop-filter: blur(10px);
+  
+  /* Styles the border of about-body-left div */
+  /* Subtle border */
+  border: 0.1rem solid var(--card-border);
+  /* Rounded corners */
+  border-radius: var(--radius);
 }
 
-/* Used to spearate content of the body properly */
+
+/* Primary left card styling (used on most pages)
+   Glass-morphism style with backdrop blur */
 .body-left {
-  flex: 1 1 28rem;
-  max-width: 100%;
-  height: auto;
-  background-color: var(--color-bg);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 0.1rem solid var(--card-border);
-  border-radius: var(--radius);
+  /* Used to seperate content of the body properly */
+  /* Internal spacing */
   padding: 1rem;
+  
+  /* Styles the border of body-left div */
+  /* Theme-aware border */
+  border: 0.1rem solid var(--card-border);
+  /* Rounded corners */
+  border-radius: var(--radius);
+  
+
+  /* Styles the colors of body-left div - glass-morphism effect */
+  /* Semi-transparent background */
+  background-color: var(--color-bg);
+  /* Blur content behind card */
+  backdrop-filter: blur(10px);
+  /* Safari support */
+  -webkit-backdrop-filter: blur(10px);
 }
 
-/* Used to spearate content of the about body properly */
+/* Flex layout for card containers
+   Makes cards use flexbox so their children can grow to fill available space.
+   This is crucial for making content like images and TOC grids expand properly
+   within their parent cards when the grid gives those cards a fixed height. */
+.body-left,
 .body-right {
-  flex: 1 1 28rem;
-  max-width: 100%;
-  height: auto;
-  background-color: var(--color-bg);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 0.1rem solid var(--card-border);
-  border-radius: var(--radius);
-  padding: 1rem;
-  text-wrap: wrap;
-  margin-inline: auto;
+  /* Enable flexbox */
+  display: flex;
+  /* Stack children vertically */
+  flex-direction: column;
+  /* Important: allows flex children to shrink below content size when inside grid */
+  min-height: 0;
 }
 
+/* Allow specific card children to grow and fill available vertical space
+   Add `flex:1` to immediate children you want to expand to full card height.
+   Examples: image containers, table of contents grids, bubble card containers */
+.body-left > .image-div,
+.body-right > .table-of-contents,
+.body-right > .bubbles-styling-full {
+  /* Grow to fill available space */
+  flex: 1 1 auto;
+}
+
+
+/* Primary right card styling (used on most pages)
+   Companion to .body-left with identical styling */
+.body-right {
+  /* Used to seperate content of the about body properly */
+  /* Internal spacing */
+  padding: 1rem;
+
+  /* Styles the colors of body-right div - glass-morphism effect */
+  /* Semi-transparent background */
+  background-color: var(--color-bg);
+  /* Blur effect for depth */
+  backdrop-filter: blur(10px);
+  /* Safari support */
+  -webkit-backdrop-filter: blur(10px);
+
+  /* Styles the border of body-right div */
+  /* Subtle border */
+  border: 0.1rem solid var(--card-border);
+  /* Rounded corners */
+  border-radius: var(--radius);
+}
+
+/* Full-width centered card (used for single-column content)
+   Common on pages like Architecture, References, Key Concepts */
 .body-full {
-  flex: 0 1 80rem;
-  max-width: 100%;
+  /* Used to seperate content of the about body properly */
+  /* Fill available width */
+  width: 100%;
+  /* Cap width for readability (1280px) */
+  max-width: 80rem;
+  /* Height based on content */
   height: auto;
-  background-color: var(--color-bg);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 0.1rem solid var(--card-border);
-  border-radius: var(--radius);
+  /* Internal spacing */
   padding: 1rem;
+  /* Allow text to wrap */
   text-wrap: wrap;
+  /* Center horizontally */
   margin-inline: auto;
+  /* Clip overflow content */
   overflow: hidden;
+
+  /* Styles the colors of body-full div - glass-morphism effect */
+  /* Semi-transparent background */
+  background-color: var(--color-bg);
+  /* Blur effect for depth */
+  backdrop-filter: blur(10px);
+  /* Safari support */
+  -webkit-backdrop-filter: blur(10px);
+
+  /* Styles the border of body-full div */
+  /* Subtle border */
+  border: 0.1rem solid var(--card-border);
+  /* Rounded corners */
+  border-radius: var(--radius);
 }
 
+/* Callout box styling for abstract sections
+   Used to highlight important summary content */
 .abstract-container{
-  background-color: var(--abstract-bg);
+  /* Styles the abstract container div */
+  /* Flexbox for content */
   display: flex;
-  border-left: 0.4rem solid var(--color-accent);
-  border-radius: 1rem;
+  /* Don't exceed parent width */
   max-width:100%;
+
+  /* Styles the border of abstract container div - left accent bar */
+  border-left: 0.4rem solid var(--color-accent); /* Thick accent-colored left border */
+  /* Rounded corners */
+  border-radius: 1rem;
+
+
+  /* Styles the colors of abstract container div */
+  /* Darker background to stand out */
+  background-color: var(--abstract-bg);
 }
 
+/* Callout box styling for tip sections
+   Similar to abstract but for different content type */
 .tip-container{
-  background-color: var(--abstract-bg);
+  /* Styles the tip container div */
+  /* Flexbox for content */
   display: flex;
-  border-left: 0.4rem solid var(--color-accent);
-  border-radius: 1rem;
+  /* Don't exceed parent width */
   max-width:100%;
-}
 
-.table-of-contents{
-  gap: 1rem;
-  flex-wrap: wrap;
-  display: flex;
-}
-
-/*-----------------------------------------------------------------------------*/
-
-/* BUTTON STYLES */
-
-.references-link-button{
-  max-width: fit-content;
-  height: auto;
-  background-color: rgba(32, 30, 30, 0.5);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 0.1rem solid var(--color-accent);
-  border-radius: 0.7rem;
-  padding: 0.5rem;
-  text-wrap: wrap;
-  transition: ease-out 0.2s;
-  margin-left: 1rem;
-  margin-top: -0.5rem;
-}
-
-.references-link-button:hover{
-  background-color: var(--color-accent);
-  transition: ease-out 0.2s;
-}
-
-.toc-link-button{
-  max-width: fit-content;
-  height: auto;
-  background-color: rgba(32, 30, 30, 0.5);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 0.1rem solid var(--color-accent);
+  /* Styles the border of tip container div - left accent bar */
+  border-left: 0.4rem solid var(--color-accent); /* Thick accent-colored left border */
+  /* Rounded corners */
   border-radius: 1rem;
-  padding: 0.8rem;
-  text-wrap: wrap;
-  transition: ease-out 0.2s;
+
+  /* Styles the colors of tip container div */
+  /* Darker background to stand out */
+  background-color: var(--abstract-bg);
 }
 
-.toc-link-button:hover{
-  background-color: var(--color-accent);
-  transition: ease-in 0.2s;
-}
-
-.toc-links{
-  text-decoration: none;
-  color:white
-}
-
-.reference-links{
-  text-decoration: none;
-  color:white
+/* Table of contents grid layout
+   Creates responsive 2-column grid of TOC cards that wraps on mobile */
+.table-of-contents{
+  /* Responsive grid for TOC cards */
+  /* CSS Grid layout */
+  display: grid;
+  /* Space between cards */
+  gap: 1rem;
+  grid-template-columns: repeat(2, minmax(20rem, 1fr)); /* 2 columns, min 320px each */
+  /* All rows equal height */
+  grid-auto-rows: 1fr;
 }
 
 /*-----------------------------------------------------------------------------*/
 
-/* TEXT STYLES */
+/* BUTTON STYLES
+   Interactive button components with hover effects */
 
+/* Reference link button styling
+   Used on references page for external links */
+.references-link-button{
+  /* Styles for reference link buttons */
+  /* Shrink to content width */
+  max-width: fit-content;
+  /* Height based on content */
+  height: auto;
+  /* Internal spacing */
+  padding: 0.5rem;
+  /* Allow text to wrap */
+  text-wrap: wrap;
+  /* Smooth transition for hover */
+  transition: ease-out 0.2s;
+  /* Indent from list edge */
+  margin-left: 1rem;
+  /* Tuck up closer to list item */
+  margin-top: -0.5rem;
+
+  /* Relates back to global button color variable */
+  /* Semi-transparent button bg */
+  background-color: var(--button-color-bg);
+  /* Glass-morphism effect */
+  backdrop-filter: blur(10px);
+  /* Safari support */
+  -webkit-backdrop-filter: blur(10px);
+
+  /* Styles the border of reference link buttons */
+
+  /* Relates back to global accent color variable */
+  /* Accent-colored border */
+  border: 0.1rem solid var(--color-accent);
+  /* Slightly rounded corners */
+  border-radius: 0.7rem;
+
+  /* Relates back to global button shadow variable */
+  /* Subtle drop shadow */
+  box-shadow: var(--button-shadow);
+}
+
+/* Reference button hover state
+   Provides visual feedback on interaction */
+.references-link-button:hover{
+  /* Styles for mouse hover color on reference link buttons */
+  /* Full accent color on hover */
+  background-color: var(--color-accent);
+
+  /* Styles for mouse hover transition on reference link buttons */
+  /* Smooth color transition */
+  transition: ease-out 0.2s;
+
+  /* Styles for mouse hover scale on reference link buttons */
+  /* Slightly grow on hover */
+  scale: 110%;
+}
+
+/* Table of contents link button styling
+   "Read More" buttons on homepage TOC cards */
+.toc-link-button{
+  /* Styles for table of contents link buttons */
+  /* Shrink to content width */
+  max-width: fit-content;
+  /* Height based on content */
+  height: auto;
+  /* Comfortable click target */
+  padding: 0.8rem;
+  /* Allow text to wrap */
+  text-wrap: wrap;
+  /* Smooth hover transition */
+  transition: ease-out 0.2s;
+  /* Push to bottom of flex container */
+  margin-top: auto;
+  
+  /* Relates back to global button color variable */
+  /* Semi-transparent background */
+  background-color: var(--button-color-bg);
+  /* Glass effect */
+  backdrop-filter: blur(10px);
+  /* Safari support */
+  -webkit-backdrop-filter: blur(10px);
+
+  /* Styles the border of table of contents link buttons */
+  /* Accent-colored border */
+  border: 0.1rem solid var(--color-accent);
+  /* Rounded corners */
+  border-radius: 1rem;
+
+  /* Relates back to global button shadow variable */
+  /* Subtle drop shadow for depth */
+  box-shadow: var(--button-shadow);
+}
+
+/* TOC button hover state
+   Provides clear visual feedback */
+.toc-link-button:hover{
+  /* Styles for mouse hover color on table of contents link buttons */
+  /* Full accent background */
+  background-color: var(--color-accent);
+
+  /* Styles for mouse hover transition on table of contents link buttons */
+  /* Smooth transition */
+  transition: ease-in 0.2s;
+
+  /* Styles for mouse hover scale on table of contents link buttons */
+  /* Grow slightly on hover */
+  scale: 110%;
+}
+
+/* Link styling for TOC and reference buttons
+   Removes default link styling */
+.toc-links,
+.reference-links{
+  /* Styles for links */
+
+  /* Removes underline from links */
+  /* No underline */
+  text-decoration: none;
+
+  /* Relates back to global text color variable */
+  /* Theme-aware text color */
+  color:var(--color-text);
+}
+
+/*-----------------------------------------------------------------------------*/
+
+/* TEXT STYLES
+   Typography for headings and titles */
+
+/* Centered body title styling
+   Used for main section headers */
 .body-title{
-  font-size: var(--step-2); 
-  line-height: 1.2;
+  /* Styles for body titles */
+
+  /* Relates back to global step-2 font size variable */
+  /* Large, responsive font size */
+  font-size: var(--step-2);
+
+  /* Sets text color and font for body titles */
   font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif;
+  /* Theme-aware color */
   color:  var(--color-text);
+
+  /* Sets text styling for body titles */
+  /* Tight line height for headings */
+  line-height: 1.2;
+  /* Center alignment */
   text-align: center;
 }
 
+/* Left-aligned body title styling
+   Used for subsection headers */
 .body-title-left{
-  font-size: var(--step-2); 
-  line-height: 1.2;
+  /* Styles for body titles aligned left */
+
+  /* Relates back to global step-2 font size variable */
+  /* Same size as centered version */
+  font-size: var(--step-2);
+
+  /* Sets text color and font for left aligned body titles */
   font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif;
+  /* Theme-aware color */
   color:  var(--color-text);
+
+  /* Sets text styling for left aligned body titles */
+  /* Tight line height for headings */
+  line-height: 1.2;
+  /* Left alignment */
   text-align: left;
+  /* Indent from left edge */
   margin-left: 1rem;
 }
 
-.abstract-title{
-  color: #13c213;
-  margin: 1rem;
-
-}
-
-.section-heading{
-  color: var(--color-text);
-  margin-left: 1.3rem;
-}
-
 /*-----------------------------------------------------------------------------*/
-/* TABLE STYLES */
+/* TABLE STYLES
+   Architecture comparison table styling */
 
+/* Main architecture table styling
+   Complex table with horizontal scrolling on mobile */
 .arch-table{
+  /* Used to seperate content of the table properly */
+  /* Flexible sizing up to 1280px */
   flex: 0 1 80rem;
-  border: gray 0.1px solid;
-  border-radius: 1rem;
-  background-color: var(--table-bg);
-  padding: 0.5rem;
+  /* Center the table */
   justify-content: center;
-  color: var(--color-text);
-  max-width: 100%;
-  width: 100%;
-  table-layout: fixed;
-  border-collapse: collapse;
-  border-spacing: 0;
+  /* Block display for scrolling */
   display: block;
+  /* Horizontal scroll on narrow screens */
   overflow-x: auto;
+  /* Don't exceed container */
+  max-width: 100%;
+  /* Fill available width */
+  width: 100%;
+  /* Fixed layout for consistent columns */
+  table-layout: fixed;
+  /* Remove cell spacing */
+  border-collapse: collapse;
+  /* No spacing between cells */
+  border-spacing: 0;
+  /* Internal padding */
+  padding: 0.5rem;
+  
+  /* Styles the border of the table */
+  /* Subtle outer border */
+  border: gray 0.1px solid;
+  /* Rounded corners */
+  border-radius: 1rem;
+
+  /* Styles the colors of the table */
+  /* Dark background for contrast */
+  background-color: var(--table-bg);
+  /* Theme-aware text */
+  color: var(--color-text);
 }
 
+/* Table header cell styling
+   Provides spacing for header row */
 .arch-table th{
+  /* Vertical padding only */
   padding-block: .25rem;
 }
 
+/* Table paragraph text color
+   Ensures text inherits theme colors */
 .arch-table p{
+  /* Theme-aware text color */
   color: var(--color-text);
 }
 
+/* Table data cell styling
+   Bordered cells with alternating background */
 .arch-table td{
+  /* Cell borders */
   border: gray 0.1px solid;
+  /* Merge borders */
   border-collapse: collapse;
+  /* Cell padding */
   padding: 1rem;
+  /* Lighter bg than table */
   background-color: var(--table-td-bg);
+  /* Minimum column width */
   min-width: 150px;
 }
 
 /*-----------------------------------------------------------------------------*/
 
-/* NAV BAR STYLES */
+/* NAV BAR STYLES
+   Fixed navigation bar at top of page with logo, title, and links */
 
+/* Navigation bar title text
+   Site title displayed in navbar */
 .nav-bar-title {
+    /* No underline */
     text-decoration: none;
+    /* Theme-aware color */
     color: var(--color-text);
     font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif;
+    /* Readable size */
     font-size: 1.2rem;
+    /* Space from logo */
     padding-left: 0.6rem;
+    /* Vertical centering adjustment */
     margin-bottom: 0.6rem;
 }
 
 
 
 
-/* Styles for the Nginx logo div in the top left */
+/* Nginx logo container styling
+   Logo in top left of navbar */
 .nav-bar-logo {
+    /* Fixed width */
     width: 100px;
+    /* Maintain aspect ratio */
     height: auto;
+    /* Smooth hover effect */
     transition: 0.3s;
 }
 
-/* Styles for the Nginx logo in the top left when mouse hover is active*/
+/* Logo hover effect
+   Scales up on hover for interactivity */
 .nav-bar-logo:hover{
+    /* Grow by 15% */
     transform: scale(1.15);
 }
 
-/* Styles for the Nginx logo in the top left */
+/* Logo image sizing
+   Ensures responsive image behavior */
 .nav-bar-logo img {
+    /* Fill container */
     max-width: 100%;
+    /* Maintain aspect ratio */
     height: auto;
+    /* Cover container if needed */
     object-fit: cover;
 }
 
-/* Styles for the top nav bar */
+/* Main navigation bar container
+   Fixed position bar with glass-morphism effect */
 .nav-bar {
+    /* Flexbox for horizontal layout */
     display: flex;
+    /* Vertical centering */
     align-items: center;
+    /* Horizontal padding */
     padding: 0rem 1.5rem;
+    /* Align items to left */
     justify-content: flex-start;
+    /* Theme-aware text */
     color: var(--color-text);
+    /* Nav text size */
     font-size: 1.25rem;
+    /* Bold nav items */
     font-weight: 700;
+    /* Top border */
     border-top: 0.1rem solid rgb(71, 71, 71);
-    border-bottom: 0.1rem solid rgb(71, 71, 71);
+    border-bottom: 0.1rem solid rgb(71, 71, 71); /* Bottom border */
+    /* Semi-transparent background */
     background-color: var(--color-bg);
+    /* Glass-morphism blur */
     backdrop-filter: blur(10px);
+    /* Safari support */
     -webkit-backdrop-filter: blur(10px);
+    /* Fixed at top of viewport */
     position: fixed;
+    /* Stick to top */
     top: 0;
+    /* Align to left edge */
     left: 0;
+    /* Full width */
     width: 100%;
+    /* Above other content */
     z-index: 1000;
+    /* Fixed height from CSS variable */
     height: var(--nav-h);
+    /* Include padding in height */
     box-sizing: border-box;
+    /* Horizontal layout */
     flex-direction: row;
+    /* Space between nav items */
     gap: 0.5rem;
 }
 
-/* Styles for the top nav bar */
+/* Left section of navbar
+   Contains logo and title */
  .nav-bar-left{
+  /* Flexbox for layout */
   display: flex;
+  /* Vertical centering */
   align-items: center;
+  /* Horizontal layout */
   flex-direction: row;
+  /* Push nav links to right */
   margin-right: auto;
 }
 
-/* Styles for the desktop interface links/buttons list*/
+/* Desktop navigation links container
+   Horizontal list of page links on desktop */
 .nav-bar-buttons {
+    /* Flexbox for horizontal layout */
     display: flex;
+    /* Row direction */
     flex-direction: row;
+    /* No underlines */
     text-decoration: none;
+    /* Theme-aware color */
     color:var(--color-text);
+    /* Remove bullet points */
     list-style: none;
+    /* No margin */
     margin: 0;
+    /* No padding */
     padding: 0rem;
+    /* Push to right side of navbar */
     margin-left: auto;
+    /* Don't grow, can shrink */
     flex: 0 1 auto;
+    /* Keep in single row */
     flex-wrap: nowrap;
 }
 
+/* Individual nav button container
+   Wrapper for each nav link */
 .nav-bar-buttons div{
+    /* For potential dropdowns */
     position: relative;
+    /* Base width */
     width: 25px;
+    /* Spacing around text */
     padding: 0.25rem 0.5rem;
 }
 
+/* Nav button text styling
+   Actual link text appearance */
 .nav-bar-buttons p{
     font-family: "Montserrat", system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif;
+    /* Base font size */
     font-size: 1rem;
+    /* Normal weight */
     font-weight: 400;
+    /* Smooth hover transition */
     transition: 0.3s;
 }
 
-/* Styles for mouse hover on the desktop interface links/buttons */
+/* Nav button hover effect
+   Makes links grow and bold on hover */
 .nav-bar-buttons p:hover{
+    /* Bold on hover */
     font-weight: 700;
+    /* Slightly larger */
     font-size: 1.1rem;
+    /* Smooth transition */
     transition: 0.3s;
 }
 
-/* Styles for the desktop interface links/buttons */
+/* Nav button link styling
+   Removes default link styling */
 .nav-bar-buttons a {
+    /* No underline */
     text-decoration: inherit;
+    /* Inherit parent color */
     color: inherit;
+    /* Inherit parent font */
     font-family: inherit;
 }
 
@@ -512,17 +979,14 @@ img {
    Use consistent padding and border radius to keep “card” look
 */
 .bubble-inlay{
-  display: flex;
-  flex: 1 1 28rem;
-  max-width: 100%;
-  height: auto;
-  text-wrap: wrap;
-  margin-inline: auto;
+  display: grid;
   gap: 1rem;
-  flex-wrap: wrap;
+  grid-template-columns: repeat(2, minmax(20rem, 1fr));
 }
 
 .bubbles-styling{
+  display: flex;
+  flex-direction: column;
   flex: 1 1 400px;
   border: 0.1rem solid var(--card-border);
   -webkit-backdrop-filter: blur(10px);
@@ -534,11 +998,36 @@ img {
   box-shadow: #0000003b 0px 4px 6px -1px;
 }
 
+.bubbles-styling-full{
+  display: flex;
+  flex-direction: column;
+  flex: 0 1 80rem;
+  border: 0.1rem solid var(--card-border);
+  -webkit-backdrop-filter: blur(10px);
+  background-color: var(--color-bg);
+  backdrop-filter: blur(10px);
+  border-radius: var(--radius);
+  max-width: 100%;
+  padding: 1rem;
+  box-shadow: #0000003b 0px 4px 6px -1px;
+  margin-top: 1rem;
+}
+
 .bubbles-styling p{
   font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif;;
   color: var(--color-text);
   text-wrap: pretty;
   margin: 1rem;
+  flex: 1 1 auto;
+  display: flex;
+}
+
+.bubbles-styling-full p{
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif;;
+  color: var(--color-text);
+  text-wrap: pretty;
+  margin: 1rem;
+  flex: 1 1 auto;
 }
 
 .bubbles-title{
@@ -546,120 +1035,184 @@ img {
   color: var(--color-text);
   text-wrap: pretty;
   margin: 1rem;
+  margin-bottom: 0rem;
 }
 
 /*-----------------------------------------------------------------------------*/
 
-/* FOOTER STYLES */
+/* FOOTER STYLES
+   Page footer with project info */
 
+/* Footer text styling */
 .footer-text{
+  /* Center the text */
   text-align: center;
+  /* Theme-aware color */
   color: var(--color-text);
+  /* No margin */
   margin: 0;
+  /* Light weight */
   font-weight: 300;
+  /* Tight line height */
   line-height: 1.2;
+  /* Small padding */
   padding: 0.4rem;
+  /* Small font */
   font-size: 15px;
 }
 
-/* Make widths include padding/borders */
+/* Make widths include padding/borders (box-sizing fix)
+   Applies to all elements for consistent sizing */
 *, *::before, *::after { 
-  box-sizing: border-box; 
+  /* Include padding/border in width/height */
+  box-sizing: border-box;
 }
 
-/* Wrap + never exceed the viewport */
+/* Footer container styling */
 .footer-div{
+  /* Flexbox layout */
   display: flex;
+  /* Horizontal by default */
   flex-direction: row;
-  flex-wrap: wrap;          
+  /* Wrap items if needed */
+  flex-wrap: wrap;
+  /* Center content */
   justify-content: center;
+  /* Vertical centering */
   align-items: center;
 
+  /* Full width */
   inline-size: 100%;
+  /* Never exceed viewport */
   max-inline-size: 100%;
+  /* No margin */
   margin: 0;
+  /* Minimum footer height */
   min-height: 56px;
+  /* Height based on content */
   height: auto;
+  /* Transparent background */
   background-color: transparent;
+  /* Top border separator */
   border-top: 1px solid grey;
 
   
-  overflow-x: clip;                 /* fallback below if not supported */
-  overflow-wrap: anywhere;          /* break very long words/URLs */
-  text-wrap: balance;               /* nicer line breaks if supported */
+  /* Clip horizontal overflow */
+  overflow-x: clip;
+  /* Break long words if needed */
+  overflow-wrap: anywhere;
+  /* Better text distribution */
+  text-wrap: balance;
 }
 
 /* Fallback for older browsers that don't support overflow: clip */
 @supports not (overflow: clip) {
   .footer-div { 
-    overflow-x: hidden; 
+    /* Use hidden if clip not supported */
+    overflow-x: hidden;
   }
 }
 
-/* Make children objects shrink instead of forcing overflow */
+/* Make footer children shrinkable
+   Prevents footer items from forcing horizontal overflow */
 .footer-div > * {
-  min-width: 0;             
+  /* Allow shrinking below content size */
+  min-width: 0;
+  /* Don't grow, can shrink, auto */
   flex: 0 1 auto;
 }
-
-/* Force full flex row */
-footer, .footer-div { 
-  flex: 1 1 100%; 
-}
-
 /*-----------------------------------------------------------------------------*/
 
-/* HAMBURGER MENU/@MEDIA */
+/* HAMBURGER MENU & MOBILE VIEWS */
 
+/* Prevent scrolling when mobile menu is open */
 body.menu-open{
   overflow: hidden;
 }
 
-/* Hamburger menu icon div styles */
-/* Hamburger Menu
-   Toggle off-screen navigation on small screens (≤1300px)*/
+/* Hamburger Menu Icon Button:
+   Three-line "hamburger" icon that toggles mobile menu.
+   Hidden on desktop (≥1341px), visible on mobile/tablet. */
 
-/* Hamburger menu icon div styles */
+/* Hamburger button container */
 .ham-menu {
-  display: none; 
-  flex-direction: column; 
+  /* Hidden by default (desktop) */
+  display: none;
+  /* Stack the three bars vertically */
+  flex-direction: column;
+  /* Space between bars */
   gap: 6px;
+  /* Button width */
   width: 40px;
+  /* Button height */
   height: 40px;
+  /* No border */
   border: 0;
+  /* Transparent background */
   background: transparent;
+  /* No padding */
   padding: 0px;
+  /* Space from other nav items */
   margin-left: 0.5rem;
+  /* Pointer cursor on hover */
   cursor: pointer;
 }
 
+/* Hamburger menu link text color
+   Matches theme color */
 .ham-buttons{
+  /* Theme-aware text color */
   color: var(--color-text)
 }
 
-/* Hamburger menu icon bars */
+/* Hamburger icon bars
+   The three horizontal lines that form the icon */
 .ham-menu span {
+  /* Block for width control */
   display: block;
+  /* Bar width */
   width: 26px;
+  /* Bar height */
   height: 3px;
+  /* Theme-aware color */
   background: var(--color-text);
+  /* Slightly rounded ends */
   border-radius: 2px;
-  transition: transform .2s ease, opacity .2s ease;
+  /* Smooth animation to X */
+  transition: transform .2s ease, opacity .2s ease; 
 }
-
-/* Hides hamburger menu content when not needed */
+/* Hide hamburger menu content by default
+   Slide-out menu starts hidden off-screen */
 .off-screen-menu { 
-    display: none; 
+    /* Hidden on desktop */
+    display: none;
 }
 
-/* Default: show desktop toggle, hide mobile toggle */
+/* Theme toggle visibility control */
 #mobile-toggle .tdnn { 
-  display: none; 
+  /* Hide mobile toggle by default */
+  display: none;
 }
 
 
 /* Mobile Views (≤ 1340px width) */
-@media (max-width: 1340px) {
+@media (max-width: 1340px), (pointer: coarse) {
+
+  .bubble-inlay{
+    grid-template-columns: 1fr;
+  }
+
+  .table-of-contents{
+    grid-template-columns: 1fr;
+  }
+
+  .about-main {
+    grid-template-columns: 1fr;
+  }
+
+  .home-main {
+    grid-template-columns: 1fr;
+  }
 
   #desktop-toggle .tdnn { 
     display: none; 
@@ -676,7 +1229,7 @@ body.menu-open{
     flex: 1 1 55rem;
   }
 
-  /* Used to spearate content of the about body properly */
+  /* Used to seperate content of the about body properly */
   .about-body-left{
     flex: 1 1 28rem;
   }
@@ -699,7 +1252,8 @@ body.menu-open{
     margin-bottom: 0.6rem;
   }
 
-    /* Hamburger menu icon */
+ /* Hamburger menu icon */
+ 
   .ham-menu { 
     display: inline-flex; 
     flex-direction: column;
@@ -723,7 +1277,9 @@ body.menu-open{
     top: var(--nav-h);
     right: 0;
     width: min(80vw, 350px);
-    height: calc(100dvh - var(--nav-h));
+    height: auto;
+    bottom: 0;
+    max-height: calc(100svh - var(--nav-h));
     transform: translateX(100%);
     transition: transform .25s ease;
     z-index: 1000;
@@ -735,6 +1291,7 @@ body.menu-open{
     flex: 1 1 auto;
     justify-content: center;
     align-items: center;
+    overscroll-behavior: contain;
   }
 
   /* Menu buttons list within hamburger menu */
@@ -745,7 +1302,7 @@ body.menu-open{
     padding: 0;
     display: flex;
     flex-direction: column;
-    gap: 3rem;
+    gap: var(--ham-menu-gap);
     font-family: "Montserrat", system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif;
     justify-content: center;
     align-items: center; 
@@ -770,10 +1327,14 @@ body.menu-open{
   .off-screen-menu a {
     color: var(--color-text);
     text-decoration: none;
-    font-size: 1.5rem;
+    font-size: var(--ham-menu-step0);
     opacity: .95;
     transition: opacity .2s ease;
     flex: 1 1 auto;
+  }
+
+  .off-screen-menu #mobile-toggle .tdnn {
+    font-size: var(--mobile-toggle-step0);
   }
 
   /* When menu is opened, slide in off screen menu */
@@ -791,9 +1352,24 @@ body.menu-open{
   body.menu-open .ham-menu span:nth-child(3) { 
     transform: translateY(-8px) rotate(-45deg); 
   }
+  .results-bubbles-styling{
+    margin-left: 0;
+    margin-right: 0;
+  }
+  .quiz-question{
+    padding: 0rem;
+}
 }
 
+/* ≥1301px: Desktop layout; full nav visible, mobile title hidden
+   GOAL: Maintain readable horizontal navigation at larger widths
+*/
+@media (min-width: 1341px) {
+  #mobiletitle .nav-bar-title {
+  display: none;
+}
 
+}
 
 /* Reduced motion */
 /* Honor user's reduced motion preference. Disable transitions/animations that could cause discomfort
@@ -808,51 +1384,589 @@ body.menu-open{
   }
 }
 
-/* ≥1301px: Desktop layout; full nav visible, mobile title hidden
-   GOAL: Maintain readable horizontal navigation at larger widths
-*/
-@media (min-width: 1301px) {
-  #mobiletitle .nav-bar-title {
-  display: none;
+
+
+@media (max-height: 600px) {
+  :root{
+ /* shorter nav bar */
+ 
+    --nav-h: 60px;
+    /* less gap in hamburger menu */                                
+    --ham-menu-gap: 1.9rem;                     
+  }
+  .off-screen-menu {
+    max-height: calc(100vh - var(--nav-h));
+  }
+  .off-screen-menu ul {
+    scale: calc(100vh / 600);
+  }
+  .off-screen-menu ul li {
+    min-width: 0;
+  }
+  .off-screen-menu a{
+    font-size: calc(var(--ham-menu-step0) - 0.2rem);
+    gap: calc(var(--ham-menu-gap));
+  }
+  .nav-bar-title{
+    display: none;
+  }
+}
+@media (min-height: 2000px) {
+  .home-main{
+    grid-template-columns: minmax(20rem, 1fr);
+  }
 }
 
+/*-----------------------------------------------------------------------------
+   2K TUNING
+   Make text, cards, and spacing scale up on very wide screens
+-----------------------------------------------------------------------------*/
+
+@media (min-width: 2000px) {
+
+  /* Bump global font sizing steps for large viewports */
+  :root {
+    /* body text */
+    --step-0: clamp(1.2rem,0.5rem + 1vw, 10rem);
+    /* section titles */
+    --step-2: clamp(2.0rem, 0.8rem + 1vw, 13rem);
+    /* taller nav bar */
+    --nav-h: 90px;
+    --ham-menu-step0: clamp(1.5rem, 1.2rem + 0.4vw, 2.5rem); /* hamburger menu text */
+    --mobile-toggle-step0: clamp(1.2rem, 1rem + 0.3vw, 2.2rem); /* mobile toggle size */
+    --ham-menu-gap: 1.5rem;                     /* more gap in hamburger menu */ 
+  }
+
+  .abstract-container,
+  .tip-container{
+    padding: 1rem;
+  }
+
+.toc-link-button{
+  padding: 1.5rem;
+  border-radius: 2rem;
+  font-size: 1.7rem;
 }
 
+.bubbles-title{
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif;;
+  color: var(--color-text);
+  text-wrap: pretty;
+  margin: 1rem;
+  margin-bottom: 0rem;
+  font-size: var(--step-2);
+}
 
+.bubbles-styling-full{
+    padding: 1.5rem;
+    border-radius: 2rem;
+    margin-top: 2rem;
+  }
+
+  .bubbles-styling-full p{
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif;;
+  color: var(--color-text);
+  text-wrap: pretty;
+  margin: 1rem;
+  flex: 1 1 auto;
+  font-size: calc(var(--step-0) - 0.2rem);
+}
+
+  /* Give the main home grid more breathing room */
+  .home-main{
+    gap: 2rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto;
+  }
+
+  .about-main{
+    gap: 2rem;
+    padding-left: 3rem;
+    padding-right: 3rem;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto;
+  }
+
+  /* Make the main cards visually larger */
+  .body-left,
+  .body-right,
+  .about-body-left,
+  .body-full{
+    padding: 2.5rem;
+  }
+
+  /* Slightly larger nav text on big screens */
+  .nav-bar-buttons p{
+    font-size: 1.4rem;
+  }
+  .nav-bar-buttons p:hover{
+    font-size: 1.8rem;
+  }
+
+  /* Bigger diagram on the homepage */
+  .home-page-diagram{
+    max-height: 420px;
+  }
+
+  .table-of-contents{
+    gap: 2rem;
+  }
+
+  .image-div{
+    flex: 1 1 40rem;
+  }
+
+  img{
+    max-height: 420px;
+  }
+  .nav-bar-logo {
+    width: 130px;
+  }
+  .about-image{
+    flex: 0 0 520px;
+    max-width: 520px;
+    height: auto;
+    min-height: 700px;
+  }
+  .card-content{
+  grid-template-columns: minmax(0,520px) minmax(0,1fr);
+  }
+  .bubbles-styling{
+    padding: 1.5rem;
+    border-radius: 2rem;
+  }
+
+  .body-full{
+    max-width: 104rem;
+  }
+
+  .footer-text{
+    font-size: 20px;
+  }
+}
+
+/*-----------------------------------------------------------------------------
+   4K TUNING
+   Make text, cards, and spacing scale up on very wide screens
+-----------------------------------------------------------------------------*/
+
+@media (min-width: 3000px) {
+
+  /* Bump global font sizing steps for large viewports */
+  :root {
+    /* body text */
+    --step-0: clamp(1.2rem,0.5rem + 1vw, 10rem);
+    --step-2: clamp(2.0rem, 1.3rem + 1vw, 13rem);/* section titles */
+    /* taller nav bar */
+    --nav-h: 100px;
+    --ham-menu-step0: clamp(1.5rem, 1.2rem + 0.4vw, 2.5rem); /* hamburger menu text */
+    --mobile-toggle-step0: clamp(1.2rem, 1rem + 0.3vw, 2.2rem); /* mobile toggle size */
+    --ham-menu-gap: 1.5rem;                     /* more gap in hamburger menu */ 
+    --bubbles-titles-font-size: clamp(1.5rem, 1.2rem + 0.5vw, 3rem); /* bubbles font size */
+    /* card border radius */
+    --card-radius: 2rem;
+  }
+
+  .abstract-container,
+  .tip-container{
+    padding: 2rem;
+  }
+
+  .bubbles-styling p{
+    font-size: calc(var(--step-0) - 0.4rem);
+  }
+
+  .bubbles-styling-full{
+    padding: 2rem;
+    border-radius: 2rem;
+    margin-top: 2rem;
+  }
+
+  .bubbles-styling-full p{
+    font-size: calc(var(--step-0) - 0.4rem);
+  }
+
+  .toc-link-button{
+    padding: 1.5rem;
+    border-radius: 2rem;
+    font-size: 2.2rem;
+  }
+
+.bubbles-title{
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif;;
+  color: var(--color-text);
+  text-wrap: pretty;
+  margin: 1rem;
+  margin-bottom: 0rem;
+  font-size: calc(var(--step-2) - 1rem);
+}
+
+  /* Give the main home grid more breathing room */
+  .home-main{
+    gap: 2rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto;
+  }
+
+  .about-main{
+    gap: 2rem;
+    padding-left: 3rem;
+    padding-right: 3rem;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto;
+  }
+
+  /* Make the main cards visually larger */
+  .body-left,
+  .body-right,
+  .about-body-left,
+  .body-full{
+    padding: 3rem;
+    border: 0.19rem solid var(--card-border);
+    border-radius: var(--card-radius);
+  }
+
+  /* Slightly larger nav text on big screens */
+  .nav-bar-buttons p{
+    font-size: 1.6rem;
+  }
+  .nav-bar-buttons p:hover{
+    font-size: 1.8rem;
+  }
+
+  .nav-bar-title {
+    font-size: 1.5rem;
+  }
+
+  /* Bigger diagram on the homepage */
+  .home-page-diagram{
+    max-height: 420px;
+  }
+
+  .table-of-contents{
+    gap: 2rem;
+  }
+
+  .image-div{
+    flex: 1 1 40rem;
+  }
+
+  img{
+    max-height: 420px;
+  }
+  .nav-bar-logo {
+    width: 140px;
+  }
+  .about-image{
+    flex: 0 0 520px;
+    max-width: 520px;
+    height: auto;
+    min-height: 700px;
+  }
+  .card-content{
+  grid-template-columns: minmax(0,520px) minmax(0,1fr);
+  }
+  .bubbles-styling{
+    padding: 2rem;
+  }
+
+  .body-full{
+    max-width: 170rem;
+  }
+
+  .footer-text{
+    font-size: 25px;
+  }
+
+  .footer-div{
+    min-height: 90px;
+  }
+}
+
+@media (max-aspect-ratio: 1/1) {
+  .home-main{
+    grid-template-columns: 1fr;
+  }
+
+  .about-main {
+    grid-template-columns: 1fr;
+  }
+}
 /*-----------------------------------------------------------------------------*/
 
-/* LIGHT MODE STYLES */
-:root[data-theme="light"] {
-  /* When JS sets data-theme="light" on <html>, these override the dark defaults */
-  --color-text: #000000;
-  --color-accent: #12bd12;
-  --color-bg: rgba(255, 255, 255, 0.432);
-  --card-border: rgb(159, 160, 159);
-  --radius: 1rem;
-  --abstract-bg: #f0f0f0;
-  --body-bg: #c0c0c0;
-  --table-bg: #8383839f;
-  --table-td-bg: #e0e0e0;
+/*-----------------------------------------------------------------------------
+   8K TUNING
+   Make text, cards, and spacing scale up on very wide screens
+-----------------------------------------------------------------------------*/
+
+@media (min-width: 4000px) {
+
+  /* Bump global font sizing steps for large viewports */
+  :root {
+    /* body text */
+    --step-0: clamp(1.2rem,0.5rem + 1vw, 10rem);
+    --step-2: clamp(2.0rem, 1.3rem + 1vw, 13rem);/* section titles */
+    /* taller nav bar */
+    --nav-h: 150px;
+    --ham-menu-step0: clamp(1.5rem, 1.2rem + 0.4vw, 2.5rem); /* hamburger menu text */
+    --mobile-toggle-step0: clamp(1.2rem, 1rem + 0.3vw, 2.2rem); /* mobile toggle size */
+    --ham-menu-gap: 1.5rem;                     /* more gap in hamburger menu */ 
+    --bubbles-titles-font-size: clamp(1.5rem, 1.2rem + 0.5vw, 3rem); /* bubbles font size */
+    /* card border radius */
+    --card-radius: 4rem;
+  }
+
+  .nav-bar {
+    padding: 0rem 3.5rem;
+    justify-content: flex-start;
+    color: var(--color-text);
+    font-size: 1.25rem;
+    font-weight: 700;
+    border-top: 0.1rem solid rgb(71, 71, 71);
+    border-bottom: 0.1rem solid rgb(71, 71, 71);
+    background-color: var(--color-bg);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    height: var(--nav-h);
+    box-sizing: border-box;
+    flex-direction: row;
+    gap: 5rem; /* Increased gap between logo and title */
+  }
+
+  .nav-bar-left {
+    gap: 1rem; /* Add gap between logo and title within nav-bar-left */
+  }
+
+  .nav-bar-title {
+    font-size: 2.5rem; /* Scale up title for 8K */
+    margin-bottom: 0; /* Remove bottom margin to align title properly */
+    padding-left: 2rem; /* Add more left padding */
+  }
+
+  .nav-bar-logo {
+    width: 200px; /* Scale up logo for 8K */
+  }
+
+  .nav-bar-buttons {
+    gap: 3rem; /* Increase spacing between nav buttons */
+  }
+
+  .abstract-container,
+  .tip-container{
+    padding: 2rem;
+  }
+
+  .bubbles-styling p{
+    font-size: calc(var(--step-0) - 0.4rem);
+  }
+
+  .bubbles-styling-full{
+    padding: 5rem;
+    border-radius: 4rem;
+    margin-top: 2rem;
+  }
+
+  .bubbles-styling-full p{
+    font-size: calc(var(--step-0) - 0.4rem);
+  }
+
+  .toc-link-button{
+    padding: 2.5rem;
+    border-radius: 3rem;
+    font-size: 4.2rem;
+    border: var(--color-accent) solid 0.3rem;
+  }
+
+.bubbles-title{
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif;;
+  color: var(--color-text);
+  text-wrap: pretty;
+  margin: 1rem;
+  margin-bottom: 0rem;
+  font-size: calc(var(--step-2) - 1rem);
 }
 
+  /* Give the main home grid more breathing room */
+  .home-main{
+    gap: 4rem;
+    padding-left: 4rem;
+    padding-right: 4rem;
+    margin-top: calc(180px - var(--nav-h));
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto;
+  }
+
+  .about-main{
+    gap: 2rem;
+    padding-left: 3rem;
+    padding-right: 3rem;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto;
+  }
+
+  /* Make the main cards visually larger */
+  .body-left,
+  .body-right,
+  .about-body-left,
+  .body-full{
+    padding: 7rem;
+    border: 0.19rem solid var(--card-border);
+    border-radius: var(--card-radius);
+  }
+
+  /* Slightly larger nav text on big screens */
+  .nav-bar-buttons p{
+    font-size: 3.1rem;
+  }
+  .nav-bar-buttons p:hover{
+    font-size: 3.9rem;
+  }
+
+  .nav-bar-title {
+    font-size: 2.9rem;
+  }
+
+  /* Bigger diagram on the homepage */
+  .home-page-diagram{
+    max-height: 420px;
+  }
+
+  .table-of-contents{
+    gap: 2rem;
+  }
+
+  .image-div{
+    flex: 1 1 40rem;
+  }
+
+  img{
+    max-height: 1000px;
+  }
+  .nav-bar-logo {
+    width: 270px;
+  }
+  .about-image{
+    flex: 0 0 520px;
+    max-width: 520px;
+    height: auto;
+    min-height: 700px;
+  }
+  .card-content{
+  grid-template-columns: minmax(0,520px) minmax(0,1fr);
+  }
+  .bubbles-styling{
+    padding: 5rem;
+  }
+
+  .body-full{
+    max-width: 360rem;
+  }
+
+  .footer-text{
+    font-size: 55px;
+  }
+
+  .footer-div{
+    min-height: 200px;
+  }
+}
+
+@media (max-aspect-ratio: 1/1) {
+  :root{
+    /* taller nav bar */
+    --nav-h: 120px;
+  }
+
+  .home-main{
+    grid-template-columns: 1fr;
+  }
+
+  .about-main {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-height: 500px) {
+  :root{
+    /* shorter nav bar */
+    --nav-h: 60px;
+    /* less gap in hamburger menu */
+    --ham-menu-gap: 1.0rem;
+  }
+  .off-screen-menu {
+    max-height: calc(100vh - var(--nav-h));
+  }
+  .off-screen-menu ul {
+    scale: calc(100vh / 600);
+  }
+  .off-screen-menu ul li {
+    min-width: 0;
+  }
+  .off-screen-menu a{
+    font-size: calc(var(--ham-menu-step0) - 0.4rem);
+    gap: calc(var(--ham-menu-gap));
+  }
+  .nav-bar-title{
+    display: none;
+  }
+}
+
+@media (max-height: 600px) {
+  :root{
+    /* shorter nav bar */
+    --nav-h: 60px;
+    /* less gap in hamburger menu */
+    --ham-menu-gap: 1.9rem;
+  }
+  .off-screen-menu {
+    max-height: calc(100vh - var(--nav-h));
+  }
+  .off-screen-menu ul {
+    scale: calc(100vh / 600);
+  }
+  .off-screen-menu ul li {
+    min-width: 0;
+  }
+  .off-screen-menu a{
+    font-size: calc(var(--ham-menu-step0) - 0.2rem);
+    gap: calc(var(--ham-menu-gap));
+  }
+  .nav-bar-title{
+    display: none;
+  }
+}
 /*-----------------------------------------------------------------------------*/
+
 
 /* Light/dark decorative toggle */
-/* Light/dark decorative toggle (fits in 62px navbar) */
-/* Decorative day/night toggle — compact size that fits a 62px bar */
+/* Decorative day/night toggle */
 .tdnn {
-  position: relative;                 /* anchor for .moon/.sun */
+  /* anchor for .moon/.sun */
+  position: relative;
   display: inline-block;
   flex: 0 0 auto;
 
-  /* Make 15em equal the navbar height (62px) so the art scales perfectly */
+
   font-size: calc(var(--nav-h) / 26);
 
-  width: var(--toggleWidth);          /* 28em track length */
-  height: var(--toggleHeight);        /* 15em track height */
+  /* 28em track length */
+  width: var(--toggleWidth);
+  /* 15em track height */
+  height: var(--toggleHeight);
   border-radius: var(--toggleHeight);
-  background: var(--bgColor--night);  /* default track (night) */
-  overflow: hidden;                   /* keep the knob neatly clipped */
+  /* default track (night) */
+  background: var(--bgColor--night);
+  /* keep the knob neatly clipped */
+  overflow: hidden;
   transition: background var(--theme-duration) ease;
 }
 
@@ -878,7 +1992,8 @@ body.menu-open{
   /* darker knob for dark mode */
   background: #181717;
   box-shadow: 
-    3em 2.5em 0 0em #d9fbff inset,           /* moon highlight */
+    /* moon highlight */
+    3em 2.5em 0 0em #d9fbff inset,
     rgba(255, 255, 255, 0.1) 0em -7em 0 -4.5em,
     rgba(255, 255, 255, 0.1) 3em 7em 0 -4.5em,
     rgba(255, 255, 255, 0.1) 2em 13em 0 -4em,
@@ -896,7 +2011,8 @@ body.menu-open{
   transform: rotate(0deg);
   width: 7em;
   height: 7em;
-  background: #ffffff;            /* white knob for light mode */
+  /* white knob for light mode */
+  background: #ffffff;
   box-shadow: 3em 3em 0 5em #fff inset,
     0 -5em 0 -2.7em #fff,
     3.5em -3.5em 0 -3em #fff,
@@ -914,7 +2030,8 @@ body.menu-open{
   position: fixed;
   inset: 0;
   pointer-events: none;
-  background: var(--body-bg);   /* picks up the old value */
+  /* picks up the old value */
+  background: var(--body-bg);
   opacity: 1;
   animation: theme-fade var(--theme-duration) ease;
   z-index: 900;
@@ -928,7 +2045,7 @@ body.menu-open{
   color: var(--color-text);
   font-size: var(--step-0);
   margin: 1rem;
-  flex: 0 1 80rem;
+  flex: 0 1 auto;
   max-width: 100%;
   height: auto;
   background-color: var(--color-bg);
@@ -938,8 +2055,34 @@ body.menu-open{
   border-radius: var(--radius);
   padding: 1rem;
   text-wrap: wrap;
-  margin-inline: auto;
   overflow: hidden;
+}
+
+.quiz-button-panel{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--color-text);
+  font-size: var(--step-0);
+  margin: 1rem;
+  max-width: 100%;
+  height: auto;
+  background-color: var(--color-bg);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 0.1rem solid var(--card-border);
+  border-radius: var(--radius);
+  padding: 1rem;
+  text-wrap: wrap;
+  gap: 1rem;
+  min-height: 3.5rem;
+}
+
+.quiz-main{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .option-container {
@@ -948,8 +2091,6 @@ body.menu-open{
   border-left: 0.4rem solid #0a840a;
   border-radius: 1rem;
   max-width:100%;
-  max-height: 100%;
-  min-height: 4rem;
   transition: border 0.1s ease;
 }
 
@@ -965,11 +2106,29 @@ body.menu-open{
 .question-options{
   display: grid;
   width: 100%;
-  grid-column: auto-fill;
   gap: 1rem;
 }
 
-.submit-button{
+.option-container { 
+  cursor: pointer;
+  margin: 1rem;
+}
+
+.answer-text{
+  flex: 1 1 auto;
+  background-color: var(--abstract-bg);
+  color: var(--color-text);
+  display: flex;
+  border: 0.1rem solid var(--card-border);
+  border-radius: 1rem;
+  width: 97%;
+  height: 3rem;
+  padding: 1rem;
+  margin: 1rem;
+  outline: none;
+}
+
+.quiz-button{
   max-width: fit-content;
   height: auto;
   background-color: var(--color-bg);
@@ -981,16 +2140,98 @@ body.menu-open{
   text-wrap: wrap;
   transition: ease-out 0.2s;
   color: var(--color-text);
+  font-size: var(--step-0);
 }
 
-.submit-button:hover{
+.quiz-button img{
+  max-width: 30px;
+  height: auto;
+}
+
+.quiz-button:hover{
   background-color: rgba(30, 255, 0, 0.5);
   transition: ease-out 0.2s;
 
 }
 
+.quiz-button:disabled{
+  background-color: var(--table-bg);
+  border: rgb(0, 0, 0);
+  cursor: not-allowed;
+}
+
+.quiz-restart-button{
+  display: none;
+}
+
+.quiz-results {
+  margin-top: 1rem;
+  width: 100%;
+}
+
+.quiz-result-header {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 0.5rem;
+}
+
+.quiz-result-status {
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.quiz-result-status.quiz-pass {
+  color: #0a840a; /* or your success color variable */
+}
+
+.quiz-result-status.quiz-fail {
+  color: #b00020; /* or your error color variable */
+}
+
+.correct-label{
+  color: var(--color-accent);
+}
+
+.incorrect-label{
+  color: #b00020;
+}
+
+.results-bubbles-styling{
+  flex: 1 1 400px;
+  border: 0.1rem solid var(--card-border);
+  -webkit-backdrop-filter: blur(10px);
+  background-color: var(--color-bg);
+  backdrop-filter: blur(10px);
+  border-radius: var(--radius);
+  max-width: 100%;
+  padding: 1rem;
+  box-shadow: #0000003b 0px 4px 6px -1px;
+  margin: 1rem;
+  margin-left: -1rem;
+  line-height: 1.5;
+}
+
+.results-bubbles-styling p{
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif;;
+  color: var(--color-text);
+  text-wrap: pretty;
+  margin: 1rem;
+}
+
+.results-styling{
+  list-style-type: none;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif;;
+  color: var(--color-text);
+  text-wrap: pretty;
+  margin: 2rem;
+  font-size: var(--step-0);
+}
+
+
 /* Make the whole card clickable */
-.option { display: block; cursor: pointer; }
+.option { 
+  display: block; cursor: pointer; 
+}
 
 /* Hide the native radio; keep it focusable for keyboards */
 .option > input[type="radio"] {
@@ -999,13 +2240,41 @@ body.menu-open{
 
 /* Keep your current look; add checked + keyboard focus states */
 .option > input[type="radio"]:checked + .option-container {
-  /* match your existing :hover look exactly */
   border: 0.2rem solid #0a840a;
+  background-color: #0a840a33;
 }
 .option > input[type="radio"]:focus-visible + .option-container {
   outline: 2px solid var(--color-accent);
   outline-offset: 2px;
 }
 
-/* Optional: better pointer hint */
-.option-container { cursor: pointer; }
+/* Hide the native radio; keep it focusable for keyboards */
+.option > input[type="checkbox"] {
+  position: absolute; opacity: 0; pointer-events: none;
+}
+
+/* Keep your current look; add checked + keyboard focus states */
+.option > input[type="checkbox"]:checked + .option-container {
+  border: 0.2rem solid #0a840a;
+  background-color: #0a840a33;
+}
+.option > input[type="checkbox"]:focus-visible + .option-container {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+.hyperlink:link{
+  color: var(--color-accent);
+  text-decoration: none;
+}
+
+.hyperlink:hover{
+  color: #12e512;
+  text-decoration: underline;
+}
+
+.hyperlink:visited{
+  color: #4500b4;
+  text-decoration: underline;
+}
+
