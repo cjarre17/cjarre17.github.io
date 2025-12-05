@@ -1,7 +1,7 @@
 // hamburger.js
 
 //Caches references to the media query and key elements
-const mq = window.matchMedia('(max-width: 1340px)');
+const mq = window.matchMedia('(max-width: 1340px), (pointer: coarse), (max-aspect-ratio: 1/1)');
 const body = document.body;
 const hamMenu = document.querySelector('.ham-menu');
 const drawer = document.getElementById('mobile-drawer') || document.querySelector('.off-screen-menu');

@@ -1640,9 +1640,9 @@ body.menu-open{
     --step-2: clamp(2.0rem, 0.8rem + 1vw, 13rem);
     /* taller nav bar */
     --nav-h: 90px;
-    --ham-menu-step0: clamp(1.5rem, 1.2rem + 0.4vw, 2.5rem); /* hamburger menu text */
+    --ham-menu-step0: clamp(2rem, 1.5rem + 0.5vw, 3rem); /* hamburger menu text */
     --mobile-toggle-step0: clamp(1.2rem, 1rem + 0.3vw, 2.2rem); /* mobile toggle size */
-    --ham-menu-gap: 1.5rem;                     /* more gap in hamburger menu */ 
+    --ham-menu-gap: 2.5rem;                     /* more gap in hamburger menu */ 
     --card-radius: 2rem;                     /* larger card border radius */ 
     --bubbles-titles-font-size: clamp(1.5rem, 1rem + 0.5vw, 3rem);
   }
@@ -1843,9 +1843,9 @@ body.menu-open{
     --step-2: clamp(2.0rem, 1.3rem + 1vw, 13rem);/* section titles */
     /* taller nav bar */
     --nav-h: 100px;
-    --ham-menu-step0: clamp(1.5rem, 1.2rem + 0.4vw, 2.5rem); /* hamburger menu text */
+    --ham-menu-step0: clamp(3rem, 2rem + 0.6vw, 4.5rem); /* hamburger menu text */
     --mobile-toggle-step0: clamp(1.2rem, 1rem + 0.3vw, 2.2rem); /* mobile toggle size */
-    --ham-menu-gap: 1.5rem;                     /* more gap in hamburger menu */ 
+    --ham-menu-gap: 3.5rem;                     /* more gap in hamburger menu */ 
     --bubbles-titles-font-size: clamp(1.5rem, 1.2rem + 0.5vw, 3rem); /* bubbles font size */
     /* card border radius */
     --card-radius: 3rem;
@@ -1917,7 +1917,7 @@ body.menu-open{
   .body-right,
   .about-body-left,
   .body-full{
-    padding: 3rem;
+    padding: 4rem;
     border: 0.19rem solid var(--card-border);
     border-radius: var(--card-radius);
   }
@@ -1982,7 +1982,15 @@ body.menu-open{
     font-size: calc(var(--step-0) + 0.2rem);
   }
   
+  .arch-table td,
+  .arch-table th{
+    font-size: calc(var(--step-0) + 0.2rem);
+    padding: 1rem 2rem;
+  }
 
+  .arch-table{
+    border-radius: var(--card-radius);
+  }
 
   .answer-text{
     padding: 3rem !important;
@@ -2041,9 +2049,9 @@ body.menu-open{
     --step-2: clamp(2.0rem, 1.3rem + 1vw, 13rem);/* section titles */
     /* taller nav bar */
     --nav-h: 150px;
-    --ham-menu-step0: clamp(1.5rem, 1.2rem + 0.4vw, 2.5rem); /* hamburger menu text */
+    --ham-menu-step0: clamp(4rem, 3rem + 0.8vw, 6rem); /* hamburger menu text */
     --mobile-toggle-step0: clamp(1.2rem, 1rem + 0.3vw, 2.2rem); /* mobile toggle size */
-    --ham-menu-gap: 1.5rem;                     /* more gap in hamburger menu */ 
+    --ham-menu-gap: 4.5rem;                     /* more gap in hamburger menu */ 
     --bubbles-titles-font-size: clamp(1.5rem, 1.2rem + 0.5vw, 3rem); /* bubbles font size */
     /* card border radius */
     --card-radius: 4rem;
@@ -2147,8 +2155,13 @@ body.menu-open{
   .body-right,
   .about-body-left,
   .body-full{
-    padding: 7rem;
+    padding: 12rem;
     border: 0.19rem solid var(--card-border);
+    border-radius: var(--card-radius);
+  }
+  
+  .references-link-button{
+    padding: 2rem;
     border-radius: var(--card-radius);
   }
 
@@ -2162,11 +2175,13 @@ body.menu-open{
 
   .nav-bar-title {
     font-size: 2.9rem;
+    margin-bottom: 1.4rem;
+    margin-left: -1rem;
   }
 
   /* Bigger diagram on the homepage */
   .home-page-diagram{
-    max-height: 420px;
+    max-height: 1120px;
   }
 
   .table-of-contents{
@@ -2185,19 +2200,24 @@ body.menu-open{
   }
   .about-image{
     flex: 0 0 900px;
-    max-width: 900px;
+    max-width: 1700px;
     height: auto;
-    min-height: 1100px;
+    min-height: 1700px;
   }
   .card-content{
-  grid-template-columns: minmax(0,900px) minmax(0,1fr);
+  grid-template-columns: minmax(0,1500px) minmax(0,1fr);
   }
   .bubbles-styling{
     padding: 5rem;
   }
 
+  .table-of-contents{
+    margin-top: 2rem;
+  }
+
   .body-full{
     max-width: 360rem;
+    border-radius: var(--card-radius);
   }
 
   .footer-text{
@@ -2208,7 +2228,21 @@ body.menu-open{
     min-height: 200px;
   }
   
+  .arch-table th,
+  .arch-table td{
+    padding: 5rem 4rem;
+  }
 
+  .arch-table{
+    border-radius: var(--card-radius);
+  }
+
+  .tip-container,
+  .abstract-container{
+    padding: 4rem;
+    border-radius: var(--card-radius);
+    border-left: var(--color-accent) solid 1rem;
+  }
 
   /* Keep desktop toggle visible */
   #desktop-toggle .tdnn {
@@ -2219,12 +2253,13 @@ body.menu-open{
     padding: 4rem !important;
     height: 10rem !important;
     font-size: 3rem !important;
-    margin: 0;
+    margin: 1rem !important;
     width: 100%;
   }
 
   .quiz-question-card{
     margin: 3.5rem !important;
+    padding: 8rem !important;
   }
 
   .quiz-button-panel{
@@ -2245,6 +2280,11 @@ body.menu-open{
 
   .quiz-button img{
     max-width: 90px !important;
+  }
+
+  .key-concepts-list{
+    font-size: calc(var(--step-0) + 0.4rem);
+    padding: 1rem 5rem;
   }
 }
 
