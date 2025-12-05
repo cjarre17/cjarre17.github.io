@@ -7,8 +7,10 @@ Purpose: Global styles, layout shells, header/nav, cards, TOC, tables
 ========================================================================== 
 */
 
-
-/* GLOBAL STYLES */
+/*-----------------------------------------------------------------------------
+   GLOBAL STYLES
+   Base CSS variables, body, and fundamental element styling
+-----------------------------------------------------------------------------*/
 
 /* CSS custom properties for consistent theming across the site */
 :root {
@@ -18,7 +20,7 @@ Purpose: Global styles, layout shells, header/nav, cards, TOC, tables
   /* Responsive scaling for mobile navigation */
   --ham-menu-step0: clamp(0.5rem, 0.8rem + 1.2vh, 4rem); 
   --ham-menu-gap: clamp(0.1rem, 1.5rem + 2vh, 3rem); 
-  --mobile-toggle-step0: clamp(0.01rem, 0.1rem + 0.2vh, 3rem);
+  --mobile-toggle-step0: clamp(0.2rem, 2.5vw, 0.75rem);
   
   /* Scaling variables for global font sizes. */
   --step-0: clamp(1.1rem, 0.6rem + 0.5vw, 100rem); 
@@ -34,7 +36,7 @@ Purpose: Global styles, layout shells, header/nav, cards, TOC, tables
   --table-bg: #1f1f1f;
   --table-td-bg: #2c2828;
   --card-border: rgb(71, 71, 71);
-  --radius: 1rem;
+  --radius: 1.5rem;
   --body-bg:
     radial-gradient(1200px 600px at 10% -10%, rgba(255,255,255,0.06), transparent 60%),
     radial-gradient(900px 500px at 110% 10%, rgba(255,255,255,0.04), transparent 55%),
@@ -103,7 +105,7 @@ p{
 main{
   /* Set top padding to account for fixed navbar height */
   /* Prevents content from hiding under navbar */
-  padding-top: calc(var(--nav-h) + 12px);
+  padding-top: calc(var(--nav-h) + 1rem);
 
   /* Set max width to avoid making content too wide on ultra-wide displays */
   /* Cap at 8K resolution width */
@@ -116,10 +118,10 @@ main{
   /* Cards stretch to fill grid cells */
   align-items: stretch;
   /* Spacing between grid items */
-  gap: 1rem;
+  gap: 2rem;
   padding-left: 1rem;
   padding-right: 1rem;
-  padding-bottom: 1rem;
+  padding-bottom: 2rem;
   /* Fill viewport minus nav and footer */
   min-height: calc(100vh - var(--nav-h) - 56px);
   text-wrap: pretty;
@@ -140,11 +142,12 @@ ol{
 }
 
 
-/*-----------------------------------------------------------------------------*/
+/*-----------------------------------------------------------------------------
+   GLOBAL LIGHT MODE STYLES
+   Theme overrides when JS toggles to light mode
+-----------------------------------------------------------------------------*/
 
-/* GLOBAL LIGHT MODE STYLES 
-   When JS toggles to light mode, these values replace
-   the dark mode defaults. */
+/* When JS toggles to light mode, these values replace the dark mode defaults */
 :root[data-theme="light"] {
 
   /* Black text for readability on light bg */
@@ -169,9 +172,10 @@ ol{
   --radius: 1rem;
 }
 
-/*-----------------------------------------------------------------------------*/
-
-/* List styling variations */
+/*-----------------------------------------------------------------------------
+   LIST STYLES
+   Styling variations for different list types
+-----------------------------------------------------------------------------*/
 
 /* Adjusts list items padding for master-worker architecture list */
 .master-worker-list li{
@@ -202,9 +206,10 @@ ol{
 }
 
 
-/*-----------------------------------------------------------------------------*/
-
-/* Image and figure styling */
+/*-----------------------------------------------------------------------------
+   IMAGE AND FIGURE STYLES
+   Responsive images, captions, and image containers
+-----------------------------------------------------------------------------*/
 
 /* Styling for the main diagram on homepage
    Rounded corners to match card styling */
@@ -260,7 +265,7 @@ img {
   /* Transparent border for spacing */
   border: transparent 1px;
   /* Rounded corners */
-  border-radius: var(--radius);
+  border-radius: 2rem;
 }
 
 /* Image caption styling
@@ -276,10 +281,10 @@ img {
   margin-bottom: 1rem;
 }
 
-/*-----------------------------------------------------------------------------*/
-
-/* DIV STYLES / PAGE LAYOUTS
-   Different page templates and card containers */
+/*-----------------------------------------------------------------------------
+   DIV STYLES / PAGE LAYOUTS
+   Different page templates and card containers
+-----------------------------------------------------------------------------*/
 
 /* Homepage grid layout
    Two-column responsive grid that collapses on mobile */
@@ -335,7 +340,7 @@ img {
   /* Fixed image, flexible text */
   grid-template-columns: minmax(0,260px) minmax(0,1fr); 
   /* Space between image and text */
-  gap: 1rem;
+  gap: 2rem;
   /* Align content to top */
   align-items: start;
   /* Center the grid */
@@ -464,7 +469,7 @@ img {
   /* Height based on content */
   height: auto;
   /* Internal spacing */
-  padding: 1rem;
+  padding: 2rem;
   /* Allow text to wrap */
   text-wrap: wrap;
   /* Center horizontally */
@@ -499,8 +504,9 @@ img {
   /* Styles the border of abstract container div - left accent bar */
   border-left: 0.4rem solid var(--color-accent); /* Thick accent-colored left border */
   /* Rounded corners */
-  border-radius: 1rem;
-
+  border-radius: 1.5rem;
+  /* Internal padding */
+  padding: 1rem;
 
   /* Styles the colors of abstract container div */
   /* Darker background to stand out */
@@ -519,7 +525,9 @@ img {
   /* Styles the border of tip container div - left accent bar */
   border-left: 0.4rem solid var(--color-accent); /* Thick accent-colored left border */
   /* Rounded corners */
-  border-radius: 1rem;
+  border-radius: 1.5rem;
+  /* Internal padding */
+  padding: 1rem;
 
   /* Styles the colors of tip container div */
   /* Darker background to stand out */
@@ -533,16 +541,18 @@ img {
   /* CSS Grid layout */
   display: grid;
   /* Space between cards */
-  gap: 1rem;
+  gap: 1.5rem;
   grid-template-columns: repeat(2, minmax(20rem, 1fr)); /* 2 columns, min 320px each */
   /* All rows equal height */
   grid-auto-rows: 1fr;
+  /* Space above TOC */
+  margin-top: 1.5rem;
 }
 
-/*-----------------------------------------------------------------------------*/
-
-/* BUTTON STYLES
-   Interactive button components with hover effects */
+/*-----------------------------------------------------------------------------
+   BUTTON STYLES
+   Interactive button components with hover effects
+-----------------------------------------------------------------------------*/
 
 /* Reference link button styling
    Used on references page for external links */
@@ -553,7 +563,7 @@ img {
   /* Height based on content */
   height: auto;
   /* Internal spacing */
-  padding: 0.5rem;
+  padding: 1rem 1.3rem;
   /* Allow text to wrap */
   text-wrap: wrap;
   /* Smooth transition for hover */
@@ -577,7 +587,7 @@ img {
   /* Accent-colored border */
   border: 0.1rem solid var(--color-accent);
   /* Slightly rounded corners */
-  border-radius: 0.7rem;
+  border-radius: 1.5rem;
 
   /* Relates back to global button shadow variable */
   /* Subtle drop shadow */
@@ -609,7 +619,7 @@ img {
   /* Height based on content */
   height: auto;
   /* Comfortable click target */
-  padding: 0.8rem;
+  padding: 1rem 1.3rem;
   /* Allow text to wrap */
   text-wrap: wrap;
   /* Smooth hover transition */
@@ -629,7 +639,7 @@ img {
   /* Accent-colored border */
   border: 0.1rem solid var(--color-accent);
   /* Rounded corners */
-  border-radius: 1rem;
+  border-radius: 1.5rem;
 
   /* Relates back to global button shadow variable */
   /* Subtle drop shadow for depth */
@@ -667,10 +677,30 @@ img {
   color:var(--color-text);
 }
 
-/*-----------------------------------------------------------------------------*/
+/*-----------------------------------------------------------------------------
+   HYPERLINK STYLES
+   Global hyperlink styling for in-text links
+-----------------------------------------------------------------------------*/
 
-/* TEXT STYLES
-   Typography for headings and titles */
+.hyperlink:link{
+  color: var(--color-accent);
+  text-decoration: none;
+}
+
+.hyperlink:hover{
+  color: #12e512;
+  text-decoration: underline;
+}
+
+.hyperlink:visited{
+  color: #4500b4;
+  text-decoration: underline;
+}
+
+/*-----------------------------------------------------------------------------
+   TEXT STYLES
+   Typography for headings and titles
+-----------------------------------------------------------------------------*/
 
 /* Centered body title styling
    Used for main section headers */
@@ -716,9 +746,10 @@ img {
   margin-left: 1rem;
 }
 
-/*-----------------------------------------------------------------------------*/
-/* TABLE STYLES
-   Architecture comparison table styling */
+/*-----------------------------------------------------------------------------
+   TABLE STYLES
+   Architecture comparison table styling
+-----------------------------------------------------------------------------*/
 
 /* Main architecture table styling
    Complex table with horizontal scrolling on mobile */
@@ -780,17 +811,17 @@ img {
   /* Merge borders */
   border-collapse: collapse;
   /* Cell padding */
-  padding: 1rem;
+  padding: 1.5rem;
   /* Lighter bg than table */
   background-color: var(--table-td-bg);
   /* Minimum column width */
   min-width: 150px;
 }
 
-/*-----------------------------------------------------------------------------*/
-
-/* NAV BAR STYLES
-   Fixed navigation bar at top of page with logo, title, and links */
+/*-----------------------------------------------------------------------------
+   NAV BAR STYLES
+   Fixed navigation bar at top of page with logo, title, and links
+-----------------------------------------------------------------------------*/
 
 /* Navigation bar title text
    Site title displayed in navbar */
@@ -969,10 +1000,10 @@ img {
     font-family: inherit;
 }
 
-/*-----------------------------------------------------------------------------*/
-
-/* BUBBLES STYLES*/
-
+/*-----------------------------------------------------------------------------
+   BUBBLES STYLES
+   Table of Contents and Reverse Proxy bubble cards
+-----------------------------------------------------------------------------*/
 
 /* Table of Contents/Reverse Proxy Bubbles
    Goal: Flexible 2-up+ card grid; wraps on narrow screens
@@ -992,9 +1023,9 @@ img {
   -webkit-backdrop-filter: blur(10px);
   background-color: var(--color-bg);
   backdrop-filter: blur(10px);
-  border-radius: var(--radius);
+  border-radius: 1.5rem;
   max-width: 100%;
-  padding: 1rem;
+  padding: 1.5rem;
   box-shadow: #0000003b 0px 4px 6px -1px;
 }
 
@@ -1006,11 +1037,11 @@ img {
   -webkit-backdrop-filter: blur(10px);
   background-color: var(--color-bg);
   backdrop-filter: blur(10px);
-  border-radius: var(--radius);
+  border-radius: 1.5rem;
   max-width: 100%;
-  padding: 1rem;
+  padding: 1.5rem;
   box-shadow: #0000003b 0px 4px 6px -1px;
-  margin-top: 1rem;
+  margin-top: 1.5rem;
 }
 
 .bubbles-styling p{
@@ -1038,10 +1069,10 @@ img {
   margin-bottom: 0rem;
 }
 
-/*-----------------------------------------------------------------------------*/
-
-/* FOOTER STYLES
-   Page footer with project info */
+/*-----------------------------------------------------------------------------
+   FOOTER STYLES
+   Page footer with project info
+-----------------------------------------------------------------------------*/
 
 /* Footer text styling */
 .footer-text{
@@ -1121,9 +1152,10 @@ img {
   /* Don't grow, can shrink, auto */
   flex: 0 1 auto;
 }
-/*-----------------------------------------------------------------------------*/
-
-/* HAMBURGER MENU & MOBILE VIEWS */
+/*-----------------------------------------------------------------------------
+   HAMBURGER MENU & MOBILE VIEWS
+   Mobile navigation and responsive breakpoints
+-----------------------------------------------------------------------------*/
 
 /* Prevent scrolling when mobile menu is open */
 body.menu-open{
@@ -1165,6 +1197,18 @@ body.menu-open{
   color: var(--color-text)
 }
 
+
+#mobile-toggle .tdnn { 
+  /* Hide mobile toggle by default */
+  display: none;
+}
+
+#desktop-toggle .tdnn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 /* Hamburger icon bars
    The three horizontal lines that form the icon */
 .ham-menu span {
@@ -1188,14 +1232,11 @@ body.menu-open{
     display: none;
 }
 
-/* Theme toggle visibility control */
-#mobile-toggle .tdnn { 
-  /* Hide mobile toggle by default */
-  display: none;
-}
+/*-----------------------------------------------------------------------------
+   MOBILE/VERTICAL DISPLAY TUNING
+    Adjust layout for portrait/aspect ratio ≤ 1:1 displays
+-----------------------------------------------------------------------------*/
 
-
-/* Mobile Views (≤ 1340px width) */
 @media (max-width: 1340px), (pointer: coarse) {
 
   .bubble-inlay{
@@ -1222,7 +1263,7 @@ body.menu-open{
     display: flex; 
     align-items: center;
     justify-content: center;
-    font-size: 0.25rem;
+    font-size: var(--mobile-toggle-step0);
   }
 
   .body-left{
@@ -1232,6 +1273,162 @@ body.menu-open{
   /* Used to seperate content of the about body properly */
   .about-body-left{
     flex: 1 1 28rem;
+  }
+
+  /* Hide nav bar buttons, show hamburger menu */
+  .nav-bar-buttons { 
+    display: none; 
+  }
+
+  #desktoptitle .nav-bar-title {
+    display: none;
+  }
+
+  #mobiletitle .nav-bar-title {
+    text-decoration: none;
+    color:  var(--color-text);
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif;
+    font-size: 1.2rem;
+    padding-left: 0.1rem;
+    margin-bottom: 0.6rem;
+  }
+
+ /* Hamburger menu icon */
+ 
+  .ham-menu { 
+    display: inline-flex; 
+    flex-direction: column;
+    align-items: center; 
+    justify-content: center; 
+    gap:6px;
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+
+  }
+
+  /* Slide-out hamburger menu */
+  .off-screen-menu {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: var(--nav-h);
+    right: 0;
+    width: min(80vw, 350px);
+    height: auto;
+    bottom: 0;
+    max-height: calc(100svh - var(--nav-h));
+    transform: translateX(100%);
+    transition: transform .25s ease;
+    z-index: 1000;
+    padding: 1rem;
+    background-color: var(--color-bg);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    box-shadow: -10px 0 24px rgba(0,0,0,.35);
+    flex: 1 1 auto;
+    justify-content: center;
+    align-items: center;
+    overscroll-behavior: contain;
+  }
+
+  /* Expand hamburger menu on larger displays */
+  @media (min-width: 768px) {
+    .off-screen-menu {
+      width: min(80vw, 33.33vw);
+    }
+  }
+
+  /* Menu buttons list within hamburger menu */
+  .off-screen-menu ul {
+    flex: 1;
+    list-style: none;
+    margin: 0 auto; 
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--ham-menu-gap);
+    font-family: "Montserrat", system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif;
+    justify-content: center;
+    align-items: center; 
+  }
+
+  /* Menu buttons within hamburger menu hover effect */
+  .off-screen-menu li:hover{
+    font-family: "Montserrat", system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif;;
+    padding: .25rem .5rem;
+    transform: scale(1.15);
+    transition: 0.3s;
+    font-weight: 700;
+  }
+
+  /* Class rule to add return transition for after mouse hover on hamburger menu buttons has ended */
+    .off-screen-menu li{
+        transition: 0.3s;
+
+  }
+
+  /* Customization of text within hamburger menu */
+  .off-screen-menu a {
+    color: var(--color-text);
+    text-decoration: none;
+    font-size: var(--ham-menu-step0);
+    opacity: .95;
+    transition: opacity .2s ease;
+    flex: 1 1 auto;
+  }
+
+  .off-screen-menu #mobile-toggle .tdnn {
+    font-size: var(--mobile-toggle-step0);
+  }
+  /* When menu is opened, slide in off screen menu */
+  body.menu-open .off-screen-menu { 
+    transform: translateX(0); 
+  }
+
+  /* Animate hamburger icon into an X */
+  body.menu-open .ham-menu span:nth-child(1) { 
+    transform: translateY(8px) rotate(45deg); 
+  }
+  body.menu-open .ham-menu span:nth-child(2) { 
+    opacity: 0; 
+  }
+  body.menu-open .ham-menu span:nth-child(3) { 
+    transform: translateY(-8px) rotate(-45deg); 
+  }
+}
+
+@media (max-aspect-ratio: 1/1) {
+  .home-main{
+    grid-template-columns: 1fr;
+  }
+
+  .about-main {
+    grid-template-columns: 1fr;
+  }
+
+  .bubble-inlay{
+    grid-template-columns: 1fr;
+  }
+
+  .table-of-contents{
+    grid-template-columns: 1fr;
+  }
+
+  /* Hide desktop toggle, show mobile toggle on portrait displays */
+  #desktop-toggle { 
+    display: none !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+  }
+
+  #mobile-toggle .tdnn { 
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
   }
 
   /* Hide nav bar buttons, show hamburger menu */
@@ -1318,9 +1515,8 @@ body.menu-open{
   }
 
   /* Class rule to add return transition for after mouse hover on hamburger menu buttons has ended */
-    .off-screen-menu li{
-        transition: 0.3s;
-
+  .off-screen-menu li{
+    transition: 0.3s;
   }
 
   /* Customization of text within hamburger menu */
@@ -1333,9 +1529,7 @@ body.menu-open{
     flex: 1 1 auto;
   }
 
-  .off-screen-menu #mobile-toggle .tdnn {
-    font-size: var(--mobile-toggle-step0);
-  }
+
 
   /* When menu is opened, slide in off screen menu */
   body.menu-open .off-screen-menu { 
@@ -1352,41 +1546,25 @@ body.menu-open{
   body.menu-open .ham-menu span:nth-child(3) { 
     transform: translateY(-8px) rotate(-45deg); 
   }
-  .results-bubbles-styling{
-    margin-left: 0;
-    margin-right: 0;
+
+  main{
+    vertical-align: center;
   }
-  .quiz-question{
-    padding: 0rem;
-}
-}
-
-/* ≥1301px: Desktop layout; full nav visible, mobile title hidden
-   GOAL: Maintain readable horizontal navigation at larger widths
-*/
-@media (min-width: 1341px) {
-  #mobiletitle .nav-bar-title {
-  display: none;
-}
-
-}
-
-/* Reduced motion */
-/* Honor user's reduced motion preference. Disable transitions/animations that could cause discomfort
-*/
-@media (prefers-reduced-motion: reduce) {
-  .off-screen-menu, .ham-menu span { 
-    transition: none !important; 
   }
 
-  :root.theme-transition, :root.theme-transition * { 
-    transition: none !important; 
+  @media (max-width: 600px) {
+    .card-content{
+      grid-template-columns: 1fr;
+      align-content: center;
+      justify-items: center;
+    }
+    
+    .about-image{
+      margin: 0 auto;
+    }
   }
-}
 
-
-
-@media (max-height: 600px) {
+  @media (max-height: 600px) {
   :root{
  /* shorter nav bar */
  
@@ -1411,6 +1589,36 @@ body.menu-open{
     display: none;
   }
 }
+
+/*--------------------------------------------------------------------------*/
+
+/* DESKTOP VIEW TUNING
+   Adjust layout for wide screens ≥ 1341px
+-----------------------------------------------------------------------------*/
+
+@media (min-width: 1341px) {
+  #mobiletitle .nav-bar-title {
+  display: none;
+}
+
+}
+
+/* Reduced motion */
+/* Honor user's reduced motion preference. Disable transitions/animations that could cause discomfort
+*/
+@media (prefers-reduced-motion: reduce) {
+  .off-screen-menu, .ham-menu span { 
+    transition: none !important; 
+  }
+
+  :root.theme-transition, :root.theme-transition * { 
+    transition: none !important; 
+  }
+}
+
+
+
+
 @media (min-height: 2000px) {
   .home-main{
     grid-template-columns: minmax(20rem, 1fr);
@@ -1435,6 +1643,18 @@ body.menu-open{
     --ham-menu-step0: clamp(1.5rem, 1.2rem + 0.4vw, 2.5rem); /* hamburger menu text */
     --mobile-toggle-step0: clamp(1.2rem, 1rem + 0.3vw, 2.2rem); /* mobile toggle size */
     --ham-menu-gap: 1.5rem;                     /* more gap in hamburger menu */ 
+    --card-radius: 2rem;                     /* larger card border radius */ 
+    --bubbles-titles-font-size: clamp(1.5rem, 1rem + 0.5vw, 3rem);
+  }
+
+  /* Ensure mobile toggle stays hidden on large displays */
+  #mobile-toggle .tdnn { 
+    display: none !important;
+  }
+
+  /* Ensure desktop toggle is visible */
+  #desktop-toggle .tdnn { 
+    display: flex !important;
   }
 
   .abstract-container,
@@ -1442,22 +1662,22 @@ body.menu-open{
     padding: 1rem;
   }
 
-.toc-link-button{
+  .toc-link-button{
   padding: 1.5rem;
   border-radius: 2rem;
   font-size: 1.7rem;
-}
+  }
 
-.bubbles-title{
+  .bubbles-title{
   font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif;;
   color: var(--color-text);
   text-wrap: pretty;
   margin: 1rem;
   margin-bottom: 0rem;
   font-size: var(--step-2);
-}
+  }
 
-.bubbles-styling-full{
+  .bubbles-styling-full{
     padding: 1.5rem;
     border-radius: 2rem;
     margin-top: 2rem;
@@ -1470,7 +1690,7 @@ body.menu-open{
   margin: 1rem;
   flex: 1 1 auto;
   font-size: calc(var(--step-0) - 0.2rem);
-}
+  }
 
   /* Give the main home grid more breathing room */
   .home-main{
@@ -1540,11 +1760,73 @@ body.menu-open{
 
   .body-full{
     max-width: 104rem;
+    border-radius: var(--card-radius);
+    padding: 3.5rem;
   }
 
   .footer-text{
     font-size: 20px;
   }
+
+  .off-screen-menu a{
+    font-size: calc(var(--ham-menu-step0) + 0.2rem);
+  }
+
+  .off-screen-menu ul {
+    gap: var(--ham-menu-gap);
+    height: auto;
+  }
+  
+  #mobile-toggle .tdnn {
+    height: var(--toggleHeight);
+    width: var(--toggleWidth);
+  }
+
+
+
+  .home-page-diagram{
+    max-height: 550px;
+  }
+
+  .abstract-container,
+  .tip-container{
+    padding: 1.5rem;
+    border-radius: var(--card-radius);
+  }
+
+  .answer-text{
+    padding: 2rem !important;
+    height: 5.5rem !important;
+    font-size: 1.6rem !important;
+    margin: 1rem !important;
+    width: 98% !important;
+    border-radius: var(--card-radius) !important;
+  }
+
+  .quiz-question-card{
+    margin: 5rem !important;
+  }
+
+  .quiz-button-panel{
+    padding: 1.5rem !important;
+    gap: 1.5rem !important;
+    min-height: 5rem !important;
+    margin: 1.5rem !important;
+  }
+
+  .quiz-main{
+    gap: 1.5rem !important;
+  }
+
+  .quiz-button{
+    padding: 1.5rem !important;
+    font-size: 1.3rem !important;
+  }
+
+  .quiz-button img{
+    max-width: 45px !important;
+  }
+
 }
 
 /*-----------------------------------------------------------------------------
@@ -1566,7 +1848,17 @@ body.menu-open{
     --ham-menu-gap: 1.5rem;                     /* more gap in hamburger menu */ 
     --bubbles-titles-font-size: clamp(1.5rem, 1.2rem + 0.5vw, 3rem); /* bubbles font size */
     /* card border radius */
-    --card-radius: 2rem;
+    --card-radius: 3rem;
+  }
+
+  /* Ensure mobile toggle stays hidden on large displays */
+  #mobile-toggle .tdnn { 
+    display: none !important;
+  }
+
+  /* Ensure desktop toggle is visible */
+  #desktop-toggle .tdnn { 
+    display: flex !important;
   }
 
   .abstract-container,
@@ -1594,14 +1886,14 @@ body.menu-open{
     font-size: 2.2rem;
   }
 
-.bubbles-title{
+  .bubbles-title{
   font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif;;
   color: var(--color-text);
   text-wrap: pretty;
   margin: 1rem;
   margin-bottom: 0rem;
   font-size: calc(var(--step-2) - 1rem);
-}
+  }
 
   /* Give the main home grid more breathing room */
   .home-main{
@@ -1662,13 +1954,13 @@ body.menu-open{
     width: 140px;
   }
   .about-image{
-    flex: 0 0 520px;
-    max-width: 520px;
+    flex: 0 0 800px;
+    max-width: 800px;
     height: auto;
-    min-height: 700px;
+    min-height: 900px;
   }
   .card-content{
-  grid-template-columns: minmax(0,520px) minmax(0,1fr);
+  grid-template-columns: minmax(0,750px) minmax(0,1fr);
   }
   .bubbles-styling{
     padding: 2rem;
@@ -1685,18 +1977,55 @@ body.menu-open{
   .footer-div{
     min-height: 90px;
   }
-}
 
-@media (max-aspect-ratio: 1/1) {
-  .home-main{
-    grid-template-columns: 1fr;
+  .about-author{
+    font-size: calc(var(--step-0) + 0.2rem);
+  }
+  
+
+
+  .answer-text{
+    padding: 3rem !important;
+    height: 7.5rem !important;
+    font-size: 2.2rem !important;
+    margin: 0;
+    width: 99% !important;
+    border-radius: var(--card-radius) !important;
   }
 
-  .about-main {
-    grid-template-columns: 1fr;
+  .quiz-question-card{
+    font-size: var(--step-0) !important;
+    padding: 3rem !important;
+    border-radius: var(--card-radius) !important;
+    margin: 2.5rem !important;
   }
+
+  .quiz-button-panel{
+    padding: 2.5rem !important;
+    gap: 2.5rem !important;
+    min-height: 7rem !important;
+    margin: 2.5rem !important;
+  }
+
+  .quiz-main{
+    gap: 2.5rem !important;
+  }
+
+  .quiz-button{
+    padding: 2.5rem !important;
+    font-size: 1.8rem !important;
+  }
+
+  .quiz-button img{
+    max-width: 65px !important;
+  }
+
+  .nav-bar{
+    height: var(--nav-h);
+  }
+
 }
-/*-----------------------------------------------------------------------------*/
+
 
 /*-----------------------------------------------------------------------------
    8K TUNING
@@ -1855,13 +2184,13 @@ body.menu-open{
     width: 270px;
   }
   .about-image{
-    flex: 0 0 520px;
-    max-width: 520px;
+    flex: 0 0 900px;
+    max-width: 900px;
     height: auto;
-    min-height: 700px;
+    min-height: 1100px;
   }
   .card-content{
-  grid-template-columns: minmax(0,520px) minmax(0,1fr);
+  grid-template-columns: minmax(0,900px) minmax(0,1fr);
   }
   .bubbles-styling{
     padding: 5rem;
@@ -1878,12 +2207,87 @@ body.menu-open{
   .footer-div{
     min-height: 200px;
   }
+  
+
+
+  /* Keep desktop toggle visible */
+  #desktop-toggle .tdnn {
+    display: flex !important;
+  }
+
+  .answer-text{
+    padding: 4rem !important;
+    height: 10rem !important;
+    font-size: 3rem !important;
+    margin: 0;
+    width: 100%;
+  }
+
+  .quiz-question-card{
+    margin: 3.5rem !important;
+  }
+
+  .quiz-button-panel{
+    padding: 3.5rem !important;
+    gap: 3.5rem !important;
+    min-height: 10rem !important;
+    margin: 3.5rem !important;
+  }
+
+  .quiz-main{
+    gap: 3.5rem !important;
+  }
+
+  .quiz-button{
+    padding: 3.5rem !important;
+    font-size: 2.5rem !important;
+  }
+
+  .quiz-button img{
+    max-width: 90px !important;
+  }
 }
+
+/* Ensure mobile toggle shows on tall 4K/8K portrait layouts */
+@media (min-width: 2000px) and (max-aspect-ratio: 1/1) {
+  #mobile-toggle .tdnn,
+  .off-screen-menu #mobile-toggle .tdnn {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+  }
+
+  /* Hide desktop toggle in portrait tall layouts to avoid duplicates */
+  #desktop-toggle .tdnn {
+    display: none !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+  }
+}
+
+/*-----------------------------------------------------------------------------
+   GENERAL LARGE DISPLAY TUNING
+   Make hamburger menu larger on bigger screens
+-----------------------------------------------------------------------------*/
+
+  /* Expand hamburger menu on larger displays */
+  @media (min-width: 768px) {
+    .off-screen-menu {
+      width: min(80vw, 33.33vw);
+    }
+  }
+/*-----------------------------------------------------------------------------*/
+
+/*-----------------------------------------------------------------------------
+   VERTICAL/MOBILE DISPLAY TUNING
+    Adjust layout for portrait/aspect ratio ≤ 1:1 displays
+-----------------------------------------------------------------------------*/
 
 @media (max-aspect-ratio: 1/1) {
   :root{
     /* taller nav bar */
-    --nav-h: 120px;
+    --nav-h: 120px;                    /* more gap in hamburger menu */
   }
 
   .home-main{
@@ -1944,10 +2348,11 @@ body.menu-open{
     display: none;
   }
 }
-/*-----------------------------------------------------------------------------*/
 
-
-/* Light/dark decorative toggle */
+/*-----------------------------------------------------------------------------
+   THEME TOGGLE STYLES
+   Light/dark mode decorative toggle switch
+-----------------------------------------------------------------------------*/
 /* Decorative day/night toggle */
 .tdnn {
   /* anchor for .moon/.sun */
@@ -2039,9 +2444,12 @@ body.menu-open{
 
 @keyframes theme-fade { to { opacity: 0; } }
 
+/*-----------------------------------------------------------------------------
+   QUIZ STYLES
+   Interactive quiz components and styling
+-----------------------------------------------------------------------------*/
 
-/* QUIZ STYLES */
-.quiz-question{
+.quiz-question-card{
   color: var(--color-text);
   font-size: var(--step-0);
   margin: 1rem;
@@ -2079,10 +2487,11 @@ body.menu-open{
 }
 
 .quiz-main{
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  align-items: center !important;
+  gap: 1rem !important;
 }
 
 .option-container {
@@ -2118,14 +2527,16 @@ body.menu-open{
   flex: 1 1 auto;
   background-color: var(--abstract-bg);
   color: var(--color-text);
-  display: flex;
   border: 0.1rem solid var(--card-border);
   border-radius: 1rem;
-  width: 97%;
-  height: 3rem;
-  padding: 1rem;
-  margin: 1rem;
+  width: 98%;
+  height: 3.5rem;
+  padding: 1.2rem;
+  margin: 0.5rem;
   outline: none;
+  font-size: 1.1rem;
+  font-family: var(--font-stack);
+  box-sizing: border-box;
 }
 
 .quiz-button{
@@ -2263,18 +2674,4 @@ body.menu-open{
   outline-offset: 2px;
 }
 
-.hyperlink:link{
-  color: var(--color-accent);
-  text-decoration: none;
-}
-
-.hyperlink:hover{
-  color: #12e512;
-  text-decoration: underline;
-}
-
-.hyperlink:visited{
-  color: #4500b4;
-  text-decoration: underline;
-}
 
