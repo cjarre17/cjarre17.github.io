@@ -92,6 +92,13 @@ body{
   transition: background var(--theme-duration) ease;
 }
 
+/* Make widths include padding/borders (box-sizing fix)
+   Applies to all elements for consistent sizing */
+*, *::before, *::after { 
+  /* Include padding/border in width/height */
+  box-sizing: border-box;
+}
+
 /* Consistent paragraph styling */
 p{
   font-family: var(--font-stack);
