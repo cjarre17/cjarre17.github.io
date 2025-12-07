@@ -1,11 +1,25 @@
+<!-- 
+==========================================================================
+Project: Nginx overview site
+Name: Caleb Jarrell
+File: key-concepts.html
+Purpose: Definitions of core NGINX and web server terminology
+========================================================================== 
+-->
 <!DOCTYPE html>
 <html lang="en-US">
     <head>
-        <!--META VALUES-->
+        <!-----------------------------------------------------------------------------
+           META VALUES
+           Charset, viewport settings, and color scheme
+        ------------------------------------------------------------------------------>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,viewport-fit=cover">
 
-        <!--STYLE IMPORTS-->
+        <!-----------------------------------------------------------------------------
+           STYLE IMPORTS
+           CSS and Font connections
+        ------------------------------------------------------------------------------>
         <link rel="stylesheet" href="styles.css">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -15,9 +29,13 @@
 
     <body>
 
-        <!--NAV BAR-->
+        <!-----------------------------------------------------------------------------
+           NAV BAR
+           Main navigation for desktop and mobile toggle
+        ------------------------------------------------------------------------------>
         <nav class="nav-bar">
 
+            <!-- Logo container -->
             <div class="nav-bar-left">
 
                 <div class="nav-bar-logo">
@@ -26,16 +44,19 @@
                     </a>
                 </div>
 
+                <!-- Desktop title -->
                 <div class="nav-bar-title" id="desktoptitle">
                     <h1 class="nav-bar-title"> - An Overview by Caleb Jarrell</h1>
                 </div>
 
+                <!-- Mobile title -->
                 <div class="nav-bar-title" id="mobiletitle">
                     <h2 class="nav-bar-title"> - An Overview</h2>
                 </div>
 
             </div>
 
+            <!-- Navigation links list -->
             <ul class="nav-bar-buttons">
                 <li><a href="index.html"><p>Home</p></a></li>
                 <li><a href="architecture.html"><p>Architecture</p></a></li>
@@ -46,6 +67,8 @@
                 <li><a href="quiz.html"><p>Quiz</p></a></li>
             </ul>
 
+        <!-- Dark/Light mode toggle switch -->
+        <!-- Discovered and adapted from codepen.io https://codepen.io/RefractedColor/pen/mdWZRPQ -->
         <div id="desktop-toggle">
             <div class="tdnn">
                 <div class="moon">
@@ -53,6 +76,8 @@
             </div>
         </div>
 
+            <!-- Hamburger menu button -->
+            <!-- Discovered and adapted from a youtube video. (Channel: Treehouse) -->
             <button class="ham-menu" aria-controls="mobile-drawer" aria-expanded="false" aria-label="Open menu">
                 <span></span>
                 <span></span>
@@ -61,7 +86,10 @@
 
         </nav>
 
-        <!--HAMBURGER MENU-->
+        <!-----------------------------------------------------------------------------
+           HAMBURGER MENU
+           Off-screen menu for mobile devices
+        ------------------------------------------------------------------------------>
         <nav id="mobile-drawer" class="off-screen-menu" aria-label="Mobile">
             <!-- Discovered and adapted from codepen.io https://codepen.io/RefractedColor/pen/mdWZRPQ -->
             <div id="mobile-toggle">
@@ -83,14 +111,21 @@
         </nav>
 
         
-        <!--MAIN SECTION-->
+        <!-----------------------------------------------------------------------------
+           MAIN SECTION
+           Primary content area
+        ------------------------------------------------------------------------------>
         <main>
 
-            <!--CENTER CARD TOP-->
+            <!-----------------------------------------------------------------------------
+               CENTER CARD TOP
+               List of key concepts
+            ------------------------------------------------------------------------------>
             <div class="body-full">
 
                 <h2 class="body-title">Key Concepts</h2>
                 
+                <!-- Ordered list of definitions -->
                 <ol class="key-concepts-list">
                     <li><strong>C10K Problem:</strong> Handling 10,000+ concurrent connections on a single server.</li>
                     <li><strong>Event Loop:</strong> Non-blocking I/O model where a worker handles many sockets asynchronously.</li>
@@ -107,10 +142,31 @@
 
             </div>
 
-            <!--CENTER CARD BOTTOM-->
+            <!-----------------------------------------------------------------------------
+               CENTER CARD MIDDLE
+               Comparison with Apache
+            ------------------------------------------------------------------------------>
+            <div class="body-full">
+                <h3 class="body-title">NGINX vs. Apache</h3>
+                <p>
+                    A common question is how NGINX compares to the Apache HTTP Server. While both are capable, they excel in different areas:
+                </p>
+                <!-- Comparison points -->
+                <ul class="key-concepts-list">
+                    <li><strong>Architecture:</strong> Apache uses a process-per-connection or thread-per-connection model, while NGINX uses an event-driven, asynchronous model. This makes NGINX generally faster and less memory-intensive under high load.</li>
+                    <li><strong>Configuration:</strong> Apache allows decentralized configuration via <code>.htaccess</code> files, which is convenient for shared hosting but hurts performance. NGINX centralizes config for speed and does not support <code>.htaccess</code>.</li>
+                    <li><strong>Content:</strong> NGINX is often faster at serving static files. For dynamic content (like PHP), Apache can process it internally (mod_php), whereas NGINX proxies it to an external processor (PHP-FPM).</li>
+                </ul>
+            </div>
+
+            <!-----------------------------------------------------------------------------
+               CENTER CARD BOTTOM
+               External resources
+            ------------------------------------------------------------------------------>
             <div class="body-full">
 
                 <h3 class="body-title">Useful Learning Resources</h3>
+                <!-- Resource links -->
                 <ul class="key-concepts-list">
                     <li><a class="hyperlink" href="https://nginx.org/en/docs/" target="_blank" rel="noopener noreferrer">NGINX Official Docs</a></li>
                     <li><a class="hyperlink" href="https://www.nginx.com/blog/" target="_blank" rel="noopener noreferrer">NGINX Blog</a></li>
@@ -121,7 +177,10 @@
 
         </main>
 
-        <!--FOOTER-->
+        <!-----------------------------------------------------------------------------
+           FOOTER
+           Copyright and project info
+        ------------------------------------------------------------------------------>
         <footer>
             <div class="footer-div">
                 <h4 class="footer-text">Caleb Jarrell</h4>
@@ -135,7 +194,10 @@
             </div>
         </footer>
 
-        <!--JS SCRIPT IMPORT-->
+        <!-----------------------------------------------------------------------------
+           JS SCRIPT IMPORT
+           Hamburger menu and theme toggle logic
+        ------------------------------------------------------------------------------>
         <script src="hamburger.js" defer></script>
         <script src="light-dark.js" defer></script>
 

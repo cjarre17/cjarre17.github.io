@@ -1,11 +1,25 @@
+<!-- 
+==========================================================================
+Project: Nginx overview site
+Name: Caleb Jarrell
+File: about.html
+Purpose: Author biography and project details
+========================================================================== 
+-->
 <!DOCTYPE html>
 <html lang="en-US">
     <head>
-        <!--META VALUES-->
+        <!-----------------------------------------------------------------------------
+           META VALUES
+           Charset, viewport settings, and color scheme
+        ------------------------------------------------------------------------------>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,viewport-fit=cover">
 
-        <!--STYLE IMPORTS-->
+        <!-----------------------------------------------------------------------------
+           STYLE IMPORTS
+           CSS and Font connections
+        ------------------------------------------------------------------------------>
         <link rel="stylesheet" href="styles.css">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -15,27 +29,34 @@
 
     <body>
 
-        <!--NAV BAR-->
+        <!-----------------------------------------------------------------------------
+           NAV BAR
+           Main navigation for desktop and mobile toggle
+        ------------------------------------------------------------------------------>
         <nav class="nav-bar">
 
             <div class="nav-bar-left">
 
+                <!-- Logo container -->
                 <div class="nav-bar-logo">
                     <a href="index.html">
                         <img src="https://1000logos.net/wp-content/uploads/2020/08/Nginx-Logo.png" alt="Image of the Nginx (engine-x) logo">
                     </a>
                 </div>
 
+                <!-- Desktop title -->
                 <div class="nav-bar-title" id="desktoptitle">
                     <h1 class="nav-bar-title"> - An Overview by Caleb Jarrell</h1>
                 </div>
 
+                <!-- Mobile title -->
                 <div class="nav-bar-title" id="mobiletitle">
                     <h2 class="nav-bar-title"> - An Overview</h2>
                 </div>
 
             </div>
 
+            <!-- Navigation links list -->
             <ul class="nav-bar-buttons">
                 <li><a href="index.html"><p>Home</p></a></li>
                 <li><a href="architecture.html"><p>Architecture</p></a></li>
@@ -46,6 +67,8 @@
                 <li><a href="quiz.html"><p>Quiz</p></a></li>
             </ul>
 
+            <!-- Dark/Light mode toggle switch -->
+            <!-- Discovered and adapted from codepen.io https://codepen.io/RefractedColor/pen/mdWZRPQ -->
             <div id="desktop-toggle">
                 <div class="tdnn">
                     <div class="moon">
@@ -53,6 +76,8 @@
                 </div>
             </div>
 
+            <!-- Hamburger menu button -->
+            <!-- Discovered and adapted from a youtube video. (Channel: Treehouse) -->
             <button class="ham-menu" aria-controls="mobile-drawer" aria-expanded="false" aria-label="Open menu">
                 <span></span>
                 <span></span>
@@ -61,7 +86,10 @@
 
         </nav>
 
-        <!--HAMBURGER MENU-->
+        <!-----------------------------------------------------------------------------
+           HAMBURGER MENU
+           Off-screen menu for mobile devices
+        ------------------------------------------------------------------------------>
         <nav id="mobile-drawer" class="off-screen-menu" aria-label="Mobile">
 
             <!-- Discovered and adapted from codepen.io https://codepen.io/RefractedColor/pen/mdWZRPQ -->
@@ -85,10 +113,16 @@
         </nav>
 
         
-        <!--MAIN SECTION-->
+        <!-----------------------------------------------------------------------------
+           MAIN SECTION
+           Primary content area
+        ------------------------------------------------------------------------------>
         <main class="about-main">
 
-            <!--TOP LEFT CARD-->
+            <!-----------------------------------------------------------------------------
+               TOP LEFT CARD
+               Author photo and bio
+            ------------------------------------------------------------------------------>
             <div class="about-body-left">
 
                 <div class="about-author">
@@ -98,7 +132,11 @@
                 </h2>
                 
                     <div class="card-content">
-                        <!--PICTURE OF ME-->
+                        <!-----------------------------------------------------------------------------
+                           PICTURE OF ME
+                           Author portrait
+                        ------------------------------------------------------------------------------>
+                        <!-- Author image -->
                         <img src="Caleb_Image.JPG" class="about-image" alt="Image of the webpage author.">
 
                         <div class="about-text-div">
@@ -109,6 +147,7 @@
                                 media servers, and self-hosted open source software alternatives.
                             </p>
 
+                            <!-- Course details list -->
                             <ul class="body-list">
                                 <li>Course: IT 3203 — Intro to Web Development</li>
                                 <li>Instructor: Professor Tucker</li>
@@ -119,7 +158,10 @@
                 </div>
             </div>
 
-            <!--TOP RIGHT CARD-->
+            <!-----------------------------------------------------------------------------
+               TOP RIGHT CARD
+               Site details and features
+            ------------------------------------------------------------------------------>
             <div class="body-right">
                 <div>
 
@@ -130,10 +172,11 @@
 
                 <div>
                 <p>
-                    As of the current moment, this site is based on Project Milestones #1 & #2 for the Basic CSS/HTML and Dynamic Frontend project. 
+                    As of the current moment, this site is based on Project Milestones #1, #2, and #3 for the Basic CSS/HTML, Dynamic Frontend, Responsive Design project milestones. 
                     It adapts my research paper titled “The Ins and Outs of Nginx” into a multi-page website.
                 </p>
                 <h3 class="list-title">Features demonstrated</h3>
+                <!-- List of site features -->
                 <ul class="body-list-large">
                     <li>Consistent main menu</li>
                     <li>CSS Grid (cards) & Flexbox (about layout)</li>
@@ -147,23 +190,33 @@
                 </div>
             </div>
 
-            <!--BOTTOM LEFT CARD-->
+            <!-----------------------------------------------------------------------------
+               BOTTOM LEFT CARD
+               Passions and hobbies list
+            ------------------------------------------------------------------------------>
             <div class="about-body-left">
 
                 <h3 class="body-title-left">My Passions and Hobbies</h3>
+                <!-- Hobbies list -->
                 <ul class="passions-list">
                     <li>Spending Time with God</li>
+                    <li>Spending Time with My Wife</li>
                     <li>Basketball</li>
-                    <li>Spending Time with my wife</li>
                     <li>Tinkering with My Home Server</li>
-                    <li>Researching and Interacting with technology</li>
+                    <li>Researching and Interacting with Technology</li>
+                    <li>Playing Video Games</li>
+                    <li>Installing and Configuring Linux Distros</li>
                 </ul>
 
             </div>
 
-            <!--BOTTOM RIGHT CARD-->
+            <!-----------------------------------------------------------------------------
+               BOTTOM RIGHT CARD
+               Work experience and education
+            ------------------------------------------------------------------------------>
             <div class="body-right">
                 <h3 class="body-title-left">My Work Experience & Education</h3>
+                <!-- Experience list -->
                 <ul class="passions-list">
                     <li>Employed by Southern Technology Partners (Managed Service Provider, IT Services)
                         <ul class="passions-list">
@@ -189,7 +242,10 @@
 
         </main>
 
-        <!--FOOTER-->
+        <!-----------------------------------------------------------------------------
+           FOOTER
+           Copyright and project info
+        ------------------------------------------------------------------------------>
         <footer>
             <div class="footer-div">
                 <h4 class="footer-text">Caleb Jarrell</h4>
@@ -203,7 +259,10 @@
             </div>
         </footer>
 
-        <!--JS SCRIPT IMPORT-->
+        <!-----------------------------------------------------------------------------
+           JS SCRIPT IMPORT
+           Hamburger menu and theme toggle logic
+        ------------------------------------------------------------------------------>
         <script src="hamburger.js" defer></script>
         <script src="light-dark.js" defer></script>
 

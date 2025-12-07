@@ -1,11 +1,25 @@
+<!-- 
+==========================================================================
+Project: Nginx overview site
+Name: Caleb Jarrell
+File: references.html
+Purpose: List of citations and resources used for the project
+========================================================================== 
+-->
 <!DOCTYPE html>
 <html lang="en-US">
     <head>
-        <!--META VALUES-->
+        <!-----------------------------------------------------------------------------
+           META VALUES
+           Charset, viewport settings, and color scheme
+        ------------------------------------------------------------------------------>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,viewport-fit=cover">
 
-        <!--STYLE IMPORTS-->
+        <!-----------------------------------------------------------------------------
+           STYLE IMPORTS
+           CSS and Font connections
+        ------------------------------------------------------------------------------>
         <link rel="stylesheet" href="styles.css">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -15,27 +29,34 @@
 
     <body>
 
-        <!--NAV BAR-->
+        <!-----------------------------------------------------------------------------
+           NAV BAR
+           Main navigation for desktop and mobile toggle
+        ------------------------------------------------------------------------------>
         <nav class="nav-bar">
 
             <div class="nav-bar-left">
 
+                <!-- Logo container -->
                 <div class="nav-bar-logo">
                     <a href="index.html">
                         <img src="https://1000logos.net/wp-content/uploads/2020/08/Nginx-Logo.png" alt="Image of the Nginx (engine-x) logo">
                     </a>
                 </div>
 
+                <!-- Desktop title -->
                 <div class="nav-bar-title" id="desktoptitle">
                     <h1 class="nav-bar-title"> - An Overview by Caleb Jarrell</h1>
                 </div>
 
+                <!-- Mobile title -->
                 <div class="nav-bar-title" id="mobiletitle">
                     <h2 class="nav-bar-title"> - An Overview</h2>
                 </div>
 
             </div>
 
+            <!-- Navigation links list -->
             <ul class="nav-bar-buttons">
                 <li><a href="index.html"><p>Home</p></a></li>
                 <li><a href="architecture.html"><p>Architecture</p></a></li>
@@ -46,6 +67,8 @@
                 <li><a href="quiz.html"><p>Quiz</p></a></li>
             </ul>
 
+            <!-- Dark/Light mode toggle switch -->
+            <!-- Discovered and adapted from codepen.io https://codepen.io/RefractedColor/pen/mdWZRPQ -->
             <div id="desktop-toggle">
                 <div class="tdnn">
                     <div class="moon">
@@ -53,6 +76,8 @@
                 </div>
             </div>
 
+            <!-- Hamburger menu button -->
+            <!-- Discovered and adapted from a youtube video. (Channel: Treehouse) -->
             <button class="ham-menu" aria-controls="mobile-drawer" aria-expanded="false" aria-label="Open menu">
                 <span></span>
                 <span></span>
@@ -61,7 +86,10 @@
 
         </nav>
 
-        <!--HAMBURGER MENU-->
+        <!-----------------------------------------------------------------------------
+           HAMBURGER MENU
+           Off-screen menu for mobile devices
+        ------------------------------------------------------------------------------>
         <nav id="mobile-drawer" class="off-screen-menu" aria-label="Mobile">
 
             <!-- Discovered and adapted from codepen.io https://codepen.io/RefractedColor/pen/mdWZRPQ -->
@@ -85,10 +113,16 @@
         </nav>
 
         
-        <!--MAIN SECTION-->
+        <!-----------------------------------------------------------------------------
+           MAIN SECTION
+           Primary content area
+        ------------------------------------------------------------------------------>
         <main>
 
-            <!--CENTER CARD-->
+            <!-----------------------------------------------------------------------------
+               CENTER CARD
+               List of references
+            ------------------------------------------------------------------------------>
             <div class="body-full">
 
                 <h2 class="body-title">References</h2>
@@ -97,11 +131,16 @@
                         The citations below include books, articles, and research reports related to Nginx performance,
                          architecture, and networking:
                 </p>
+                <!-- Ordered list of references -->
                 <ol class="references-list">
 
                     <li>Al-Saydali, J., & Al-Saydali, M. (2021). Performance Comparison between Apache and Nginx under Slow Rate DOS Attacks.</li>
 
-                    <!--EXTERNAL LINK BUTTONS-->
+                    <!-----------------------------------------------------------------------------
+                       EXTERNAL LINK BUTTONS
+                       Link to source
+                    ------------------------------------------------------------------------------>
+                    <!-- Link to Al-Saydali paper -->
                     <a href="https://lnu.diva-portal.org/smash/record.jsf?pid=diva2%3A1554073&dswid=-9631" target="_blank" class="reference-links" rel="noopener noreferrer">
                         <div class="references-link-button">
                             Visit
@@ -110,12 +149,43 @@
 
                     <li>DeJonghe, D. (2021). Nginx Cookbook. O'Reilly.</li>
 
+                    <li>DigitalOcean. (2023). Apache vs Nginx: Practical Considerations.</li>
+
+                    <!--EXTERNAL LINK BUTTONS-->
+                    <!-- Link to DigitalOcean article -->
+                    <a href="https://www.digitalocean.com/community/tutorials/apache-vs-nginx-practical-considerations" target="_blank" class="reference-links" rel="noopener noreferrer">
+                        <div class="references-link-button">
+                            Visit
+                        </div>
+                    </a>
+
                     <li>Fjordvald, M., & Nedelcu, C. (2018). Nginx HTTP Server. Packt.</li>
 
                     <li>GMI Research Team (2025). YouTube Statistics.</li>
 
                     <!--EXTERNAL LINK BUTTONS-->
+                    <!-- Link to GMI Research -->
                     <a href="https://www.globalmediainsight.com/blog/youtube-users-statistics/" target="_blank" class="reference-links" rel="noopener noreferrer">
+                        <div class="references-link-button">
+                            Visit
+                        </div>
+                    </a>
+
+                    <li>Kegel, D. (2014). The C10K problem.</li>
+
+                    <!--EXTERNAL LINK BUTTONS-->
+                    <!-- Link to C10K problem -->
+                    <a href="http://www.kegel.com/c10k.html" target="_blank" class="reference-links" rel="noopener noreferrer">
+                        <div class="references-link-button">
+                            Visit
+                        </div>
+                    </a>
+
+                    <li>NGINX. (2025). Inside NGINX: How We Designed for Performance & Scale.</li>
+
+                    <!--EXTERNAL LINK BUTTONS-->
+                    <!-- Link to NGINX blog -->
+                    <a href="https://www.nginx.com/blog/inside-nginx-how-we-designed-for-performance-scale/" target="_blank" class="reference-links" rel="noopener noreferrer">
                         <div class="references-link-button">
                             Visit
                         </div>
@@ -124,6 +194,7 @@
                     <li>OURIAN, G. (2024). Nginx HTTP Server — Fifth Edition. Packt.</li>
 
                     <!--EXTERNAL LINK BUTTONS-->
+                    <!-- Link to O'Reilly book -->
                     <a href="https://www.oreilly.com/library/view/nginx-http-server/9781835469873/" target="_blank" class="reference-links" rel="noopener noreferrer">
                         <div class="references-link-button">
                             Visit
@@ -135,6 +206,7 @@
                     <li>Romadhon, F. W. (2024). Comparative Analysis of HAProxy and Nginx. IEEE Xplore.</li>
 
                     <!--EXTERNAL LINK BUTTONS-->
+                    <!-- Link to IEEE Xplore -->
                     <a href="https://ieeexplore.ieee.org/document/10698656" target="_blank" class="reference-links" rel="noopener noreferrer">
                         <div class="references-link-button">
                             Visit
@@ -146,6 +218,7 @@
                     <li>Shrestha, R. (2024). Web Server — Nginx. ResearchGate.</li>
 
                     <!--EXTERNAL LINK BUTTONS-->
+                    <!-- Link to ResearchGate -->
                     <a href="https://www.researchgate.net/publication/385238558_Web_Server_-_Nginx" target="_blank" class="reference-links" rel="noopener noreferrer">
                         <div class="references-link-button">
                             Visit
@@ -155,6 +228,7 @@
                     <li>Soni, R. (2016). Nginx from Beginner to Pro. Apress.</li>
 
                     <!--EXTERNAL LINK BUTTONS-->
+                    <!-- Link to Apress book -->
                     <a href="https://www.oreilly.com/library/view/nginx-from-beginner/9781484216569/A371820_1_En_1_Chapter.html" target="_blank"  class="reference-links" rel="noopener noreferrer">
                         <div class="references-link-button">
                             Visit
@@ -168,6 +242,7 @@
                     <li>nginx.org. NGINX, https://nginx.org/. Accessed 16 Nov. 2025.</li>
 
                     <!--EXTERNAL LINK BUTTONS-->
+                    <!-- Link to NGINX.org -->
                     <a href="https://nginx.org/" target="_blank" class="reference-links" rel="noopener noreferrer">
                         <div class="references-link-button">
                             Visit
@@ -180,7 +255,10 @@
 
         </main>
 
-        <!--FOOTER-->
+        <!-----------------------------------------------------------------------------
+           FOOTER
+           Copyright and project info
+        ------------------------------------------------------------------------------>
         <footer>
             <div class="footer-div">
                 <h4 class="footer-text">Caleb Jarrell</h4>
@@ -194,7 +272,10 @@
             </div>
         </footer>
 
-        <!--JS SCRIPT IMPORT-->
+        <!-----------------------------------------------------------------------------
+           JS SCRIPT IMPORT
+           Hamburger menu and theme toggle logic
+        ------------------------------------------------------------------------------>
         <script src="hamburger.js" defer></script>
         <script src="light-dark.js" defer></script>
 

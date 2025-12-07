@@ -248,22 +248,18 @@ img {
   /* Better line breaks for captions */
   text-wrap: pretty;
   /* Breathing room around image */
-  padding: 2rem;
+  padding: 2rem 2rem 0.5rem 2rem;
 }
 
 /* Profile image on about page
    Fixed dimensions for consistent layout */
 .about-image{
-  /* Fixed flex-basis, don't grow/shrink */
-  flex: 0 0 260px;
-  /* Enforce maximum width */
-  max-width: 260px;
+  /* Allow image to scale with grid column */
+  width: 100%;
   /* Maintain aspect ratio */
   height: auto;
-  /* Minimum height for tall images */
-  min-height: 360px;
-  /* Transparent border for spacing */
-  border: transparent 1px;
+  /* Override global max-height to prevent cropping */
+  max-height: none;
   /* Rounded corners */
   border-radius: 2rem;
 }
@@ -276,9 +272,9 @@ img {
   /* Theme-aware text color */
   color: var(--color-text);
   /* Slightly smaller than body text */
-  font-size: calc(var(--step-0) - 0.1rem);
+  font-size: calc(var(--step-0) * 0.75);
   /* Space below caption */
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
 }
 
 /*-----------------------------------------------------------------------------
@@ -337,42 +333,37 @@ img {
 .card-content{
   /* Grid for image + text layout */
   display: grid;
-  /* Fixed image, flexible text */
-  grid-template-columns: minmax(0,260px) minmax(0,1fr); 
+  /* Larger image column, flexible text */
+  grid-template-columns: minmax(250px, 350px) 1fr; 
   /* Space between image and text */
   gap: 2rem;
-  /* Align content to top */
-  align-items: start;
+  /* Align content to center */
+  align-items: center;
   /* Center the grid */
   justify-content: center;
   /* Top spacing */
-  margin-top: 3.7rem;
+  margin-top: 2rem;
 }
 
 /* Text content container for about page
    Flexbox for vertical stacking */
 .about-text-div{
-  /* Flexbox container */
   display: flex;
-  /* Stack children vertically */
   flex-direction: column;
   /* No gap (margins handle spacing) */
   gap: 0rem;
   /* Align with card-content */
-  margin-top: 3.7rem;
+  margin-top: 0;
 }
 
 
 /* About page specific left-side card styling
    Similar to .body-left but for about page layout */
 .about-body-left{
- /* Used to seperate content of the about body properly */
-  /* Standard block display */
   display: block;
   /* Internal spacing */
   padding: 1rem;
 
-  /* Styles the colors of about-body-left div */
   /* Semi-transparent card background */
   background-color: var(--color-bg);
   /* Blur effect behind card */
@@ -380,7 +371,6 @@ img {
   /* Safari support */
   -webkit-backdrop-filter: blur(10px);
   
-  /* Styles the border of about-body-left div */
   /* Subtle border */
   border: 0.1rem solid var(--card-border);
   /* Rounded corners */
@@ -391,18 +381,15 @@ img {
 /* Primary left card styling (used on most pages)
    Glass-morphism style with backdrop blur */
 .body-left {
-  /* Used to seperate content of the body properly */
   /* Internal spacing */
   padding: 1rem;
   
-  /* Styles the border of body-left div */
   /* Theme-aware border */
   border: 0.1rem solid var(--card-border);
   /* Rounded corners */
   border-radius: var(--radius);
   
 
-  /* Styles the colors of body-left div - glass-morphism effect */
   /* Semi-transparent background */
   background-color: var(--color-bg);
   /* Blur content behind card */
@@ -439,11 +426,9 @@ img {
 /* Primary right card styling (used on most pages)
    Companion to .body-left with identical styling */
 .body-right {
-  /* Used to seperate content of the about body properly */
   /* Internal spacing */
   padding: 1rem;
 
-  /* Styles the colors of body-right div - glass-morphism effect */
   /* Semi-transparent background */
   background-color: var(--color-bg);
   /* Blur effect for depth */
@@ -451,7 +436,6 @@ img {
   /* Safari support */
   -webkit-backdrop-filter: blur(10px);
 
-  /* Styles the border of body-right div */
   /* Subtle border */
   border: 0.1rem solid var(--card-border);
   /* Rounded corners */
@@ -461,7 +445,6 @@ img {
 /* Full-width centered card (used for single-column content)
    Common on pages like Architecture, References, Key Concepts */
 .body-full {
-  /* Used to seperate content of the about body properly */
   /* Fill available width */
   width: 100%;
   /* Cap width for readability (1280px) */
@@ -477,7 +460,6 @@ img {
   /* Clip overflow content */
   overflow: hidden;
 
-  /* Styles the colors of body-full div - glass-morphism effect */
   /* Semi-transparent background */
   background-color: var(--color-bg);
   /* Blur effect for depth */
@@ -485,7 +467,6 @@ img {
   /* Safari support */
   -webkit-backdrop-filter: blur(10px);
 
-  /* Styles the border of body-full div */
   /* Subtle border */
   border: 0.1rem solid var(--card-border);
   /* Rounded corners */
@@ -495,20 +476,18 @@ img {
 /* Callout box styling for abstract sections
    Used to highlight important summary content */
 .abstract-container{
-  /* Styles the abstract container div */
   /* Flexbox for content */
   display: flex;
   /* Don't exceed parent width */
   max-width:100%;
 
-  /* Styles the border of abstract container div - left accent bar */
-  border-left: 0.4rem solid var(--color-accent); /* Thick accent-colored left border */
+  /* Thick accent-colored left border */
+  border-left: 0.4rem solid var(--color-accent); 
   /* Rounded corners */
   border-radius: 1.5rem;
   /* Internal padding */
-  padding: 1rem;
+  padding: 0.5rem;
 
-  /* Styles the colors of abstract container div */
   /* Darker background to stand out */
   background-color: var(--abstract-bg);
 }
@@ -516,22 +495,52 @@ img {
 /* Callout box styling for tip sections
    Similar to abstract but for different content type */
 .tip-container{
-  /* Styles the tip container div */
   /* Flexbox for content */
   display: flex;
   /* Don't exceed parent width */
   max-width:100%;
 
-  /* Styles the border of tip container div - left accent bar */
-  border-left: 0.4rem solid var(--color-accent); /* Thick accent-colored left border */
+  /* Thick accent-colored left border */
+  border-left: 0.4rem solid var(--color-accent); 
   /* Rounded corners */
   border-radius: 1.5rem;
   /* Internal padding */
-  padding: 1rem;
+  padding: 0.5rem;
 
-  /* Styles the colors of tip container div */
   /* Darker background to stand out */
   background-color: var(--abstract-bg);
+}
+
+/* Code snippet styling */
+.code-title {
+  background-color: #333333; /* Grey title bar */
+  color: #e0e0e0;
+  padding: 0.3rem 1rem;
+  font-family: system-ui, -apple-system, sans-serif;
+  font-size: 0.9rem;
+  border: 1px solid var(--card-border);
+  border-bottom: none;
+  border-top-left-radius: 0.5rem;
+  border-top-right-radius: 0.5rem;
+  margin-top: 1rem;
+  width: 100%;
+  text-align: left;
+}
+
+.code-snippet {
+  display: block;
+  max-width: 100%;
+  background-color: #1e1e1e; /* VS Code-like dark background */
+  color: #ffffff; /* White text */
+  font-family: 'Courier New', Courier, monospace;
+  padding: 0.5rem 1rem 1rem 1.5rem;
+  border-bottom-left-radius: 0.5rem;
+  border-bottom-right-radius: 0.5rem;
+  white-space: pre-wrap; /* Wrap text if it's too long */
+  overflow-x: auto; /* Scroll if needed */
+  border: 1px solid var(--card-border);
+  margin-top: 0; /* Connect to title bar */
+  margin-bottom: 1rem;
 }
 
 /* Table of contents grid layout
@@ -557,23 +566,21 @@ img {
 /* Reference link button styling
    Used on references page for external links */
 .references-link-button{
-  /* Styles for reference link buttons */
   /* Shrink to content width */
   max-width: fit-content;
   /* Height based on content */
   height: auto;
   /* Internal spacing */
-  padding: 1rem 1.3rem;
+  padding: 0.8rem;
   /* Allow text to wrap */
   text-wrap: wrap;
   /* Smooth transition for hover */
-  transition: ease-out 0.2s;
+  transition: box-shadow 0.3s ease;
   /* Indent from list edge */
   margin-left: 1rem;
   /* Tuck up closer to list item */
   margin-top: -0.5rem;
 
-  /* Relates back to global button color variable */
   /* Semi-transparent button bg */
   background-color: var(--button-color-bg);
   /* Glass-morphism effect */
@@ -581,15 +588,11 @@ img {
   /* Safari support */
   -webkit-backdrop-filter: blur(10px);
 
-  /* Styles the border of reference link buttons */
-
-  /* Relates back to global accent color variable */
   /* Accent-colored border */
   border: 0.1rem solid var(--color-accent);
   /* Slightly rounded corners */
-  border-radius: 1.5rem;
+  border-radius: 1.2rem;
 
-  /* Relates back to global button shadow variable */
   /* Subtle drop shadow */
   box-shadow: var(--button-shadow);
 }
@@ -597,23 +600,13 @@ img {
 /* Reference button hover state
    Provides visual feedback on interaction */
 .references-link-button:hover{
-  /* Styles for mouse hover color on reference link buttons */
-  /* Full accent color on hover */
-  background-color: var(--color-accent);
-
-  /* Styles for mouse hover transition on reference link buttons */
-  /* Smooth color transition */
-  transition: ease-out 0.2s;
-
-  /* Styles for mouse hover scale on reference link buttons */
-  /* Slightly grow on hover */
-  scale: 110%;
+  /* Glow effect */
+  box-shadow: 0 0 8px var(--color-accent);
 }
 
 /* Table of contents link button styling
    "Read More" buttons on homepage TOC cards */
 .toc-link-button{
-  /* Styles for table of contents link buttons */
   /* Shrink to content width */
   max-width: fit-content;
   /* Height based on content */
@@ -623,11 +616,10 @@ img {
   /* Allow text to wrap */
   text-wrap: wrap;
   /* Smooth hover transition */
-  transition: ease-out 0.2s;
+  transition: box-shadow 0.3s ease;
   /* Push to bottom of flex container */
   margin-top: auto;
   
-  /* Relates back to global button color variable */
   /* Semi-transparent background */
   background-color: var(--button-color-bg);
   /* Glass effect */
@@ -635,13 +627,11 @@ img {
   /* Safari support */
   -webkit-backdrop-filter: blur(10px);
 
-  /* Styles the border of table of contents link buttons */
   /* Accent-colored border */
   border: 0.1rem solid var(--color-accent);
   /* Rounded corners */
   border-radius: 1.5rem;
 
-  /* Relates back to global button shadow variable */
   /* Subtle drop shadow for depth */
   box-shadow: var(--button-shadow);
 }
@@ -649,30 +639,17 @@ img {
 /* TOC button hover state
    Provides clear visual feedback */
 .toc-link-button:hover{
-  /* Styles for mouse hover color on table of contents link buttons */
-  /* Full accent background */
-  background-color: var(--color-accent);
-
-  /* Styles for mouse hover transition on table of contents link buttons */
-  /* Smooth transition */
-  transition: ease-in 0.2s;
-
-  /* Styles for mouse hover scale on table of contents link buttons */
-  /* Grow slightly on hover */
-  scale: 110%;
+  /* Glow effect */
+  box-shadow: 0 0 8px var(--color-accent);
 }
 
 /* Link styling for TOC and reference buttons
    Removes default link styling */
 .toc-links,
 .reference-links{
-  /* Styles for links */
-
   /* Removes underline from links */
-  /* No underline */
   text-decoration: none;
 
-  /* Relates back to global text color variable */
   /* Theme-aware text color */
   color:var(--color-text);
 }
@@ -705,18 +682,13 @@ img {
 /* Centered body title styling
    Used for main section headers */
 .body-title{
-  /* Styles for body titles */
-
-  /* Relates back to global step-2 font size variable */
   /* Large, responsive font size */
   font-size: var(--step-2);
 
-  /* Sets text color and font for body titles */
   font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif;
   /* Theme-aware color */
   color:  var(--color-text);
 
-  /* Sets text styling for body titles */
   /* Tight line height for headings */
   line-height: 1.2;
   /* Center alignment */
@@ -726,18 +698,13 @@ img {
 /* Left-aligned body title styling
    Used for subsection headers */
 .body-title-left{
-  /* Styles for body titles aligned left */
-
-  /* Relates back to global step-2 font size variable */
   /* Same size as centered version */
   font-size: var(--step-2);
 
-  /* Sets text color and font for left aligned body titles */
   font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif;
   /* Theme-aware color */
   color:  var(--color-text);
 
-  /* Sets text styling for left aligned body titles */
   /* Tight line height for headings */
   line-height: 1.2;
   /* Left alignment */
@@ -754,7 +721,6 @@ img {
 /* Main architecture table styling
    Complex table with horizontal scrolling on mobile */
 .arch-table{
-  /* Used to seperate content of the table properly */
   /* Flexible sizing up to 1280px */
   flex: 0 1 80rem;
   /* Center the table */
@@ -776,13 +742,11 @@ img {
   /* Internal padding */
   padding: 0.5rem;
   
-  /* Styles the border of the table */
   /* Subtle outer border */
   border: gray 0.1px solid;
   /* Rounded corners */
   border-radius: 1rem;
 
-  /* Styles the colors of the table */
   /* Dark background for contrast */
   background-color: var(--table-bg);
   /* Theme-aware text */
@@ -1010,61 +974,111 @@ img {
    Use consistent padding and border radius to keep “card” look
 */
 .bubble-inlay{
+  /* Grid layout for bubbles */
   display: grid;
+  /* Space between bubbles */
   gap: 1rem;
+  /* Responsive columns */
   grid-template-columns: repeat(2, minmax(20rem, 1fr));
 }
 
+/* Standard bubble card styling */
 .bubbles-styling{
+  /* Flexbox for content layout */
   display: flex;
+  /* Stack content vertically */
   flex-direction: column;
+  /* Flexible width with base size */
   flex: 1 1 400px;
+  
+  /* Theme-aware border */
   border: 0.1rem solid var(--card-border);
+  
+  /* Glass-morphism effect */
   -webkit-backdrop-filter: blur(10px);
-  background-color: var(--color-bg);
   backdrop-filter: blur(10px);
+  background-color: var(--color-bg);
+  
+  /* Rounded corners */
   border-radius: 1.5rem;
+  
+  /* Prevent overflow */
   max-width: 100%;
+  /* Internal spacing */
   padding: 1.5rem;
+  
+  /* Subtle shadow for depth */
   box-shadow: #0000003b 0px 4px 6px -1px;
 }
 
+/* Push TOC links to bottom of card */
+.bubbles-styling .toc-links {
+  margin-top: auto;
+}
+
+/* Full-width bubble card styling */
 .bubbles-styling-full{
+  /* Flexbox for content layout */
   display: flex;
+  /* Stack content vertically */
   flex-direction: column;
+  /* Flexible width with large base */
   flex: 0 1 80rem;
+  
+  /* Theme-aware border */
   border: 0.1rem solid var(--card-border);
+  
+  /* Glass-morphism effect */
   -webkit-backdrop-filter: blur(10px);
-  background-color: var(--color-bg);
   backdrop-filter: blur(10px);
+  background-color: var(--color-bg);
+  
+  /* Rounded corners */
   border-radius: 1.5rem;
+  
+  /* Prevent overflow */
   max-width: 100%;
+  /* Internal spacing */
   padding: 1.5rem;
+  
+  /* Subtle shadow */
   box-shadow: #0000003b 0px 4px 6px -1px;
+  /* Top spacing */
   margin-top: 1.5rem;
 }
 
+/* Bubble card paragraph text */
 .bubbles-styling p{
   font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif;;
+  /* Theme-aware color */
   color: var(--color-text);
+  /* Better line breaking */
   text-wrap: pretty;
+  /* Spacing */
   margin: 1rem;
-  flex: 1 1 auto;
-  display: flex;
 }
 
+/* Full-width bubble card paragraph text */
 .bubbles-styling-full p{
   font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif;;
+  /* Theme-aware color */
   color: var(--color-text);
+  /* Better line breaking */
   text-wrap: pretty;
+  /* Spacing */
   margin: 1rem;
+  /* Allow text to grow */
   flex: 1 1 auto;
 }
 
+/* Bubble card title styling */
 .bubbles-title{
   font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif;;
+  /* Theme-aware color */
   color: var(--color-text);
+  /* Better line breaking */
   text-wrap: pretty;
+  /* Spacing */
   margin: 1rem;
   margin-bottom: 0rem;
 }
@@ -1090,13 +1104,6 @@ img {
   padding: 0.4rem;
   /* Small font */
   font-size: 15px;
-}
-
-/* Make widths include padding/borders (box-sizing fix)
-   Applies to all elements for consistent sizing */
-*, *::before, *::after { 
-  /* Include padding/border in width/height */
-  box-sizing: border-box;
 }
 
 /* Footer container styling */
@@ -1827,6 +1834,15 @@ body.menu-open{
     max-width: 45px !important;
   }
 
+  /* Hover glow adjustments for 2K */
+  .references-link-button:hover,
+  .toc-link-button:hover,
+  .quiz-button:hover,
+  .option-container:hover,
+  .tdnn:hover {
+    box-shadow: 0 0 16px var(--color-accent);
+  }
+
 }
 
 /*-----------------------------------------------------------------------------
@@ -2030,6 +2046,15 @@ body.menu-open{
 
   .nav-bar{
     height: var(--nav-h);
+  }
+
+  /* Hover glow adjustments for 4K */
+  .references-link-button:hover,
+  .toc-link-button:hover,
+  .quiz-button:hover,
+  .option-container:hover,
+  .tdnn:hover {
+    box-shadow: 0 0 24px var(--color-accent);
   }
 
 }
@@ -2286,6 +2311,15 @@ body.menu-open{
     font-size: calc(var(--step-0) + 0.4rem);
     padding: 1rem 5rem;
   }
+
+  /* Hover glow adjustments for 8K */
+  .references-link-button:hover,
+  .toc-link-button:hover,
+  .quiz-button:hover,
+  .option-container:hover,
+  .tdnn:hover {
+    box-shadow: 0 0 40px var(--color-accent);
+  }
 }
 
 /* Ensure mobile toggle shows on tall 4K/8K portrait layouts */
@@ -2399,6 +2433,7 @@ body.menu-open{
   position: relative;
   display: inline-block;
   flex: 0 0 auto;
+  cursor: pointer;
 
 
   font-size: calc(var(--nav-h) / 26);
@@ -2412,13 +2447,18 @@ body.menu-open{
   background: var(--bgColor--night);
   /* keep the knob neatly clipped */
   overflow: hidden;
-  transition: background var(--theme-duration) ease;
+  transition: background var(--theme-duration) ease, box-shadow 0.3s ease;
+}
+
+/* Hover glow effect for theme toggle */
+.tdnn:hover {
+  box-shadow: 0 0 8px var(--color-accent);
 }
 
 
 .day{
   background: var(--tdnn-track-light);
-  transition: background var(--theme-duration) ease;
+  transition: background var(--theme-duration) ease, box-shadow 0.3s ease;
 }
 
 .moon {
@@ -2489,179 +2529,272 @@ body.menu-open{
    Interactive quiz components and styling
 -----------------------------------------------------------------------------*/
 
+/* Quiz question card styling
+   Container for the question text */
 .quiz-question-card{
+  /* Theme-aware text color */
   color: var(--color-text);
+  /* Responsive font size */
   font-size: var(--step-0);
+  /* Spacing */
   margin: 1rem;
+  /* Flexible sizing */
   flex: 0 1 auto;
+  /* Prevent overflow */
   max-width: 100%;
   height: auto;
+  
+  /* Glass-morphism background */
   background-color: var(--color-bg);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
+  
+  /* Border styling */
   border: 0.1rem solid var(--card-border);
   border-radius: var(--radius);
+  
+  /* Internal spacing */
   padding: 1rem;
+  /* Better text wrapping */
   text-wrap: wrap;
+  /* Clip overflow */
   overflow: hidden;
 }
 
+/* Quiz navigation button panel
+   Container for Next/Prev buttons */
 .quiz-button-panel{
+  /* Flexbox layout */
   display: flex;
+  /* Space buttons apart */
   justify-content: space-between;
+  /* Vertically center */
   align-items: center;
+  
+  /* Theme-aware text */
   color: var(--color-text);
   font-size: var(--step-0);
+  
+  /* Spacing */
   margin: 1rem;
   max-width: 100%;
   height: auto;
+  
+  /* Glass-morphism background */
   background-color: var(--color-bg);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
+  
+  /* Border styling */
   border: 0.1rem solid var(--card-border);
   border-radius: var(--radius);
+  
+  /* Internal spacing */
   padding: 1rem;
   text-wrap: wrap;
   gap: 1rem;
+  /* Minimum height */
   min-height: 3.5rem;
 }
 
+/* Main quiz container
+   Centers quiz content */
 .quiz-main{
+  /* Flexbox column layout */
   display: flex !important;
   flex-direction: column !important;
+  /* Center content */
   justify-content: center !important;
   align-items: center !important;
+  /* Spacing between elements */
   gap: 1rem !important;
 }
 
+/* Quiz option container
+   Styling for individual answer choices */
 .option-container {
+  /* Background color */
   background-color: var(--abstract-bg);
+  /* Flex layout */
   display: flex;
+  /* Green left border indicator */
   border-left: 0.4rem solid #0a840a;
+  /* Rounded corners */
   border-radius: 1rem;
+  /* Full width */
   max-width:100%;
-  transition: border 0.1s ease;
-}
-
-.option-container:hover {
-  background-color: var(--abstract-bg);
-  display: flex;
-  border: 0.1rem solid #0a840a;
-  border-radius: 1rem;
-  max-width:100%;
-  transition: border 0.1s ease;
-}
-
-.question-options{
-  display: grid;
-  width: 100%;
-  gap: 1rem;
-}
-
-.option-container { 
+  /* Smooth border transition */
+  transition: border 0.1s ease, box-shadow 0.3s ease;
+  /* Pointer cursor */
   cursor: pointer;
+  /* Spacing */
   margin: 1rem;
 }
 
+/* Hover state for option container */
+.option-container:hover {
+  /* Full border on hover */
+  border: 0.1rem solid #0a840a;
+  box-shadow: 0 0 8px var(--color-accent);
+}
+
+/* Grid layout for question options */
+.question-options{
+  /* Grid layout */
+  display: grid;
+  /* Full width */
+  width: 100%;
+  /* Spacing between options */
+  gap: 1rem;
+}
+
+/* Text input for fill-in-the-blank answers */
 .answer-text{
+  /* Flexible width */
   flex: 1 1 auto;
+  /* Background color */
   background-color: var(--abstract-bg);
+  /* Text color */
   color: var(--color-text);
+  /* Border styling */
   border: 0.1rem solid var(--card-border);
   border-radius: 1rem;
+  
+  /* Dimensions */
   width: 98%;
   height: 3.5rem;
+  /* Padding */
   padding: 1.2rem;
   margin: 0.5rem;
+  
+  /* Remove default outline */
   outline: none;
+  /* Font styling */
   font-size: 1.1rem;
   font-family: var(--font-stack);
+  /* Box sizing */
   box-sizing: border-box;
 }
 
+/* Quiz action button styling */
 .quiz-button{
+  /* Fit content width */
   max-width: fit-content;
   height: auto;
+  cursor: pointer;
+  
+  /* Glass-morphism background */
   background-color: var(--color-bg);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
+  
+  /* Accent border */
   border: 0.1rem solid var(--color-accent);
   border-radius: 0.7rem;
+  
+  /* Padding */
   padding: 1rem;
   text-wrap: wrap;
-  transition: ease-out 0.2s;
+  /* Smooth transition */
+  transition: box-shadow 0.3s ease;
+  
+  /* Text styling */
   color: var(--color-text);
   font-size: var(--step-0);
 }
 
+/* Quiz button icon sizing */
 .quiz-button img{
   max-width: 30px;
   height: auto;
 }
 
+/* Quiz button hover state */
 .quiz-button:hover{
-  background-color: rgba(30, 255, 0, 0.5);
-  transition: ease-out 0.2s;
-
+  /* Glow effect */
+  box-shadow: 0 0 8px var(--color-accent);
 }
 
+/* Disabled quiz button state */
 .quiz-button:disabled{
+  /* Greyed out */
   background-color: var(--table-bg);
   border: rgb(0, 0, 0);
   cursor: not-allowed;
 }
 
+/* Hidden restart button (shown via JS) */
 .quiz-restart-button{
   display: none;
 }
 
+/* Quiz results container */
 .quiz-results {
   margin-top: 1rem;
   width: 100%;
 }
 
+/* Result header container */
 .quiz-result-header {
   display: flex;
   flex-direction: column;
   margin-bottom: 0.5rem;
 }
 
+/* Result status text (Pass/Fail) */
 .quiz-result-status {
   font-weight: 700;
   text-transform: uppercase;
 }
 
+/* Pass status color */
 .quiz-result-status.quiz-pass {
-  color: #0a840a; /* or your success color variable */
+  color: #0a840a; 
 }
 
+/* Fail status color */
 .quiz-result-status.quiz-fail {
-  color: #b00020; /* or your error color variable */
+  color: #b00020; 
 }
 
+/* Correct answer label color */
 .correct-label{
   color: var(--color-accent);
 }
 
+/* Incorrect answer label color */
 .incorrect-label{
   color: #b00020;
 }
 
+/* Results summary card styling */
 .results-bubbles-styling{
+  /* Flexible width */
   flex: 1 1 400px;
+  
+  /* Border styling */
   border: 0.1rem solid var(--card-border);
+  
+  /* Glass-morphism background */
   -webkit-backdrop-filter: blur(10px);
   background-color: var(--color-bg);
   backdrop-filter: blur(10px);
   border-radius: var(--radius);
+  
+  /* Dimensions */
   max-width: 100%;
   padding: 1rem;
+  
+  /* Shadow */
   box-shadow: #0000003b 0px 4px 6px -1px;
+  
+  /* Spacing */
   margin: 1rem;
   margin-left: -1rem;
   line-height: 1.5;
 }
 
+/* Results card paragraph text */
 .results-bubbles-styling p{
   font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif;;
   color: var(--color-text);
@@ -2669,7 +2802,9 @@ body.menu-open{
   margin: 1rem;
 }
 
+/* Results list styling */
 .results-styling{
+  /* Remove bullets */
   list-style-type: none;
   font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif;;
   color: var(--color-text);

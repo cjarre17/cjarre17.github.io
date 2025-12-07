@@ -1,12 +1,26 @@
+<!-- 
+==========================================================================
+Project: Nginx overview site
+Name: Caleb Jarrell
+File: index.html
+Purpose: Homepage containing abstract, history, and table of contents
+========================================================================== 
+-->
 <!DOCTYPE html>
 <html lang="en-US">
     <head>
-        <!--META VALUES-->
+        <!-----------------------------------------------------------------------------
+           META VALUES
+           Charset, viewport settings, and color scheme
+        ------------------------------------------------------------------------------>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,viewport-fit=cover">
         <meta name="color-scheme" content="dark light">
 
-        <!--STYLE IMPORTS-->
+        <!-----------------------------------------------------------------------------
+           STYLE IMPORTS
+           CSS and Font connections
+        ------------------------------------------------------------------------------>
         <link rel="stylesheet" href="styles.css">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -16,9 +30,13 @@
 
     <body>
 
-    <!--NAV BAR-->
+    <!-----------------------------------------------------------------------------
+       NAV BAR
+       Main navigation for desktop and mobile toggle
+    ------------------------------------------------------------------------------>
         <nav class="nav-bar">
 
+            <!-- Logo container -->
             <div class="nav-bar-left">
 
                 <div class="nav-bar-logo">
@@ -27,16 +45,19 @@
                     </a>
                 </div>
 
+                <!-- Desktop title -->
                 <div class="nav-bar-title" id="desktoptitle">
                     <h1 class="nav-bar-title"> - An Overview by Caleb Jarrell</h1>
                 </div>
 
+                <!-- Mobile title -->
                 <div class="nav-bar-title" id="mobiletitle">
                     <h2 class="nav-bar-title"> - An Overview</h2>
                 </div>
 
             </div>
 
+            <!-- Navigation links list -->
             <ul class="nav-bar-buttons">
                 <li><a href="index.html"><p>Home</p></a></li>
                 <li><a href="architecture.html"><p>Architecture</p></a></li>
@@ -47,6 +68,8 @@
                 <li><a href="quiz.html"><p>Quiz</p></a></li>
             </ul>
 
+        <!-- Dark/Light mode toggle switch -->
+        <!-- Discovered and adapted from codepen.io https://codepen.io/RefractedColor/pen/mdWZRPQ -->
         <div id="desktop-toggle">
             <div class="tdnn">
                 <div class="moon">
@@ -54,6 +77,8 @@
             </div>
         </div>
 
+            <!-- Hamburger menu button -->
+            <!-- Discovered and adapted from a youtube video. (Channel: Treehouse) -->
             <button class="ham-menu" aria-controls="mobile-drawer" aria-expanded="false" aria-label="Open menu">
                 <span></span>
                 <span></span>
@@ -62,7 +87,10 @@
 
         </nav>
 
-        <!--HAMBURGER MENU-->
+        <!-----------------------------------------------------------------------------
+           HAMBURGER MENU
+           Off-screen menu for mobile devices
+        ------------------------------------------------------------------------------>
         <nav id="mobile-drawer" class="off-screen-menu" aria-label="Mobile">
 
             <!-- Discovered and adapted from codepen.io https://codepen.io/RefractedColor/pen/mdWZRPQ -->
@@ -87,21 +115,29 @@
         </nav>
 
         
-        <!--MAIN SECTION-->
+        <!-----------------------------------------------------------------------------
+           MAIN SECTION
+           Primary content area
+        ------------------------------------------------------------------------------>
         <main class="home-main">
 
-            <!--LEFT CARD-->
+            <!-----------------------------------------------------------------------------
+               LEFT CARD
+               Abstract, Key Concepts, and History
+            ------------------------------------------------------------------------------>
             <div class="body-left">
 
                 <h2 class="body-title">
                     The Ins and Outs of NGINX
                 </h2>
+                <!-- Abstract section -->
                 <div class="abstract-container">
                     <p>
                         <strong>Abstract:</strong> NGINX is a high performance, load balancing, open source web-server that is designed 
                         for massive concurrency, low resource usage, and compatibility with modern web architecture.
                     </p>
                 </div>
+                <!-- Key concepts summary -->
                 <p>
                     <strong>Key Concepts:</strong> Nginx's event-driven workers and reverse proxy features make it ideal for load balancing, caching, TLS offload, and API gateways.
                 </p>
@@ -114,6 +150,7 @@
                     <li>TLS termination</li>
                     <li>Caching</li>
                 </ul>
+                <!-- Diagram container -->
                 <div class="image-div">
                     <img src="nginx-reverse-proxy.png" class="home-page-diagram" alt="A flowchart displaying the use of NGINX as a reverse proxy.">
                     <p class="figure-caption">
@@ -123,10 +160,32 @@
                         This image depicts NGINX functioning as a reverse proxy server, routing client requests to various backend servers based on the requested resource.
                     </p>
                 </div>
+
+                <!-- History section -->
+                <h4 class="list-title">A Brief History</h4>
+                <p>
+                    NGINX was created by Igor Sysoev and first publicly released in 2004. Sysoev developed it explicitly to solve the <strong>C10K problem</strong>, the challenge of handling 10,000 concurrent connections on a single server. Unlike traditional servers that relied on threads or processes for each connection, NGINX used an asynchronous, event-driven architecture. In 2019, F5 Networks acquired NGINX, continuing its development as both an open-source project and a commercial product.
+                </p>
+
+                <!-- Usage statistics/companies -->
+                <h4 class="list-title">Who Uses NGINX?</h4>
+                <p>
+                    Today, NGINX powers a vast portion of the web, known for its stability, rich feature set, simple configuration, and low resource consumption. It is used by high-traffic sites such as:
+                </p>
+                <ul class="body-list">
+                    <li>Netflix</li>
+                    <li>Hulu</li>
+                    <li>Pinterest</li>
+                    <li>Airbnb</li>
+                    <li>WordPress.com</li>
+                </ul>
                 
             </div>
 
-            <!--RIGHT CARD-->
+            <!-----------------------------------------------------------------------------
+               RIGHT CARD
+               Table of Contents
+            ------------------------------------------------------------------------------>
             <div class="body-right">
                 <h2 class="body-title">
                     Table of Contents
@@ -137,14 +196,18 @@
                 </p>
                 <div class="table-of-contents">
 
-                    <!--TABLE OF CONTENTS BUBBLE CARDS-->
+                    <!-----------------------------------------------------------------------------
+                       TABLE OF CONTENTS BUBBLE CARDS
+                       Links to other pages
+                    ------------------------------------------------------------------------------>
+                    <!-- Individual TOC card -->
                     <div class="bubbles-styling">
                         <h3 class="bubbles-title">
                             Architecture:
                         </h3>
 
                         <p>
-                            Master and worker processes, event loops, non-blocking I/O, concurrency.
+                            Discover how NGINX handles thousands of concurrent connections using its event-driven, non-blocking architecture. Learn about the master-worker process model and why it outperforms traditional thread-based servers.
                         </p>
 
                         
@@ -155,6 +218,7 @@
                         </a>
                     </div>
 
+                    <!-- Individual TOC card -->
                     <div class="bubbles-styling">
                         
                         <h3 class="bubbles-title">
@@ -162,7 +226,7 @@
                         </h3>
 
                         <p>
-                            Security through obscurity, caching, TLS offloading, compression, routing.
+                            Understand the role of a reverse proxy in modern web infrastructure. This section covers load balancing, caching strategies, TLS termination, and how to secure your backend services.
                         </p>
 
                         <a href="reverse-proxy.html" class="toc-links">
@@ -173,6 +237,7 @@
 
                     </div>
 
+                    <!-- Individual TOC card -->
                     <div class="bubbles-styling">
 
                         <h3 class="bubbles-title">
@@ -180,7 +245,7 @@
                         </h3>
 
                         <p>
-                            5-7 core ideas every web dev should know about Nginx.
+                            Master the essential terminology and concepts, including the C10K problem, event loops, and high availability. See how NGINX compares to other servers like Apache.
                         </p>
 
                         <a href="key-concepts.html" class="toc-links">
@@ -191,6 +256,7 @@
 
                     </div>
 
+                    <!-- Individual TOC card -->
                     <div class="bubbles-styling">
 
                         <h3 class="bubbles-title">
@@ -198,10 +264,48 @@
                         </h3>
 
                         <p>
-                            Citations and links used throughout this site.
+                            Explore the books, articles, and documentation used to build this guide. This curated list provides excellent starting points for deeper research into NGINX and web performance.
                         </p>
 
                         <a href="references.html" class="toc-links">
+                            <div class="toc-link-button">
+                                Read More
+                            </div>
+                        </a>
+
+                    </div>
+
+                    <!-- Individual TOC card -->
+                    <div class="bubbles-styling">
+
+                        <h3 class="bubbles-title">
+                            About:
+                        </h3>
+
+                        <p>
+                            Learn more about the author, Caleb Jarrell, and the technical details behind this project. This page also covers the design choices and development tools used to create this site.
+                        </p>
+
+                        <a href="about.html" class="toc-links">
+                            <div class="toc-link-button">
+                                Read More
+                            </div>
+                        </a>
+
+                    </div>
+
+                    <!-- Individual TOC card -->
+                    <div class="bubbles-styling">
+
+                        <h3 class="bubbles-title">
+                            Quiz:
+                        </h3>
+
+                        <p>
+                            Think you've mastered the material? Challenge yourself with this interactive quiz covering NGINX architecture, configuration, and best practices.
+                        </p>
+
+                        <a href="quiz.html" class="toc-links">
                             <div class="toc-link-button">
                                 Read More
                             </div>
@@ -213,29 +317,14 @@
 
                 </div>
 
-                    <div class="bubbles-styling-full">
-
-                        <h3 class="bubbles-title">
-                            About:
-                        </h3>
-
-                        <p>
-                            Who I am and what this project is about.
-                        </p>
-
-                        <a href="about.html" class="toc-links">
-                            <div class="toc-link-button">
-                                Read More
-                            </div>
-                        </a>
-
-                    </div>
-
             </div>
 
         </main>
 
-        <!--FOOTER-->
+        <!-----------------------------------------------------------------------------
+           FOOTER
+           Copyright and project info
+        ------------------------------------------------------------------------------>
         <footer>
             <div class="footer-div">
                 <h4 class="footer-text">Caleb Jarrell</h4>
@@ -246,7 +335,10 @@
             </div>
         </footer>
         
-        <!--JS SCRIPT IMPORT-->
+        <!-----------------------------------------------------------------------------
+           JS SCRIPT IMPORT
+           Hamburger menu and theme toggle logic
+        ------------------------------------------------------------------------------>
         <script src="hamburger.js" defer></script>
         <script src="light-dark.js" defer></script>
 

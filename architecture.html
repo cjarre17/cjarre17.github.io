@@ -1,11 +1,25 @@
+<!-- 
+==========================================================================
+Project: Nginx overview site
+Name: Caleb Jarrell
+File: architecture.html
+Purpose: Explains NGINX's event-driven architecture and process model
+========================================================================== 
+-->
 <!DOCTYPE html>
 <html lang="en-US">
     <head>
-        <!--META VALUES-->
+        <!-----------------------------------------------------------------------------
+           META VALUES
+           Charset, viewport settings, and color scheme
+        ------------------------------------------------------------------------------>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,viewport-fit=cover">
 
-        <!--STYLE IMPORTS-->
+        <!-----------------------------------------------------------------------------
+           STYLE IMPORTS
+           CSS and Font connections
+        ------------------------------------------------------------------------------>
         <link rel="stylesheet" href="styles.css">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14,9 +28,13 @@
     </head>
 
     <body>
-        <!--NAV BAR-->
+        <!-----------------------------------------------------------------------------
+           NAV BAR
+           Main navigation for desktop and mobile toggle
+        ------------------------------------------------------------------------------>
         <nav class="nav-bar">
 
+            <!-- Logo container -->
             <div class="nav-bar-left">
 
                 <div class="nav-bar-logo">
@@ -25,16 +43,19 @@
                     </a>
                 </div>
 
+                <!-- Desktop title -->
                 <div class="nav-bar-title" id="desktoptitle">
                     <h1 class="nav-bar-title"> - An Overview by Caleb Jarrell</h1>
                 </div>
 
+                <!-- Mobile title -->
                 <div class="nav-bar-title" id="mobiletitle">
                     <h2 class="nav-bar-title"> - An Overview</h2>
                 </div>
 
             </div>
 
+            <!-- Navigation links list -->
             <ul class="nav-bar-buttons">
                 <li><a href="index.html"><p>Home</p></a></li>
                 <li><a href="architecture.html"><p>Architecture</p></a></li>
@@ -45,6 +66,8 @@
                 <li><a href="quiz.html"><p>Quiz</p></a></li>
             </ul>
 
+        <!-- Dark/Light mode toggle switch -->
+        <!-- Discovered and adapted from codepen.io https://codepen.io/RefractedColor/pen/mdWZRPQ -->
         <div id="desktop-toggle">
             <div class="tdnn">
                 <div class="moon">
@@ -52,6 +75,8 @@
             </div>
         </div>
 
+            <!-- Hamburger menu button -->
+            <!-- Discovered and adapted from a youtube video. (Channel: Treehouse) -->
             <button class="ham-menu" aria-controls="mobile-drawer" aria-expanded="false" aria-label="Open menu">
                 <span></span>
                 <span></span>
@@ -60,7 +85,10 @@
 
         </nav>
 
-        <!--HAMBURGER MENU-->
+        <!-----------------------------------------------------------------------------
+           HAMBURGER MENU
+           Off-screen menu for mobile devices
+        ------------------------------------------------------------------------------>
         <nav id="mobile-drawer" class="off-screen-menu" aria-label="Mobile">
 
             <!-- Discovered and adapted from codepen.io https://codepen.io/RefractedColor/pen/mdWZRPQ -->
@@ -84,21 +112,29 @@
         </nav>
 
         
-        <!--MAIN SECTION-->
+        <!-----------------------------------------------------------------------------
+           MAIN SECTION
+           Primary content area
+        ------------------------------------------------------------------------------>
         <main>
 
-            <!--CENTER CARD TOP-->
+            <!-----------------------------------------------------------------------------
+               CENTER CARD TOP
+               Architecture overview and event loop details
+            ------------------------------------------------------------------------------>
             <div class="body-full">
 
                 <h2 class="body-title">
                     NGINX Architecture
                 </h2>
 
+                <!-- Architecture summary -->
                 <p>
                     NGINX is built around one master process and many other worker processes. 
                     Worker processes are event-driven and can handle many connections at once through the use of non-blocking I/O (event loops).
                 </p>
 
+                <!-- Master vs Worker list -->
                 <h2 class="list-title">Master vs. Worker Role</h2>
                 <ul class="master-worker-list">
                     <li><strong>Master:</strong> reads config, binds ports, manages worker lifecycle.</li>
@@ -114,7 +150,33 @@
                     memory and context-switch overhead when handling thousands of clients.
                 </p>
 
-                <!--TIP CONTAINER-->
+                <!-- Event loop explanation -->
+                <h2 class="body-title-left">How the Event Loop Works</h2>
+                <p>
+                    The event loop is the engine that drives NGINX's efficiency. Instead of dedicating a full OS thread to each user, a worker process cycles through all active connections, handling small chunks of work as they become available.
+                </p>
+                <ol class="master-worker-list">
+                    <li><strong>Wait:</strong> The worker waits for events on network sockets ("new connection" or "data ready").</li>
+                    <li><strong>Accept:</strong> When a new client connects, the worker accepts the connection and adds it to the monitoring list.</li>
+                    <li><strong>Process:</strong> When data arrives, the worker reads the request, processes it, and prepares a response.</li>
+                    <li><strong>Non-Blocking:</strong> If an operation would take time (like waiting for a database), the worker doesn't wait. It moves to the next connection and checks back later.</li>
+                </ol>
+
+                <!-- Process management signals -->
+                <h2 class="body-title-left">Process Management Signals</h2>
+                <p>
+                    Administrators communicate with the Master process using system signals. This allows for maintenance without downtime.
+                </p>
+                <ul class="master-worker-list">
+                    <li><strong>SIGHUP:</strong> Reload configuration. The master starts new workers with the new config and gracefully shuts down old ones.</li>
+                    <li><strong>SIGQUIT:</strong> Graceful shutdown. Workers finish their current requests before exiting.</li>
+                    <li><strong>SIGUSR1:</strong> Re-open log files (useful for log rotation).</li>
+                </ul>
+
+                <!-----------------------------------------------------------------------------
+                   TIP CONTAINER
+                   Helpful tip about worker processes
+                ------------------------------------------------------------------------------>
                 <div class="tip-container">
                     <p>
                         <strong>Tip:</strong> By default, Nginx spawns about one worker per CPU core — a sensible starting point. 
@@ -123,13 +185,19 @@
 
             </div>
 
-            <!--CENTER CARD BOTTOM-->
+            <!-----------------------------------------------------------------------------
+               CENTER CARD BOTTOM
+               Comparison table
+            ------------------------------------------------------------------------------>
             <div class="body-full">
                 <h2 class="body-title-left">
                     At a Glance
                 </h2>
 
-                <!--TABLE OF ARCHITECTURE INFO-->
+                <!-----------------------------------------------------------------------------
+                   TABLE OF ARCHITECTURE INFO
+                   Comparison of NGINX vs Legacy servers
+                ------------------------------------------------------------------------------>
                 <table class="arch-table">
 
                     <thead>
@@ -166,7 +234,10 @@
 
         </main>
 
-        <!--FOOTER-->
+        <!-----------------------------------------------------------------------------
+           FOOTER
+           Copyright and project info
+        ------------------------------------------------------------------------------>
         <footer>
             <div class="footer-div">
                 <h4 class="footer-text">Caleb Jarrell</h4>
@@ -180,7 +251,10 @@
             </div>
         </footer>
 
-        <!--JS SCRIPT IMPORT-->
+        <!-----------------------------------------------------------------------------
+           JS SCRIPT IMPORT
+           Hamburger menu and theme toggle logic
+        ------------------------------------------------------------------------------>
         <script src="hamburger.js" defer></script>
         <script src="light-dark.js" defer></script>
 

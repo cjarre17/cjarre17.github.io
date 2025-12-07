@@ -1,11 +1,25 @@
+<!-- 
+==========================================================================
+Project: Nginx overview site
+Name: Caleb Jarrell
+File: reverse-proxy.html
+Purpose: Content page explaining Reverse Proxy concepts, use cases, and config
+========================================================================== 
+-->
 <!DOCTYPE html>
 <html lang="en-US">
     <head>
-        <!--META VALUES-->
+        <!-----------------------------------------------------------------------------
+           META VALUES
+           Charset, viewport settings, and color scheme
+        ------------------------------------------------------------------------------>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,viewport-fit=cover">
 
-        <!--STYLE IMPORTS-->
+        <!-----------------------------------------------------------------------------
+           STYLE IMPORTS
+           CSS and Font connections
+        ------------------------------------------------------------------------------>
         <link rel="stylesheet" href="styles.css">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -15,9 +29,13 @@
 
     <body>
 
-        <!--NAV BAR-->
+        <!-----------------------------------------------------------------------------
+           NAV BAR
+           Main navigation for desktop and mobile toggle
+        ------------------------------------------------------------------------------>
         <nav class="nav-bar">
 
+            <!-- Logo container -->
             <div class="nav-bar-left">
 
                 <div class="nav-bar-logo">
@@ -26,16 +44,19 @@
                     </a>
                 </div>
 
+                <!-- Desktop title -->
                 <div class="nav-bar-title" id="desktoptitle">
                     <h1 class="nav-bar-title"> - An Overview by Caleb Jarrell</h1>
                 </div>
 
+                <!-- Mobile title -->
                 <div class="nav-bar-title" id="mobiletitle">
                     <h2 class="nav-bar-title"> - An Overview</h2>
                 </div>
 
             </div>
 
+            <!-- Navigation links list -->
             <ul class="nav-bar-buttons">
                 <li><a href="index.html"><p>Home</p></a></li>
                 <li><a href="architecture.html"><p>Architecture</p></a></li>
@@ -46,6 +67,8 @@
                 <li><a href="quiz.html"><p>Quiz</p></a></li>
             </ul>
 
+        <!-- Dark/Light mode toggle switch -->
+        <!-- Discovered and adapted from codepen.io https://codepen.io/RefractedColor/pen/mdWZRPQ -->
         <div id="desktop-toggle">
             <div class="tdnn">
                 <div class="moon">
@@ -53,6 +76,8 @@
             </div>
         </div>
 
+            <!-- Hamburger menu button -->
+            <!-- Discovered and adapted from a youtube video. (Channel: Treehouse) -->
             <button class="ham-menu" aria-controls="mobile-drawer" aria-expanded="false" aria-label="Open menu">
                 <span></span>
                 <span></span>
@@ -61,7 +86,10 @@
 
         </nav>
         
-        <!--HAMBURGER MENU-->
+        <!-----------------------------------------------------------------------------
+           HAMBURGER MENU
+           Off-screen menu for mobile devices
+        ------------------------------------------------------------------------------>
         <nav id="mobile-drawer" class="off-screen-menu" aria-label="Mobile">
 
             <!-- Discovered and adapted from codepen.io https://codepen.io/RefractedColor/pen/mdWZRPQ -->
@@ -85,21 +113,29 @@
         </nav>
 
         
-        <!--MAIN SECTION-->
+        <!-----------------------------------------------------------------------------
+           MAIN SECTION
+           Primary content area
+        ------------------------------------------------------------------------------>
         <main>
 
-            <!--CENTER CARD-->
+            <!-----------------------------------------------------------------------------
+               CENTER CARD
+               Full-width card for main content
+            ------------------------------------------------------------------------------>
             <div class="body-full">
 
                 <h2 class="body-title">
                     Reverse Proxy — What & Why
                 </h2>
 
+                <!-- Definition -->
                 <p>
                     A reverse proxy sits in front of application servers and routes client requests to the appropriate backend, 
                     adding performance and security features along the way.
                 </p>
 
+                <!-- Capabilities list -->
                 <h2 class="list-title">Core Capabilities</h2>
                 <ul class="master-worker-list">
                     <li><strong>Security:</strong> expose only the proxy to the internet; hide backends.</li>
@@ -113,9 +149,13 @@
                     Use-Case Examples
                 </h2>
 
-                <!--BUBBLE CARDS-->
+                <!-----------------------------------------------------------------------------
+                   BUBBLE CARDS
+                   Grid of use-case examples
+                ------------------------------------------------------------------------------>
                 <div class="bubble-inlay">
 
+                    <!-- Load Balancing card -->
                     <div class="bubbles-styling">
                         <h3 class="bubbles-title">
                             Load Balancing
@@ -126,6 +166,7 @@
                         </p>
                     </div>
 
+                    <!-- API Gateway card -->
                     <div class="bubbles-styling">
                         <h3 class="bubbles-title">
                             API Gateway
@@ -136,6 +177,7 @@
                         </p>
                     </div>
 
+                    <!-- Legacy HTTPS Front card -->
                     <div class="bubbles-styling">
                         <h3 class="bubbles-title">
                             Legacy HTTPS Front
@@ -146,6 +188,7 @@
                         </p>
                     </div>
 
+                    <!-- Static Caching card -->
                     <div class="bubbles-styling">
                         <h3 class="bubbles-title">
                             Static Caching
@@ -158,12 +201,48 @@
 
                 </div>
 
+                <!-- Configuration example -->
+                <h2 class="body-title-left">
+                    Basic Configuration Example
+                </h2>
+                <p>
+                    A simple reverse proxy configuration might look like this. It listens on port 80 and forwards all traffic to a backend application running on port 3000.
+                </p>
+<div class="code-title">Example:</div>
+<div class="code-snippet">
+server {
+    listen 80;
+    server_name example.com;
+
+    location / {
+        proxy_pass http://localhost:3000;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+    }
+}</div>
+
+                <!-- Load balancing strategies -->
+                <h2 class="body-title-left">
+                    Load Balancing Strategies
+                </h2>
+                <p>
+                    When distributing traffic, NGINX can use several algorithms to decide which server gets the next request:
+                </p>
+                <ul class="master-worker-list">
+                    <li><strong>Round Robin:</strong> Requests are distributed sequentially to the list of servers. This is the default.</li>
+                    <li><strong>Least Connections:</strong> The request is sent to the server with the fewest active connections, useful when request times vary.</li>
+                    <li><strong>IP Hash:</strong> The client's IP address is used to determine the server, ensuring a user always reaches the same backend (session persistence).</li>
+                </ul>
+
 
             </div>
 
         </main>
 
-        <!--FOOTER-->
+        <!-----------------------------------------------------------------------------
+           FOOTER
+           Copyright and course info
+        ------------------------------------------------------------------------------>
         <footer>
             <div class="footer-div">
                 <h4 class="footer-text">Caleb Jarrell</h4>
@@ -177,7 +256,10 @@
             </div>
         </footer>
 
-        <!--JS SCRIPT IMPORT-->
+        <!-----------------------------------------------------------------------------
+           JS SCRIPT IMPORT
+           Functionality for menu and theme toggle
+        ------------------------------------------------------------------------------>
         <script src="hamburger.js" defer></script>
         <script src="light-dark.js" defer></script>
 

@@ -1,11 +1,25 @@
+<!-- 
+==========================================================================
+Project: Nginx overview site
+Name: Caleb Jarrell
+File: quiz.html
+Purpose: Interactive quiz to test user knowledge
+========================================================================== 
+-->
 <!DOCTYPE html>
 <html lang="en-US">
     <head>
-        <!--META VALUES-->
+        <!-----------------------------------------------------------------------------
+           META VALUES
+           Charset, viewport settings, and color scheme
+        ------------------------------------------------------------------------------>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,viewport-fit=cover">
 
-        <!--STYLE IMPORTS-->
+        <!-----------------------------------------------------------------------------
+           STYLE IMPORTS
+           CSS and Font connections
+        ------------------------------------------------------------------------------>
         <link rel="stylesheet" href="styles.css">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14,27 +28,34 @@
     </head>
 
     <body>
-        <!--NAV BAR-->
+        <!-----------------------------------------------------------------------------
+           NAV BAR
+           Main navigation for desktop and mobile toggle
+        ------------------------------------------------------------------------------>
         <nav class="nav-bar">
 
             <div class="nav-bar-left">
 
+                <!-- Logo container -->
                 <div class="nav-bar-logo">
                     <a href="index.html">
                         <img src="https://1000logos.net/wp-content/uploads/2020/08/Nginx-Logo.png" alt="Image of the Nginx (engine-x) logo">
                     </a>
                 </div>
 
+                <!-- Desktop title -->
                 <div class="nav-bar-title" id="desktoptitle">
                     <h1 class="nav-bar-title"> - An Overview by Caleb Jarrell</h1>
                 </div>
 
+                <!-- Mobile title -->
                 <div class="nav-bar-title" id="mobiletitle">
                     <h2 class="nav-bar-title"> - An Overview</h2>
                 </div>
 
             </div>
 
+            <!-- Navigation links list -->
             <ul class="nav-bar-buttons">
                 <li><a href="index.html"><p>Home</p></a></li>
                 <li><a href="architecture.html"><p>Architecture</p></a></li>
@@ -45,6 +66,8 @@
                 <li><a href="quiz.html"><p>Quiz</p></a></li>
             </ul>
 
+        <!-- Dark/Light mode toggle switch -->
+        <!-- Discovered and adapted from codepen.io https://codepen.io/RefractedColor/pen/mdWZRPQ -->
         <div id="desktop-toggle">
             <div class="tdnn">
                 <div class="moon">
@@ -52,6 +75,8 @@
             </div>
         </div>
 
+            <!-- Hamburger menu button -->
+            <!-- Discovered and adapted from a youtube video. (Channel: Treehouse) -->
             <button class="ham-menu" aria-controls="mobile-drawer" aria-expanded="false" aria-label="Open menu">
                 <span></span>
                 <span></span>
@@ -60,7 +85,10 @@
 
         </nav>
 
-        <!--HAMBURGER MENU-->
+        <!-----------------------------------------------------------------------------
+           HAMBURGER MENU
+           Off-screen menu for mobile devices
+        ------------------------------------------------------------------------------>
         <nav id="mobile-drawer" class="off-screen-menu" aria-label="Mobile">
 
             <!-- Discovered and adapted from codepen.io https://codepen.io/RefractedColor/pen/mdWZRPQ -->
@@ -84,10 +112,16 @@
         </nav>
 
         
-        <!--MAIN SECTION-->
+        <!-----------------------------------------------------------------------------
+           MAIN SECTION
+           Primary content area
+        ------------------------------------------------------------------------------>
         <main class="quiz-main">
 
-            <!--CENTER CARD TOP-->
+            <!-----------------------------------------------------------------------------
+               CENTER CARD TOP
+               Quiz container
+            ------------------------------------------------------------------------------>
             <div class="quiz-question-card" id="quiz-container">
 
 
@@ -100,9 +134,13 @@
                     Question text placeholder for JS to fill in.
                 </p>
 
-                <!--QUESTION OPTIONS CONTAINER-->
+                <!-----------------------------------------------------------------------------
+                   QUESTION OPTIONS CONTAINER
+                   Radio buttons for answers
+                ------------------------------------------------------------------------------>
                 <form class="question-options" id="quiz-form" action="#">
                     <div id="options">
+                        <!-- Option 1 -->
                         <input type="radio" name="q1" value="true" required>
                         <label class="option">
                             <div class="option-container">
@@ -110,6 +148,7 @@
                             </div>
                         </label>
 
+                        <!-- Option 2 -->
                         <input type="radio" name="q1" value="false" required>
                         <label class="option">
                             <div class="option-container">
@@ -119,9 +158,11 @@
                     </div>
                 </form>
 
+                <!-- Results display area -->
                 <div id="result" class="quiz-results" hidden></div>
             </div>
 
+                <!-- Quiz navigation buttons -->
                 <div class="quiz-button-panel">
                     <button type="button" class="quiz-button" id="previous-button"><img src="icons/left_arrow_icon_dark.png" alt="Previous question" id="previous-button-icon"></button>
                     <button type="button" class="quiz-button" id="next-button"><img src="icons/right_arrow_icon_dark.png" alt="Next question" id="next-button-icon"></button>
@@ -131,7 +172,10 @@
 
         </main>
 
-        <!--FOOTER-->
+        <!-----------------------------------------------------------------------------
+           FOOTER
+           Copyright and project info
+        ------------------------------------------------------------------------------>
         <footer>
             <div class="footer-div">
                 <h4 class="footer-text">Caleb Jarrell</h4>
@@ -145,7 +189,10 @@
             </div>
         </footer>
 
-        <!--JS SCRIPT IMPORT-->
+        <!-----------------------------------------------------------------------------
+           JS SCRIPT IMPORT
+           Hamburger menu, theme toggle, and quiz logic
+        ------------------------------------------------------------------------------>
         <script src="hamburger.js" defer></script>
         <script src="light-dark.js" defer></script>
         <script src="quiz.js" defer></script>

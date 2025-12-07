@@ -1,5 +1,17 @@
+/* 
+==========================================================================
+Project: Nginx overview site
+Name: Caleb Jarrell
+File: quiz.js
+Purpose: Logic for the interactive quiz questions and scoring
+========================================================================== 
+*/
+
 (function () {
-  // --- Quiz data (edit these however you want) ---
+  /* -----------------------------------------------------------------------------
+     QUIZ DATA
+     Array of question objects
+  ----------------------------------------------------------------------------- */
   const questions = [
     {
       type: 'text',
@@ -63,12 +75,18 @@
     }
   ];
 
-  // --- State ---
+  /* -----------------------------------------------------------------------------
+     STATE MANAGEMENT
+     Current index and answer tracking
+  ----------------------------------------------------------------------------- */
   let questionIndex = 0;
   let quizComplete = false;
   const answers = new Array(questions.length).fill(null);
 
-  // --- Elements ---
+  /* -----------------------------------------------------------------------------
+     DOM ELEMENTS
+     References to UI components
+  ----------------------------------------------------------------------------- */
   const questionNum = document.getElementById('question-num');
   const questionEl  = document.getElementById('question');
   const quizForm    = document.getElementById('quiz-form');
@@ -83,7 +101,10 @@
   const restartIcon = document.getElementById('quiz-restart-icon');
 
 
-  // --- Helpers ---
+  /* -----------------------------------------------------------------------------
+     HELPER FUNCTIONS
+     Utility logic for comparisons and formatting
+  ----------------------------------------------------------------------------- */
   function norm(s) {
     return String(s ?? '').trim().toLowerCase().replace(/\s+/g, ' ');
   }
@@ -106,12 +127,15 @@
 }
 
   function scoreQuestion(q, ans) {
+    // Score single choice
     if (q.type === 'single') {
       return ans === q.correctIndex ? 1 : 0;
     }
+    // Score multiple choice (all correct options must be selected)
     if (q.type === 'multi') {
       return setsEqual(ans || [], q.correctIndices || []) ? 1 : 0;
     }
+    // Score text input (fuzzy match)
     if (q.type === 'text') {
       const accepts = Array.isArray(q.correctText) ? q.correctText : [q.correctText];
       return accepts.some(acc => norm(ans) === norm(acc)) ? 1 : 0;
@@ -119,14 +143,19 @@
     return 0;
   }
 
-  // --- Render ---
+  /* -----------------------------------------------------------------------------
+     RENDER LOGIC
+     Updates the UI based on current state
+  ----------------------------------------------------------------------------- */
   function renderQuestion() {
     const q = questions[questionIndex];
 
+    // Update question text and number
     questionNum.textContent = `Question ${questionIndex + 1} of ${questions.length}`;
     questionEl.textContent  = q.question;
 
     if (q.type === 'text') {
+      // Render text input
       const current = typeof answers[questionIndex] === 'string' ? answers[questionIndex] : '';
       optionsEl.innerHTML = `
         <label class="option">
@@ -141,6 +170,7 @@
           const name = 'answer';
           const type = isMulti ? 'checkbox' : 'radio';
           const saved = answers[questionIndex];
+          // Check if option was previously selected
           const checked = isMulti
             ? (Array.isArray(saved) && saved.includes(i) ? 'checked' : '')
             : (saved === i ? 'checked' : '');
@@ -183,12 +213,15 @@
     const hasAnswer = isAnswered(q, answers[questionIndex]);
     const theme = getTheme();
 
+    // Disable previous button on first question
     prevBtn.disabled = (questionIndex === 0);
 
     const last = questionIndex === questions.length - 1;
+    // Show/hide Next/Submit buttons based on position
     nextBtn.style.display   = last ? 'none' : 'inline-block';
     submitBtn.style.display = last ? 'inline-block' : 'none';
 
+    // Enable Next/Submit only if question is answered
     nextBtn.disabled   = !hasAnswer && !last;
     submitBtn.disabled = !hasAnswer &&  last;
 
@@ -196,10 +229,12 @@
 
   // If quiz is finished, swap to the restart button
   if (quizComplete) {
+    // Hide navigation buttons
     prevBtn.style.display   = 'none';
     nextBtn.style.display   = 'none';
     submitBtn.style.display = 'none';
 
+    // Show restart button with correct theme icon
     if (restartBtn) restartBtn.style.display = 'inline-flex';
     if (restartIcon) {
       restartIcon.src = theme === 'light'
@@ -210,7 +245,10 @@
   }
   }
 
-  // --- Events ---
+  /* -----------------------------------------------------------------------------
+     EVENT LISTENERS
+     User interaction handling
+  ----------------------------------------------------------------------------- */
   quizForm.addEventListener('change', (e) => {
     if (!e.target) return;
     saveCurrentAnswer();
@@ -250,6 +288,7 @@
     const last = questionIndex === questions.length - 1;
     if (!last) return; // avoid accidental Enter-submit mid-quiz
 
+    // Calculate total score
     const correctCount = questions.reduce((sum, q, i) => sum + scoreQuestion(q, answers[i]), 0);
     const totalQuestions = questions.length;
 
@@ -296,6 +335,7 @@
       `;
     }).join('');
 
+    // Display results container
     resultEl.hidden = false;
     resultEl.innerHTML = `
     <div class="quiz-result-header">
